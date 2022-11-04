@@ -284,6 +284,7 @@
                     <div class="bg-secondary text-center p-4">
                         <h5 class="text-uppercase">Barber Name</h5>
                         <span class="text-primary">Designation</span>
+
                     </div>
                 </div>
             </div>

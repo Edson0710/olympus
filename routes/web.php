@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ServicioController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -38,3 +39,4 @@ Route::middleware('web')->group(function () {
     });
 });
     
+Route::resource('servicio', ServicioController::class);

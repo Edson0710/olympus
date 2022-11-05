@@ -1,5 +1,6 @@
 <?php
 
+use App\HTTP\Controllers\CitaController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -17,6 +18,8 @@ use Laravel\Jetstream\Rules\Role;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::resource('cita', CitaController::class)->parameters(['cita' => 'cita']);
 
 Route::middleware('web')->group(function () {
     Route::get('/index', function () {

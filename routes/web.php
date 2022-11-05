@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CorteController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -13,6 +14,8 @@ use Laravel\Jetstream\Rules\Role;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource('corte', CorteController::class);
 
 Route::get('/', function () {
     return view('index');

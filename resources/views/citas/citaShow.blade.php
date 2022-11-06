@@ -1,73 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostrar Cita</title>
-</head>
-<body>
-<section class="h-100 bg-white">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col">
-            <a class="btn btn-dark" style="background-color:black" href="/cita">← Listado de Citas</a>
-                <div class="separar">
-                <div class="row g-0">
-                    <div class="col-xl-6 d-none d-xl-block">
-                    <img src="/img/mostrarSneakers.jpg"
-                        alt="Sample photo" class="img-fluid"
-                        style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
-                    </div>
-                    <div class="col-xl-6">
-                
-                        <h3 class="mb-5 text-uppercase">Detalles de la Cita</h3>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
+        <title>Olympus - Detalle-Cita</title>
+    </head>
 
-                        <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                            <label class="form-label" for="form3Example1m">Nombre</label>
-                            <input type="text" id="form3Example1m" class="form-control form-control-lg" value="{{ $cita->nombreUsuarioCita }}" disabled />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                            <label class="form-label" for="form3Example1n">Email</label>
-                            <input type="text" id="form3Example1n" class="form-control form-control-lg" value="{{ $cita->emailUsuarioCita }}" disabled />   
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                            <label class="form-label" for="form3Example1m1">Fecha</label>
-                            <input type="text" id="form3Example1m1" class="form-control form-control-lg" value="{{ $cita->fechaUsuarioCita }}" disabled />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                            <label class="form-label" for="form3Example1n1">Celular</label>
-                            <input type="text" id="form3Example1n1" class="form-control form-control-lg" value="{{ $cita->celularUsuarioCita }}" disabled />
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                        <label class="form-label" for="form3Example8">Hora</label>
-                        <input type="text" id="form3Example8" class="form-control form-control-lg" value="{{ $cita->horaUsuarioCita }}" disabled />
-                        </div>
-
-                    </div>
-
-                    </div>
+    <body>
+        <div class="container" id="advanced-search-form">
+            <h2>Detalles Cita</h2>
+                <div class="form-group">
+                    <label for="nombreUsuarioCita">Nombre</label>
+                    <input type="text" class="form-control" id="nombreUsuarioCita" name="nombreUsuarioCita" value="{{ $cita->nombreUsuarioCita }}" disabled>
                 </div>
+                <div class="form-group">
+                    <label for="emailUsuarioCita">Email</label>
+                    <input type="text" class="form-control" id="emailUsuarioCita" name="emailUsuarioCita" value="{{ $cita->emailUsuarioCita }}" disabled>
                 </div>
-            </div>
-            </div>
+                <div class="form-group">
+                    <label for="fechaUsuarioCita">Fecha</label>
+                    <input type="text" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ $cita->fechaUsuarioCita }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="celularUsuarioCita">Celular</label>
+                    <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ $cita->celularUsuarioCita }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="horaUsuarioCita">Hora</label>
+                    <input type="text" class="form-control" id="horaUsuarioCita" name="horaUsuarioCita" value="{{ $cita->horaUsuarioCita }}" disabled>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <a class="btn btn-dark btn-lg btn-responsive" href="/cita">Regresar</a>
+                </div>
+            </form>
         </div>
-        </section>
-</body>
+    </body>
 </html>

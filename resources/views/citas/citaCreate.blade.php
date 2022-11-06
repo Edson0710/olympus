@@ -1,76 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="bg-secondary p-5">
-                    <p class="d-inline-block bg-dark text-primary py-1 px-4">CREA TU CITA</p>
-                    <h1 class="text-uppercase mb-4">VEN Y CONOCE NUESTRAS INSTALACIONES Y DISFRUTA DE UN AGRADABLE SERVICIO</h1>
-                    <p class="mb-4">OLYMPUS</p>
-                        
-                        <form action="/cita" method="POST">
-                            @csrf
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent" id="nombreUsuarioCita" name="nombreUsuarioCita">
-                                    <label for="nombreUsuarioCita">Nombre</label>
-                                </div>
-                            </div>
-                            @error('nombreUsuarioCita')
-                                <i>{{ $message}}</i>
-                            @enderror
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control bg-transparent" id="emailUsuarioCita" name="emailUsuarioCita">
-                                    <label for="emailUsuarioCita">Email</label>
-                                </div>
-                            </div>
-                            @error('emailUsuarioCita')
-                                <i>{{ $message}}</i>
-                            @enderror
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="date" class="form-control bg-transparent" id="fechaUsuarioCita" name="fechaUsuarioCita">
-                                    <label for="fechaUsuarioCita">Fecha</label>
-                                </div>
-                            </div>
-                            @error('fechaUsuarioCita')
-                                <i>{{ $message}}</i>
-                            @enderror
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="numeric" class="form-control bg-transparent" id="celularUsuarioCita" name="celularUsuarioCita"> 
-                                    <label for="celularUsuarioCita">Celular</label>
-                                </div>
-                            </div>
-                            @error('celularUsuarioCita')
-                            <i>{{ $message}}</i>
-                            @enderror
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="time" class="form-control bg-transparent" id="horaUsuarioCita" name="horaUsuarioCita">
-                                    <label for="horaUsuarioCita">Hora</label>
-                                </div>
-                            </div>
-                            @error('horaUsuarioCita')
-                                <i>{{ $message}}</i>
-                                @enderror
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Agendar Cita</button>
-                            </div>
-                        </div>
-                    </form>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
+        <title>Olympus - Agendar-Cita</title>
+    </head>
+
+    <body>
+        <div class="container" id="advanced-search-form">
+            <h2>Agendar Cita</h2>
+            <form action="/cita" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="nombreUsuarioCita">Nombre</label>
+                    <input type="text" class="form-control" id="nombreUsuarioCita" name="nombreUsuarioCita" value="{{ old('nombreUsuarioCita') }}">
+                    @error('nombreUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
                 </div>
-            </div>
-</body>
+                <div class="form-group">
+                    <label for="emailUsuarioCita">Email</label>
+                    <input type="email" class="form-control" id="emailUsuarioCita" name="emailUsuarioCita" value="{{ old('emailUsuarioCita') }}">
+                    @error('emailUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="fechaUsuarioCita">Fecha</label>
+                    <input type="date" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') }}">
+                    @error('fechaUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="celularUsuarioCita">Celular</label>
+                    <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') }}">
+                    @error('celularUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="horaUsuarioCita">Hora</label>
+                    <input type="time" class="form-control" id="horaUsuarioCita" name="horaUsuarioCita" value="{{ old('horaUsuarioCita') }}">
+                    @error('horaUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <a class="btn btn-danger btn-lg btn-responsive" href="/cita">Cancelar</a>
+                    <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </body>
 </html>

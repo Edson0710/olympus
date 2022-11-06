@@ -1,74 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Cita</title>
-</head>
-<body>
-<section class="vh-100 bg-image" style="background-image: url('/img/createSneaker.jpg')">
-    
-    <div class="separar">
-        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-            <div class="container h-100">
-            <a class="btn btn-dark" style="background-color:black" href="/cita">← Regresar</a>
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                <div class="card" style="border-radius: 15px;">
-                    <div class="card-body p-5">    
-                        <h2 class="text-uppercase text-center mb-5">Editar Cita</h2>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
+        <title>Olympus - Editar-Cita</title>
+    </head>
 
-                        <form action="/cita/{{ $cita->id }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="nombreUsuarioCita">Nombre</label>
-                                <input class="form-control form-control-lg" type="text" name="nombreUsuarioCita" id="nombreUsuarioCita" value="{{ old('nombreUsuarioCita') ?? $cita->nombreUsuarioCita }}">
-                                @error('nombre')
-                                    <i>{{ $message}}</i>
-                                @enderror
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="emailUsuarioCita">Email</label>
-                                <input class="form-control form-control-lg" type="text" name="emailUsuarioCita" id="emailUsuarioCita" value="{{ old('emailUsuarioCita') ?? $cita->emailUsuarioCita }}">
-                                @error('marca')
-                                    <i>{{ $message}}</i>
-                                @enderror
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="fechaUsuarioCita">Fecha</label>
-                                <input class="form-control form-control-lg" type="date" name="fechaUsuarioCita" id="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') ?? $cita->fechaUsuarioCita }}">
-                                @error('precio')
-                                    <i>{{ $message}}</i>
-                                @enderror
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="celularUsuarioCita">Celular</label>
-                                <input class="form-control form-control-lg" type="numeric" name="celularUsuarioCita" id="celularUsuarioCita" value="{{ old('celularUsuarioCita') ?? $cita->celularUsuarioCita }}">
-                                @error('talla')
-                                    <i>{{ $message}}</i>
-                                @enderror
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="horaUsuarioCita">Hora</label>
-                                <input class="form-control form-control-lg" type="time" name="horaUsuarioCita" id="horaUsuarioCita" value="{{ old('horaUsuarioCita') ?? $cita->horaUsuarioCita }}">
-                                @error('stock')
-                                    <i>{{ $message}}</i>
-                                @enderror
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <button type=submit
-                                class="btn btn-warning btn-block btn-lg gradient-custom-4 text-body">Editar</button>
-                            </div>
-                        </form>
-                    </div>
+    <body>
+        <div class="container" id="advanced-search-form">
+            <h2>Editar Cita</h2>
+            <form action="/cita/{{ $cita->id }}" method="POST">
+            @csrf
+            @method('PATCH')
+                <div class="form-group">
+                    <label for="nombreUsuarioCita">Nombre</label>
+                    <input type="text" class="form-control" id="nombreUsuarioCita" name="nombreUsuarioCita" value="{{ old('nombreUsuarioCita') ?? $cita->nombreUsuarioCita }}">
+                    @error('nombreUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
                 </div>
+                <div class="form-group">
+                    <label for="emailUsuarioCita">Email</label>
+                    <input type="email" class="form-control" id="emailUsuarioCita" name="emailUsuarioCita" value="{{ old('emailUsuarioCita') ?? $cita->emailUsuarioCita }}">
+                    @error('emailUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
                 </div>
-            </div>
-            </div>
+                <div class="form-group">
+                    <label for="fechaUsuarioCita">Fecha</label>
+                    <input type="date" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') ?? $cita->fechaUsuarioCita }}">
+                    @error('fechaUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="celularUsuarioCita">Celular</label>
+                    <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') ?? $cita->celularUsuarioCita }}">
+                    @error('celularUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="horaUsuarioCita">Hora</label>
+                    <input type="time" class="form-control" id="horaUsuarioCita" name="horaUsuarioCita" value="{{ old('horaUsuarioCita') ?? $cita->horaUsuarioCita }}">
+                    @error('horaUsuarioCita')
+                        <i>{{ $message}}</i>
+                    @enderror
+                </div>
+                <div class="clearfix"></div>
+                    <div class="row">
+                    <a class="btn btn-danger btn-lg btn-responsive" href="/cita">Cancelar</a>
+                    <button type="submit" class="btn btn-dark btn-lg btn-responsive">Actualizar</button>
+                </div>
+            </form>
         </div>
-    </div>
-</section>
-</body>
+    </body>
 </html>

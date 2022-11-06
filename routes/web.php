@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -37,4 +38,5 @@ Route::middleware('web')->group(function () {
         })->name('olympus.pages.price');
     });
 });
-    
+
+Route::resource('producto', ProductoController::class);

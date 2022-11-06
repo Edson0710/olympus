@@ -16,12 +16,8 @@ use Laravel\Jetstream\Rules\Role;
 */
 
 
-/* Route::get('/', function () {
-    return view('index');
-}); */
-
 Route::get('/', function () {
-    return view('prueba');
+    return view('index');
 });
 
 Route::resource('corte', CorteController::class);

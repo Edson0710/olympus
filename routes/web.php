@@ -19,10 +19,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
 Route::middleware('web')->group(function () {
     Route::get('/index', function () {
         return view('index');
@@ -36,7 +32,7 @@ Route::middleware('web')->group(function () {
     Route::get('/contact', function () {
         return view('contact');
     })->name('olympus.contact');
-    Route::group(['prefix' => 'pages'], function(){ // /pages/...
+    Route::group(['prefix' => 'pages'], function(){
         Route::get('/price', function () {
             return view('pages.price');
         })->name('olympus.pages.price');
@@ -53,3 +49,4 @@ Route::middleware('auth')->group(function () {
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

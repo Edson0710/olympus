@@ -21,8 +21,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('cita', CitaController::class)->parameters(['cita' => 'cita']);
-
 Route::middleware('web')->group(function () {
     Route::get('/index', function () {
         return view('index');
@@ -49,6 +47,7 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     });
     Route::resource('empleado', EmpleadoController::class);
+    Route::resource('cita', CitaController::class)->parameters(['cita' => 'cita']);
 });
 
 // Auth::routes();

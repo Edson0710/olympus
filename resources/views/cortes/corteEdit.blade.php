@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
-    <title>Corte Edit</title>
-</head>
-<body>
-    <div class="container" id="advanced-search-form">
-        <h1>Editar Corte</h1>
+@extends('adminlte::page')
 
-        <form id="reservation-form" action="/corte/{{ $corte->id }}" method="POST">
-            @csrf
-            @method('PATCH')
-                
+@section('title', 'Editar Corte')
+
+@section('content_header')
+    <h1>Editar Corte</h1>
+@stop
+
+@section('content')
+<div class="container" id="advanced-search-form">
+    <h1>Editar Corte</h1>
+
+    <form action="/corte/{{ $corte->id }}" method="POST">
+        @csrf
+        @method('PATCH')
+        <div class="row">
+            
             <div class="form-group">
                 <label for="nombreCorte">Nombre del Corte</label>
                 <input type="text" name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ $corte->nombreCorte }}" required>
@@ -39,13 +36,22 @@
                     <i>{{ $message}}</i>
                 @enderror 
             </div>
-            
-            <div class="clearfix"></div>
-            <div class="row">
-                <a class="btn btn-danger btn-lg btn-responsive" href="/corte">Cancelar</a>
-                <button type="submit" class="btn btn-dark btn-lg btn-responsive">Actualizar</button>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
+        </div>
+        
+        <div class="clearfix"></div>
+        <div class="row">
+            <a class="btn btn-danger btn-lg btn-responsive" href="/corte">Cancelar</a>
+            <button type="submit" class="btn btn-dark btn-lg btn-responsive">Actualizar</button>
+        </div>
+    </form>
+</div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\EmpleadoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
 
@@ -39,4 +41,16 @@ Route::middleware('web')->group(function () {
     });
 });
     
-Route::resource('servicio', ServicioController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+    Route::resource('empleado', EmpleadoController::class);
+    Route::resource('servicio', ServicioController::class);
+});
+
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

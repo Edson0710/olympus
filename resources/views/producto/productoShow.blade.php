@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
-    <title>Detalles del Producto</title>
-</head>
-<body>
+@extends('adminlte::page')
+
+@section('title', 'Detalles del Producto')
+
+@section('content_header')
+    <h1>Detalles del Producto</h1>
+@stop
+
+@section('content')
 <div class="container" id="advanced-search-form">
-  <h1 style="text-align: center">Detalles del Producto</h1>
   <div class="form-group">
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre" class="form-control" placeholder="Nombre" id="nombre" value="{{ $producto->nombre }}" disabled>
@@ -44,5 +42,14 @@
       <a class="btn btn-dark btn-lg btn-responsive" href="/producto">Regresar</a>
   </div>      
 </div>
-</body>
-</html>
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

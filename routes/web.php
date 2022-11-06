@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
@@ -18,6 +19,11 @@ use Laravel\Jetstream\Rules\Role;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::resource('empleado', EmpleadoController::class);
+
+
+
 
 Route::middleware('web')->group(function () {
     Route::get('/index', function () {

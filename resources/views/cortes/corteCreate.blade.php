@@ -4,70 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
     <title>Corte Create</title>
 </head>
 
-    <div style="background-image: url('/images/fondo1Create.jpg'); background-size: cover;">
+<body>
+    <div class="container" id="advanced-search-form">
+        <h1>Crear Corte</h1>
 
-        <div class="reservation-form">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                        <form id="reservation-form" action="/corte" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h1>Crear Departamento</h1>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <label for="nombreCorte">Nombre del Corte</label></br>
-                                        <input type="text" name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ old('nombreCorte') }}" required>
-                                        </br>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <label for="estiloCorte">Estilo del Corte</label></br>
-                                        <input type="text" name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off"  value="{{ old('estiloCorte') }}" required>
-                                        </br>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <label for="descripcionCorte">Descripción</label></br>
-                                        <input type="text" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa una descripción sobre el corte" autocomplete="off" value="{{ old('descripcionCorte') }}" required>
-                                        </br>
-                                    </fieldset>
-                                </div>
+        <form id="reservation-form" action="/corte" method="POST">
+            @csrf
 
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <div class="border-button">
-                                            <a href="/corte">Cancelar</a>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-6">
-                                    <fieldset>
-                                        <button type="submit">Guardar</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="nombreCorte">Nombre del Corte</label>
+                <input type="text" name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ old('nombreCorte') }}" >
+                @error('nombreCorte')
+                        <i>{{ $message}}</i>
+                @enderror
             </div>
-        </div>
-    </div>
-
+            <div class="form-group">  
+                <label for="estiloCorte">Estilo del Corte</label>
+                <input type="text" name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off"  value="{{ old('estiloCorte') }}" > 
+                @error('estiloCorte')
+                        <i>{{ $message}}</i>
+                @enderror
+            </div>
+            <div class="form-group">    
+                <label for="descripcionCorte">Descripción</label>
+                <input type="text" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa una descripción sobre el corte" autocomplete="off" value="{{ old('descripcionCorte') }}" > 
+                @error('descripcionCorte')
+                        <i>{{ $message}}</i>
+                @enderror
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <a class="btn btn-danger btn-lg btn-responsive" href="/corte">Cancelar</a>
+                <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
+            </div>
+        </form>
+    </div> 
+</body>
 </html>

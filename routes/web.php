@@ -15,11 +15,16 @@ use Laravel\Jetstream\Rules\Role;
 |
 */
 
-Route::resource('corte', CorteController::class);
+
+/* Route::get('/', function () {
+    return view('index');
+}); */
 
 Route::get('/', function () {
-    return view('index');
+    return view('prueba');
 });
+
+Route::resource('corte', CorteController::class);
 
 Route::middleware('web')->group(function () {
     Route::get('/index', function () {

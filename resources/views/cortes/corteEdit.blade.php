@@ -4,79 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
     <title>Corte Edit</title>
 </head>
 <body>
+    <div class="container" id="advanced-search-form">
+        <h1>Editar Corte</h1>
 
-    <div style="background-image: url('/images/fondo1Create.jpg'); background-size: cover;">
-
-        <div class="reservation-form">
-            <div class="container">
-                <!-- <div class="text-center">
-                    <h1 class="text-dark pt-3">Modo edición de empleados</h1>         
-                </div>
-                <div class="border-button pt-5 ps-4">
-                    <a href="/empleado">Cancelar cambios</a>
-                </div> -->
-                <div class="row">
-                    <div class="col-lg-12">
-                            @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                            <form id="reservation-form" action="/corte/{{ $corte->id }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h1>Editando corte {{ $corte->nombreCorte }}</h1>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <fieldset>
-                                            <label for="nombreCorte">Nombre del Corte</label></br>
-                                            <input type="text" name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ $corte->nombreCorte }}" required>
-                                            </br>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <fieldset>
-                                            <label for="estiloCorte">Estilo del Corte</label></br>
-                                            <input type="text" name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off" value="{{ $corte->estiloCorte }}" required>
-                                            </br>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <fieldset>
-                                            <label for="descripcionCorte">Descripción</label></br>
-                                            <input type="text" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa la descripción del corte" autocomplete="off" value="{{ $corte->descripcionCorte }}" required>
-                                            </br>
-                                        </fieldset>
-                                    </div>
-                                    
-                                    <div class="col-lg-6">
-                                        <fieldset>
-                                            <div class="border-button">
-                                                <a href="/corte">Cancelar</a>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <fieldset>
-                                            <button type="submit">Guardar</button>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        <form id="reservation-form" action="/corte/{{ $corte->id }}" method="POST">
+            @csrf
+            @method('PATCH')
+                
+            <div class="form-group">
+                <label for="nombreCorte">Nombre del Corte</label>
+                <input type="text" name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ $corte->nombreCorte }}" required>
+                @error('nombreCorte')
+                    <i>{{ $message}}</i>
+                @enderror
             </div>
+            <div class="form-group">
+                <label for="estiloCorte">Estilo del Corte</label>
+                <input type="text" name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off" value="{{ $corte->estiloCorte }}" required>
+                @error('estiloCorte')
+                    <i>{{ $message}}</i>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="descripcionCorte">Descripción</label>
+                <input type="text" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa la descripción del corte" autocomplete="off" value="{{ $corte->descripcionCorte }}" required> 
+                @error('descripcionCorte')
+                    <i>{{ $message}}</i>
+                @enderror 
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="row">
+                <a class="btn btn-danger btn-lg btn-responsive" href="/corte">Cancelar</a>
+                <button type="submit" class="btn btn-dark btn-lg btn-responsive">Actualizar</button>
+            </div>
+        </form>
     </div>
-
 </body>
 </html>

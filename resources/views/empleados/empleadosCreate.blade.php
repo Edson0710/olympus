@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
-    <title>Registrar Empleado</title>
-</head>
-<body>
+@extends('adminlte::page')
 
-    <div class="container" id="advanced-search-form">
-    <h2>Registrar Empleado</h2>
+@section('title', 'Registrar Empleado')
 
-        <form action="/empleado" method="POST">
+@section('content_header')
+    <h1>Registrar Empleado</h1>
+@stop
 
-            @csrf
-
+@section('content')
+<div class="container" id="advanced-search-form">
+    <form action="/empleado" method="POST">
+        @csrf
+        <div class="row">
             <div class="form-group">
                 <label for="nombreEmpleado">Nombre Completo</label>
                 <input type="text" name="nombreEmpleado" class="form-control" placeholder="Nombre Completo" id="nombreEmpleado" value="{{old('nombreEmpleado')}}">
@@ -47,14 +42,14 @@
             
             <div class="form-group">
                 <label for="telefonoEmpleado">Teléfono</label>
-                <input type="text" name="telefonoEmpleado" class="form-control" placeholder="Número de teléfono" id="telefonoEmpleado" value="{{old('telefonoEmpleado')}}">
+                <input type="text" name="telefonoEmpleado" class="form-control" placeholder="Número de teléfono" id="telefonoEmpleado" value="{{old('telefonoEmpleado')}}"  maxlength="10">
                 @error('telefonoEmpleado')
                     <i>{{ $message}}</i>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="curpEmpleado">CURP</label>
-                <input type="text" name="curpEmpleado" class="form-control" placeholder="" id="curpEmpleado" value="{{old('curpEmpleado')}}">
+                <input type="text" name="curpEmpleado" class="form-control" placeholder="" id="curpEmpleado" value="{{old('curpEmpleado')}}" maxlength="18">
                 @error('curpEmpleado')
                     <i>{{ $message}}</i>
                 @enderror
@@ -66,23 +61,34 @@
                     <i>{{ $message}}</i>
                 @enderror
             </div>
-            <!-- <div class="form-group">
-                <label for="imagenEmpleado">Imagen de Empleado</label>
-                <input type="text" name="imagenEmpleado"class="form-control" id="imagenEmpleado">
-                @error('fecha_NacEmpleado')
-                    <i>{{ $message}}</i>
-                @enderror
-            </div> -->
-        
-            <div class="clearfix"></div>
-            <div class="row">
-                <a class="btn btn-danger btn-lg btn-responsive" href="/empleado">Cancelar</a>
-                <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
-            </div>
-        </form>
-    </div>
-        
-    </form>
+        </div>
+        <!-- <div class="form-group">
+            <label for="imagenEmpleado">Imagen de Empleado</label>
+            <input type="text" name="imagenEmpleado"class="form-control" id="imagenEmpleado">
+            @error('fecha_NacEmpleado')
+                <i>{{ $message}}</i>
+            @enderror
+        </div> -->
     
-</body>
-</html>
+        <div class="clearfix"></div>
+        <div class="row">
+            <a class="btn btn-danger btn-lg btn-responsive" href="/empleado">Cancelar</a>
+            <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
+        </div>
+    </form>
+</div>
+    
+</form>
+</div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+
+    

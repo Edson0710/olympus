@@ -77,7 +77,6 @@
         </div>
     </form>
 </div>
-    
 @stop
 
 @section('css')

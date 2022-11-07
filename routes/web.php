@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\CorteController;
 use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
@@ -41,12 +42,13 @@ Route::middleware('web')->group(function () {
         })->name('olympus.pages.price');
     });
 });
-    
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
     Route::resource('empleado', EmpleadoController::class);
+    Route::resource('servicio', ServicioController::class);
     Route::resource('corte', CorteController::class);
 });
 

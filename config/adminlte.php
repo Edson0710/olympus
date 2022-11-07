@@ -333,17 +333,17 @@ return [
                 ],
                 [
                     'text'    => 'Corte',
-                    'url'     => '#',
+                    'url'     => 'corte',
                     'icon'    => 'fas fa-fw fa-cut',
                 ],
                 [
                     'text' => 'Cita',
-                    'url'  => '#',
+                    'url'  => 'cita',
                     'icon'    => 'fas fa-fw fa-calendar-check',
                 ],
                 [
                     'text' => 'Servicio',
-                    'url'  => '#',
+                    'url'  => 'servicio',
                     'icon'    => 'fas fa-fw fa-concierge-bell',
                 ],
                 [

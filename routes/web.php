@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use App\HTTP\Controllers\CitaController;
+use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\CorteController;
 use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +19,7 @@ use Laravel\Jetstream\Rules\Role;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('index');
@@ -46,6 +50,9 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     });
     Route::resource('empleado', EmpleadoController::class);
+    Route::resource('cita', CitaController::class)->parameters(['cita' => 'cita']);
+    Route::resource('servicio', ServicioController::class);
+    Route::resource('corte', CorteController::class);
     Route::resource('producto', ProductoController::class);
 });
 

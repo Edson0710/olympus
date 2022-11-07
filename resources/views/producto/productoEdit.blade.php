@@ -9,7 +9,6 @@
 @section('content')
 
 <div class="container" id="advanced-search-form">
-    <h2>Editar Producto</h2>
     <form action="/producto/{{ $producto->id }}" method="POST">
 
         @csrf

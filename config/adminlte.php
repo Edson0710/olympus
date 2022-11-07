@@ -348,7 +348,7 @@ return [
                 ],
                 [
                     'text' => 'Producto',
-                    'url'  => '#',
+                    'url'  => 'producto',
                     'icon'    => 'fas fa-fw fa-box',
                 ],
             ],

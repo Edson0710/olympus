@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use App\HTTP\Controllers\CitaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\CorteController;
@@ -42,7 +43,7 @@ Route::middleware('web')->group(function () {
             return view('pages.price');
         })->name('olympus.pages.price');
     });
-});
+});    
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('cita', CitaController::class)->parameters(['cita' => 'cita']);
     Route::resource('servicio', ServicioController::class);
     Route::resource('corte', CorteController::class);
+    Route::resource('producto', ProductoController::class);
 });
 
 // Auth::routes();

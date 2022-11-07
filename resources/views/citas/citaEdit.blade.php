@@ -8,7 +8,6 @@
 
 @section('content')
 <div class="container" id="advanced-search-form">
-    <h2>Editar Cita</h2>
     <form action="/cita/{{ $cita->id }}" method="POST">
     @csrf
     @method('PATCH')
@@ -35,7 +34,7 @@
         </div>
         <div class="form-group">
             <label for="celularUsuarioCita">Celular</label>
-            <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') ?? $cita->celularUsuarioCita }}">
+            <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') ?? $cita->celularUsuarioCita }}" maxlength="10">
             @error('celularUsuarioCita')
                 <i>{{ $message}}</i>
             @enderror

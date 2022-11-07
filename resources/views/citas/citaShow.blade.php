@@ -8,7 +8,6 @@
 
 @section('content')
 <div class="container" id="advanced-search-form">
-    <h2>Detalles Cita</h2>
         <div class="form-group">
             <label for="nombreUsuarioCita">Nombre</label>
             <input type="text" class="form-control" id="nombreUsuarioCita" name="nombreUsuarioCita" value="{{ $cita->nombreUsuarioCita }}" disabled>

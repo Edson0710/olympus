@@ -8,7 +8,6 @@
 
 @section('content')
 <div class="container" id="advanced-search-form">
-    <h2>Agendar Cita</h2>
     <form action="/cita" method="POST">
         @csrf
         <div class="form-group">
@@ -34,7 +33,7 @@
         </div>
         <div class="form-group">
             <label for="celularUsuarioCita">Celular</label>
-            <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') }}">
+            <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') }}" maxlength="10">
             @error('celularUsuarioCita')
                 <i>{{ $message}}</i>
             @enderror

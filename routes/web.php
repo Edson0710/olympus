@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CorteController;
 use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,7 @@ use Laravel\Jetstream\Rules\Role;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('index');
@@ -40,12 +42,12 @@ Route::middleware('web')->group(function () {
     });
 });
     
-
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
     Route::resource('empleado', EmpleadoController::class);
+    Route::resource('corte', CorteController::class);
 });
 
 // Auth::routes();

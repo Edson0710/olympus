@@ -333,7 +333,7 @@ return [
                 ],
                 [
                     'text'    => 'Corte',
-                    'url'     => '#',
+                    'url'     => 'corte',
                     'icon'    => 'fas fa-fw fa-cut',
                 ],
                 [

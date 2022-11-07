@@ -338,7 +338,7 @@ return [
                 ],
                 [
                     'text' => 'Cita',
-                    'url'  => '#',
+                    'url'  => 'cita',
                     'icon'    => 'fas fa-fw fa-calendar-check',
                 ],
                 [

@@ -1,15 +1,15 @@
 @extends('layouts.main')
-@section('title', 'Contact')
+@section('title', 'Olympus - Cita')
 @section('content')
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container text-center py-5">
-        <h1 class="display-3 text-white text-uppercase mb-3 animated slideInDown">Contact</h1>
+        <h1 class="display-3 text-white text-uppercase mb-3 animated slideInDown">CREA UNA CITA</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb justify-content-center text-uppercase mb-0">
-                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                <li class="breadcrumb-item text-primary active" aria-current="page">Contact</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Inicio</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Apartados</a></li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">Cita</li>
             </ol>
         </nav>
     </div>
@@ -23,37 +23,59 @@
         <div class="row g-0">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="bg-secondary p-5">
-                    <p class="d-inline-block bg-dark text-primary py-1 px-4">Contact Us</p>
-                    <h1 class="text-uppercase mb-4">Have Any Query? Please Contact Us!</h1>
-                    <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                    <form>
+                    <p class="d-inline-block bg-dark text-primary py-1 px-4">CREA TU CITA</p>
+                    <h1 class="text-uppercase mb-4">VEN Y CONOCE NUESTRAS INSTALACIONES Y DISFRUTA DE UN AGRADABLE SERVICIO</h1>
+                    <p class="mb-4">OLYMPUS</p>
+                    <form action="/cita" method="POST">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control bg-transparent" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" class="form-control bg-transparent" id="nombreUsuarioCita" name="nombreUsuarioCita">
+                                    <label for="nombreUsuarioCita">Nombre</label>
                                 </div>
                             </div>
+                            @error('nombreUsuarioCita')
+                                <i>{{ $message}}</i>
+                            @enderror
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control bg-transparent" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
+                                    <input type="email" class="form-control bg-transparent" id="emailUsuarioCita" name="emailUsuarioCita">
+                                    <label for="emailUsuarioCita">Email</label>
                                 </div>
                             </div>
+                            @error('emailUsuarioCita')
+                                <i>{{ $message}}</i>
+                            @enderror
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control bg-transparent" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
+                                    <input type="date" class="form-control bg-transparent" id="fechaUsuarioCita" name="fechaUsuarioCita">
+                                    <label for="fechaUsuarioCita">Fecha</label>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            @error('fechaUsuarioCita')
+                                <i>{{ $message}}</i>
+                            @enderror
+                            <div class="col-md-6">
                                 <div class="form-floating">
-                                    <textarea class="form-control bg-transparent" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
+                                    <input type="numeric" class="form-control bg-transparent" id="celularUsuarioCita" name="celularUsuarioCita"> 
+                                    <label for="celularUsuarioCita">Celular</label>
                                 </div>
                             </div>
+                            @error('celularUsuarioCita')
+                                <i>{{ $message}}</i>
+                            @enderror
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="time" class="form-control bg-transparent" id="horaUsuarioCita" name="horaUsuarioCita">
+                                    <label for="horaUsuarioCita">Hora</label>
+                                </div>
+                            </div>
+                            @error('horaUsuarioCita')
+                                <i>{{ $message}}</i>
+                            @enderror
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">Agendar Cita</button>
                             </div>
                         </div>
                     </form>

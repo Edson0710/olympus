@@ -1,5 +1,6 @@
 <?php
 
+use App\HTTP\Controllers\CitaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\CorteController;
 use App\Http\Controllers\EmpleadoController;
@@ -48,6 +49,7 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     });
     Route::resource('empleado', EmpleadoController::class);
+    Route::resource('cita', CitaController::class)->parameters(['cita' => 'cita']);
     Route::resource('servicio', ServicioController::class);
     Route::resource('corte', CorteController::class);
 });

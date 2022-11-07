@@ -15,7 +15,7 @@
         <div class="row">
             <div class="form-group">
                 <label for="nombreCorte">Nombre del Corte</label>
-                <input type="text" name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ old('nombreCorte') }}" >
+                <input type="text" class="form-control"  name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ old('nombreCorte') }}" >
                 @error('nombreCorte')
                         <i>{{ $message}}</i>
                 @enderror
@@ -23,7 +23,7 @@
 
             <div class="form-group">  
                 <label for="estiloCorte">Estilo del Corte</label>
-                <input type="text" name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off"  value="{{ old('estiloCorte') }}" > 
+                <input type="text" class="form-control"  name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off"  value="{{ old('estiloCorte') }}" > 
                 @error('estiloCorte')
                         <i>{{ $message}}</i>
                 @enderror
@@ -31,7 +31,7 @@
 
             <div class="form-group">    
                 <label for="descripcionCorte">Descripción</label>
-                <input type="text" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa una descripción sobre el corte" autocomplete="off" value="{{ old('descripcionCorte') }}" > 
+                <input type="text" class="form-control" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa una descripción sobre el corte" autocomplete="off" value="{{ old('descripcionCorte') }}" > 
                 @error('descripcionCorte')
                         <i>{{ $message}}</i>
                 @enderror

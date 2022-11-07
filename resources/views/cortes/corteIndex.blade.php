@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="text-right mb-3">
-    <a class="btn btn-primary" href="/empleado/create">Registrar Corte</a>
+    <a class="btn btn-primary" href="/corte/create">Registrar Corte</a>
 </div>
 
 <table id="Mytable" class="table">

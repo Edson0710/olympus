@@ -333,7 +333,7 @@ return [
                 ],
                 [
                     'text'    => 'Corte',
-                    'url'     => '#',
+                    'url'     => 'corte',
                     'icon'    => 'fas fa-fw fa-cut',
                 ],
                 [
@@ -343,7 +343,7 @@ return [
                 ],
                 [
                     'text' => 'Servicio',
-                    'url'  => '#',
+                    'url'  => 'servicio',
                     'icon'    => 'fas fa-fw fa-concierge-bell',
                 ],
                 [

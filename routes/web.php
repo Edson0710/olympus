@@ -1,6 +1,8 @@
 <?php
 
 use App\HTTP\Controllers\CitaController;
+use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\CorteController;
 use App\Http\Controllers\EmpleadoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +18,7 @@ use Laravel\Jetstream\Rules\Role;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('index');
@@ -40,7 +43,6 @@ Route::middleware('web')->group(function () {
         })->name('olympus.pages.price');
     });
 });
-    
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -48,6 +50,8 @@ Route::middleware('auth')->group(function () {
     });
     Route::resource('empleado', EmpleadoController::class);
     Route::resource('cita', CitaController::class)->parameters(['cita' => 'cita']);
+    Route::resource('servicio', ServicioController::class);
+    Route::resource('corte', CorteController::class);
 });
 
 // Auth::routes();

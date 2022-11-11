@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Cita;
 
 class CitaSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class CitaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Cita::create([
+            'nombreUsuarioCita' => '',
+            'emailUsuarioCita' => '',
+            'fechaUsuarioCita' => '',
+            'celularUsuarioCita' => '',
+            'horaUsuarioCita' => '',
+        ]);
     }
 }

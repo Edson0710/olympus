@@ -7,6 +7,14 @@
 @stop
 
 @section('content')
+<div class="card-body">
+    @if(session('notification'))
+        <div class="alert alert-info" role="alert">
+            {{ session('notification') }}
+        </div>
+    @endif
+</div>
+
 <div class="text-right mb-3">
     <a class="btn btn-primary" href="/producto/create">Añadir Producto</a>
 </div>

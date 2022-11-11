@@ -46,7 +46,9 @@ class ServicioController extends Controller
 
         Servicio::create($request->all());
 
-        return redirect('/servicio');
+        $notification = 'El Servicio ha sido creado correctamente.';
+
+        return redirect('/servicio')->with(compact('notification'));
     }
 
     /**
@@ -80,6 +82,8 @@ class ServicioController extends Controller
      */
     public function update(Request $request, Servicio $servicio)
     {
+        $updateName = $servicio->nombreServicio;
+
         $request->validate([
             'nombreServicio'=>'required|string|max:255',
             'descripcionServicio'=>'required|string|max:255',
@@ -89,7 +93,9 @@ class ServicioController extends Controller
         
         Servicio::where('id', $servicio->id)->update($request->except('_token', '_method'));
 
-        return redirect('/servicio');
+        $notification = 'El Servicio '. $updateName .' ha sido actualizado correctamente.';
+
+        return redirect('/servicio')->with(compact('notification'));
     }
 
     /**
@@ -100,8 +106,22 @@ class ServicioController extends Controller
      */
     public function destroy(Servicio $servicio)
     {
-        $servicio->delete();
+        $notification = '';
+        $count=0;
+        $deleteName = $servicio->nombreServicio;
 
-        return redirect('/servicio');
+        // Contamos los registros en las relaciones
+        $count+=count($servicio->citas);
+        // Comprobamos si existen registros 
+        if($count>0) {
+            $notification =  'El Servicio '. $servicio->nombreServicio .' no puede ser eliminado, por favor, reasigna las citas a otro servicio.';
+            
+        } else {
+            // si no hay registros eliminamos
+            $servicio->delete();
+            $notification = 'El Servicio '. $deleteName .' ha sido eliminado correctamente.';
+        }
+
+        return redirect('/servicio')->with(compact('notification'));
     }
 }

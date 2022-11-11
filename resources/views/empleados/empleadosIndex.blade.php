@@ -7,9 +7,20 @@
 @stop
 
 @section('content')
+<div class="card-body">
+    @if(session('notification'))
+        <div class="alert alert-info" role="alert">
+            {{ session('notification') }}
+        </div>
+    @endif
+</div>
+
 <div class="text-right mb-3">
     <a class="btn btn-primary" href="/empleado/create">Registrar Empleado</a>
 </div>
+
+
+
 <table id="Mytable" class="table">
     <thead>
         <tr>
@@ -47,7 +58,6 @@
                 <a class="btn btn-warning" href="/empleado/{{ $empleado->id }}/edit">
                     Editar
                 </a>
-
             </td>
 
             <td>

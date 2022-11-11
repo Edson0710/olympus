@@ -32,6 +32,12 @@
             <label for="empleado_id">Barbero</label>
             <input type="text" class="form-control" id="empleado_id" name="empleado_id" value="{{ $cita->empleado->nombreEmpleado }}" disabled>
         </div>
+        <div class="form-group">
+            <label for="servicio_id">Servicios</label>
+                @foreach($cita->servicios as $servicio)
+                    <input type="text" class="form-control" id="servicio_id" name="servicio_id" value="{{ $servicio->nombreServicio }}" disabled>
+                @endforeach
+        </div>
         <div class="clearfix"></div>
         <div class="row">
             <a class="btn btn-dark btn-lg btn-responsive" href="/cita">Regresar</a>

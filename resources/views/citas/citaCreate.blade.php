@@ -59,6 +59,8 @@
             @enderror
         </div>
 
+        <div class="clearfix"></div>
+
         <div class="form-group">
             <label for="servicio_id">Selecciona un servicio</label>
             <select class="form-control" id="servicio_id" name="servicios_id[]" value="{{ old('servicio_id') }}" multiple>

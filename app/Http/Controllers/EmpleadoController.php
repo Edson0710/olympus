@@ -48,7 +48,9 @@ class EmpleadoController extends Controller
 
         Empleado::create($request->all());
 
-        return redirect('/empleado');
+        $notification = 'El Empleado ha sido creado correctamente.';
+
+        return redirect('/empleado')->with(compact('notification'));
     }
 
     /**
@@ -82,6 +84,8 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, Empleado $empleado)
     {
+        $updateName = $empleado->nombreEmpleado;
+        
         $request->validate([
             'nombreEmpleado' => 'required|string|max:255',
             'rolEmpleado' => 'required|string|max:100', 
@@ -91,10 +95,12 @@ class EmpleadoController extends Controller
             'fecha_NacEmpleado' => 'required|date',
             /* 'imagenEmpleado' => 'required', */
         ]);
-
+        
         Empleado::where('id', $empleado->id)->update($request->except('_token', '_method'));
+        
+        $notification = 'El Empleado '. $updateName .' ha sido actualizado correctamente.';
 
-        return redirect('/empleado');
+        return redirect('/empleado')->with(compact('notification'));
         
     }
 
@@ -106,7 +112,23 @@ class EmpleadoController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
-        $empleado->delete();
-        return redirect('/empleado');
+        $notification = '';
+        $count=0;
+        $deleteName = $empleado->nombreEmpleado;
+
+        // Contamos los registros en las relaciones
+        $count+=count($empleado->citas);
+        // Comprobamos si existen registros 
+        if($count>0) {
+            $notification =  'El Empleado '. $empleado->nombreEmpleado .' no puede ser eliminado, por favor, reasigna las citas a otro empleado.';
+            
+        } else {
+            // si no hay registros eliminamos
+            $empleado->delete();
+            $notification = 'El Empleado '. $deleteName .' ha sido eliminado correctamente.';
+        }
+
+
+        return redirect('/empleado')->with(compact('notification'));
     }
 }

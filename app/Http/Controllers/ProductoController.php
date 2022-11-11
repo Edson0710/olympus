@@ -47,7 +47,9 @@ class ProductoController extends Controller
 
         Producto::create($request->all());
 
-        return redirect('/producto');
+        $notification = 'El Producto ha sido creado correctamente';
+
+        return redirect('/producto')->with(compact('notification'));
     }
 
     /**
@@ -81,6 +83,8 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        $updateName = $producto->nombre;
+
         $request->validate([
             'nombre' => 'required|max:255',
             'descripcion' => 'required|max:255',
@@ -92,7 +96,10 @@ class ProductoController extends Controller
         
         Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
 
-        return redirect('/producto');    }
+        $notification = 'El Producto '. $updateName .' ha sido actualizado correctamente.';
+
+        return redirect('/producto')->with(compact('notification'));    
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -102,8 +109,13 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
+        $notification = '';
+        $deleteName = $producto->nombre;
+        
         $producto->delete();
 
-        return redirect('/producto');
+        $notification = 'El Producto '. $deleteName .' ha sido eliminado correctamente.';
+        
+        return redirect('/producto')->with(compact('notification'));
     }
 }

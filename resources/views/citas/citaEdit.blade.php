@@ -47,9 +47,9 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="empleado_id">Selecciona una opción</label>
+            <label for="empleado_id">Selecciona una empresa</label>
             <select name="empleado_id" id="empleado_id" class="form-control" required>
-                <option selected disabled>Selecciona una empresa</option>
+                <option selected disabled>Selecciona una opción</option>
                 @foreach($empleados as $empleado)
                     <option value="{{ $empleado->id }}" {{ $cita->empleado->id == $empleado->id ? 'selected' : '' }}>{{ $empleado->nombreEmpleado }}</option>
                 @endforeach
@@ -58,10 +58,13 @@
                 <i>{{ $message}}</i>
             @enderror
         </div>
+
+        <div class="clearfix"></div>
+
         <div class="form-group">
-            <label for="servicio_id">Selecciona una opción</label>
+            <label for="servicio_id">Selecciona una servicio</label>
             <select name="servicios_id[]" id="servicios_id[]" class="form-control" multiple>
-                <option selected disabled>Selecciona un servicio</option>
+                <option selected disabled>Selecciona una opción</option>
                 @foreach($servicios as $servicio)
                 <option value="{{ $servicio->id }}"  {{ array_search($servicio->id, $cita->servicios->pluck('id')->toArray()) !== false ? 'selected' : '' }}>
                     {{ $servicio->nombreServicio }}

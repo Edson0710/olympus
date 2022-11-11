@@ -39,6 +39,8 @@ class CorteController extends Controller
      */
     public function store(Request $request)
     {
+        $notification = '';
+
         $request->validate([
             'nombreCorte' => 'required|string',
             'estiloCorte' => 'required|string',
@@ -47,7 +49,9 @@ class CorteController extends Controller
 
         $corte = Corte::create($request->all());
 
-        return redirect('/corte');
+        $notification = 'El Corte ha sido creado correctamente';
+
+        return redirect('/corte')->with(compact('notification'));
     }
 
     /**
@@ -82,6 +86,8 @@ class CorteController extends Controller
      */
     public function update(Request $request, Corte $corte)
     {
+        $updateName = $corte->nombreCorte;
+
         $request->validate([
             'nombreCorte' => 'required|string|max:100',
             'estiloCorte' => 'required|string|max:100',
@@ -90,7 +96,9 @@ class CorteController extends Controller
 
         Corte::where('id', $corte->id)->update($request->except('_token', '_method'));
 
-        return redirect('/corte');
+        $notification = 'El Corte '. $updateName .' ha sido actualizado correctamente.';
+
+        return redirect('/corte')->with(compact('notification'));
     }
 
     /**
@@ -101,8 +109,13 @@ class CorteController extends Controller
      */
     public function destroy(Corte $corte)
     {
+        $notification = '';
+        $deleteName = $corte->nombreCorte;
+
         $corte->delete();
 
-        return redirect('corte');
+        $notification = 'El Corte '. $deleteName .' ha sido eliminado correctamente.';
+
+        return redirect('corte')->with(compact('notification'));
     }
 }

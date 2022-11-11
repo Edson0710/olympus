@@ -19,6 +19,8 @@
             <th>Fecha</th>
             <th>Celular</th>
             <th>Hora</th>
+            <th>Barbero</th>
+            <th>Servicio</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -36,6 +38,12 @@
             <td>{{ $cita->fechaUsuarioCita }}</td>
             <td>{{ $cita->celularUsuarioCita }}</td>
             <td>{{ $cita->horaUsuarioCita }}</td>
+            <td>{{ $cita->empleado->nombreEmpleado }}</td>
+            <td>
+                @foreach($cita->servicios as $servicio)
+                    {{ $servicio->nombreServicio }}</br>
+                @endforeach
+            </td>
             <td>
                 <a class="btn btn-warning" href="/cita/{{ $cita->id }}/edit">Editar</a>
             </td>

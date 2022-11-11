@@ -28,6 +28,10 @@
             <label for="horaUsuarioCita">Hora</label>
             <input type="text" class="form-control" id="horaUsuarioCita" name="horaUsuarioCita" value="{{ $cita->horaUsuarioCita }}" disabled>
         </div>
+        <div class="form-group">
+            <label for="empleado_id">Barbero</label>
+            <input type="text" class="form-control" id="empleado_id" name="empleado_id" value="{{ $cita->empleado->nombreEmpleado }}" disabled>
+        </div>
         <div class="clearfix"></div>
         <div class="row">
             <a class="btn btn-dark btn-lg btn-responsive" href="/cita">Regresar</a>

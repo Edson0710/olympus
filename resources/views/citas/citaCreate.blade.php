@@ -45,6 +45,33 @@
                 <i>{{ $message}}</i>
             @enderror
         </div>
+
+        <div class="form-group">
+            <label for="empleado_id">Selecciona un barbero</label>
+            <select class="form-control" id="empleado_id" name="empleado_id" value="{{ old('empleado_id') }}">
+                <option selected disabled>Selecciona un barbero</option>
+                @foreach ($empleados as $empleado)
+                    <option value="{{ $empleado->id }}">{{ $empleado->nombreEmpleado }}</option>
+                @endforeach
+            </select>
+            @error('empleado_id')
+                <i>{{ $message}}</i>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="servicio_id">Selecciona un servicio</label>
+            <select class="form-control" id="servicio_id" name="servicios_id[]" value="{{ old('servicio_id') }}" multiple>
+                <option selected disabled>Selecciona un servicio</option>
+                @foreach ($servicios as $servicio)
+                    <option value="{{ $servicio->id }}">{{ $servicio->nombreServicio }}</option>
+                @endforeach
+            </select>
+            @error('servicio_id')
+                <i>{{ $message}}</i>
+            @enderror
+        </div>
+
         <div class="clearfix"></div>
         <div class="row">
             <a class="btn btn-danger btn-lg btn-responsive" href="/cita">Cancelar</a>

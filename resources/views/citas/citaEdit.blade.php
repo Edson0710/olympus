@@ -46,6 +46,32 @@
                 <i>{{ $message}}</i>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="empleado_id">Selecciona una opción</label>
+            <select name="empleado_id" id="empleado_id" class="form-control" required>
+                <option selected disabled>Selecciona una empresa</option>
+                @foreach($empleados as $empleado)
+                    <option value="{{ $empleado->id }}" {{ $cita->empleado->id == $empleado->id ? 'selected' : '' }}>{{ $empleado->nombreEmpleado }}</option>
+                @endforeach
+            </select>
+            @error('horaUsuarioCita')
+                <i>{{ $message}}</i>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="servicio_id">Selecciona una opción</label>
+            <select name="servicios_id[]" id="servicios_id[]" class="form-control" multiple>
+                <option selected disabled>Selecciona un servicio</option>
+                @foreach($servicios as $servicio)
+                <option value="{{ $servicio->id }}"  {{ array_search($servicio->id, $cita->servicios->pluck('id')->toArray()) !== false ? 'selected' : '' }}>
+                    {{ $servicio->nombreServicio }}
+                    </option>
+                @endforeach
+            </select>
+            @error('horaUsuarioCita')
+                <i>{{ $message}}</i>
+            @enderror
+        </div>
         <div class="clearfix"></div>
             <div class="row">
             <a class="btn btn-danger btn-lg btn-responsive" href="/cita">Cancelar</a>

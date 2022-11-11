@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use Illuminate\Http\Request;
+use App\Models\Empleado;
+use App\Models\Servicio;
 
 class CitaController extends Controller
 {
@@ -15,7 +17,10 @@ class CitaController extends Controller
     public function index()
     {
         $citas = Cita::all();
-        return view('citas.citaIndex', compact('citas'));
+        $empleados = Empleado::all();
+        $servicios = Servicio::all();
+
+        return view('citas.citaIndex', compact('citas', 'empleados', 'servicios'));
     }
 
     /**
@@ -25,7 +30,13 @@ class CitaController extends Controller
      */
     public function create()
     {
-        return view('citas.citaCreate');
+        //Se asignan en 'empleados' todas las instancias del modelo Empleado y se mandan a la vista Create
+        $empleados = Empleado::all();
+
+        //Se asignan en 'servicios' todas las instancias del modelo Servicio y se mandan a la vista Create
+        $servicios = Servicio::all();
+        
+        return view('citas.citaCreate', compact('empleados', 'servicios'));
     }
 
     /**
@@ -44,9 +55,14 @@ class CitaController extends Controller
             /* 'calificacionUsuarioCita' => 'required | max:10 | min:0', */
             'celularUsuarioCita' => 'required | digits:10 | numeric',
             'horaUsuarioCita' => 'required',
+            'empleado_id' => 'required|exists:empleados,id',
         ]);
 
-        Cita::create($request->all());
+        $cita = Cita::create($request->all());
+
+        /*Entramos a la instancia "cita" en su método "servicios"
+        para tener acceso a vincular a la cita con los servicios */
+        $cita->servicios()->attach($request->servicios_id);
 
         return redirect('/cita');
     }
@@ -70,7 +86,14 @@ class CitaController extends Controller
      */
     public function edit(Cita $cita)
     {
-        return view('citas.citaEdit', compact('cita'));
+        //Se asignan en 'empleados' todas las instancias del modelo Empleado y se mandan a la vista Edit
+        $empleados = Empleado::all();
+
+        //Se asignan en 'servicios' todas las instancias del modelo Servicio y se mandan a la vista Edit
+        $servicios = Servicio::all();
+
+        return view('citas.citaEdit', compact('cita', 'empleados', 'servicios'));
+
     }
 
     /**
@@ -90,11 +113,19 @@ class CitaController extends Controller
             /* 'calificacionUsuarioCita' => 'required | max:10 | min:0', */
             'celularUsuarioCita' => 'required | digits:10 | numeric',
             'horaUsuarioCita' => 'required',
+            'empleado_id' => 'required|exists:empleados,id',
         ]);
 
-        Cita::where('id', $cita->id)->update($request->except('_token', '_method'));
+        /* Actualiza la información de la tabla de la cita, exceptuando las columnas 'token', 'method' y 'servicios_id'
+            Trabaja sobre la tabla Empleado */
+        Cita::where('id', $cita->id)->update($request->except('_token', '_method', 'servicios_id'));
 
-        return redirect('/cita');
+        /* Sincroniza la información que el usuario selecciona con respecto a lo que existe dentro de la base de datos
+            Trabaja sobre la tabla Pivote */
+        $cita->servicios()->sync($request->servicios_id);
+
+        //Redirecciona a la vista show
+        return redirect()->route('cita.show', $cita->id);
     }
 
     /**

@@ -17,4 +17,12 @@ class Servicio extends Model
         'duracionServicio',
         'precioServicio'
     ];
+
+    /* Un Servicio puede tener muchas Citas
+    Se relaciona desde un Servicio sus Citas, 
+    la cual tiene muchas instancias del modelo Cita (relacion muchos a muchos)*/
+    public function citas()
+    {
+        return $this->belongsToMany(Cita::class);
+    }
 }

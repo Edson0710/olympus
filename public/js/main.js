@@ -50,7 +50,27 @@
         items: 1,
         dotsData: true,
     });
-
-    
+ 
 })(jQuery);
 
+    /*Validar que los domingos no estén disponibles*/
+    var elDate = document.getElementById('fechaUsuarioCita');
+    var elForm = document.getElementById('contacto');
+    var elSubmit = document.getElementById('contactoSubmit');
+
+    function sinDomingos(){
+        var day = new Date(elDate.value ).getUTCDay();
+        // Días 0-6, 0 es Domingo 6 es Sábado
+        elDate.setCustomValidity(''); // limpiarlo para evitar pisar el fecha inválida
+        if( day == 0 ){
+        elDate.setCustomValidity('Domingos no disponibles, por favor seleccione otro día');
+        } else {
+        elDate.setCustomValidity('');
+        }
+        if(!elForm.checkValidity()) {elSubmit.click()};
+    }
+
+    function obtenerfechafinf1(){
+        sinDomingos();
+    }
+       

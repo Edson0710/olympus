@@ -39,7 +39,7 @@
             </td>
             <td>{{ $servicio->descripcionServicio }}</td>
             <td>{{ $servicio->duracionServicio }}</td>
-            <td>{{ $servicio->precioServicio }}</td>
+            <td>${{ $servicio->precioServicio }}</td>
             <td>
                 <a class="btn btn-warning" href="/servicio/{{ $servicio->id }}/edit">Editar</a>
             </td>

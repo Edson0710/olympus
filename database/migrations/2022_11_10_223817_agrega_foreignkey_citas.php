@@ -13,8 +13,10 @@ class AgregaForeignkeyCitas extends Migration
      */
     public function up()
     {
+        /*Se creo este archivo a partir de que la tabla de empleado no se creo antes que la tabla de citas*/
         Schema::table('citas', function (Blueprint $table) {
             $table->foreignId('empleado_id')->constrained();
+            $table->unique(['fechaUsuarioCita','horaUsuarioCita', 'empleado_id']);
         });
     }
 

@@ -35,6 +35,8 @@
             <label for="celularUsuarioCita">Celular</label>
             <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') }}" maxlength="10">
         </div>
+
+        <div class="form-group">
         <label for="horaUsuarioCita">Hora</label>
             <select type="text" class="form-control" name="horaUsuarioCita" id="time">
                 <option selected disabled>Seleccione un horario</option>
@@ -75,8 +77,7 @@
             </select>
         </div>
 
-        <div class="clearfix"></div>
-
+    
         <div class="form-group">
             <label for="servicio_id">Selecciona un servicio</label>
             <select class="form-control" id="servicio_id" name="servicios_id[]" value="{{ old('servicio_id') }}" multiple>
@@ -92,7 +93,7 @@
             <div class="row">
                 <div class="col-sm">
                     <a class="btn btn-danger btn-lg btn-responsive px-3" href="/cita">Cancelar</a> 
-                    <button type="submit" class="btn btn-success btn-lg btn-responsive px-3">Guardar</button>
+                    <button type="submit" id="citaSubmit" class="btn btn-success btn-lg btn-responsive px-3">Guardar</button>
                 </div>
             </div>
         </div>

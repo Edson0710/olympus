@@ -23,7 +23,7 @@ class CreateCitasTable extends Migration
             $table->string('celularUsuarioCita');
             $table->time('horaUsuarioCita');
 
-            $table->unique(['fechaUsuarioCita','horaUsuarioCita']);
+            /* $table->unique(['fechaUsuarioCita','horaUsuarioCita', 'empleado_id']); */
         });
     }
 

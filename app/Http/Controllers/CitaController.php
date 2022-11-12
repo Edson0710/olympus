@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CitaController extends Controller
 {
@@ -43,7 +44,11 @@ class CitaController extends Controller
             'fechaUsuarioCita' => 'required | date',
             /* 'calificacionUsuarioCita' => 'required | max:10 | min:0', */
             'celularUsuarioCita' => 'required | digits:10 | numeric',
-            'horaUsuarioCita' => 'required',
+            /** Se valida si la hora de la cita ya está ocupada en la fecha preporcionada*/
+            'horaUsuarioCita' => ['required', Rule::unique('citas')->where(function ($query) use ($request){
+                return $query->where('fechaUsuarioCita', $request->fechaUsuarioCita)
+                            ->where('horaUsuarioCita', $request->horaUsuarioCita);
+            })],
         ]);
 
         Cita::create($request->all());
@@ -89,7 +94,13 @@ class CitaController extends Controller
             'fechaUsuarioCita' => 'required | date',
             /* 'calificacionUsuarioCita' => 'required | max:10 | min:0', */
             'celularUsuarioCita' => 'required | digits:10 | numeric',
-            'horaUsuarioCita' => 'required',
+             /** Se valida si la hora de la cita ya está ocupada en la fecha proporcionada y que no sea igual al ID de la cita, 
+              * ya que sino es así se tomaría la hora y fecha de la cita a modificar, lo que nos daría que nunca estaría disponible */
+            'horaUsuarioCita' => ['required', Rule::unique('citas')->where(function ($query) use ($request, $cita){
+                return $query->where('fechaUsuarioCita', $request->fechaUsuarioCita)
+                            ->where('horaUsuarioCita', $request->horaUsuarioCita)
+                            ->whereNotIn('id', [$cita->id]);
+            })],
         ]);
 
         Cita::where('id', $cita->id)->update($request->except('_token', '_method'));

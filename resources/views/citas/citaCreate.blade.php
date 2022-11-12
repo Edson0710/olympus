@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container" id="advanced-search-form">
-    <form action="/cita" method="POST" id="contacto">
+    <form action="/cita" method="POST" id="cita">
         @csrf
         <div class="form-group">
             <label for="nombreUsuarioCita">Nombre</label>
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="fechaUsuarioCita">Fecha</label>
-            <input type="date" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') }}" onChange="sinDomingos();" onblur="obtenerfechafinf1();" required="required">
+            <input type="date" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') }}" min="<?php $hoy=date("Y-m-d",strtotime("-1 days")); echo $hoy?>" onChange="sinDomingos();" onblur="obtenerfechafinf1();" required="required">
             @error('fechaUsuarioCita')
                 <i>{{ $message}}</i>
             @enderror
@@ -75,7 +75,7 @@
         <div class="clearfix"></div>
         <div class="row">
             <a class="btn btn-danger btn-lg btn-responsive" href="/cita">Cancelar</a>
-            <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
+            <button type="submit" id="citaSubmit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
         </div>
     </form>
 </div>
@@ -87,5 +87,26 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> console.log('Hi!'); 
+    var elDate = document.getElementById('fechaUsuarioCita');
+    var elForm = document.getElementById('cita');
+    var elSubmit = document.getElementById('citaSubmit');
+
+    function sinDomingos(){
+        var day = new Date(elDate.value ).getUTCDay();
+        // Días 0-6, 0 es Domingo 6 es Sábado
+        elDate.setCustomValidity(''); // limpiarlo para evitar pisar el fecha inválida
+        if( day == 0 ){
+        elDate.setCustomValidity('Domingos no disponibles, por favor seleccione otro día');
+        } else {
+        elDate.setCustomValidity('');
+        }
+        if(!elForm.checkValidity()) {elSubmit.click()};
+    }
+
+    function obtenerfechafinf1(){
+        sinDomingos();
+    }
+    </script>
+
 @stop

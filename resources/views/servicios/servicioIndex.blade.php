@@ -16,7 +16,7 @@
 </div>
 
 <div class="text-right mb-3">
-    <a class="btn btn-primary" href="/servicio/create">Nuevo servicio</a>
+    <a class="btn btn-primary" href="/servicio/create">Registrar Servicio</a>
 </div>
 <table id="Mytable" class="table">
     <thead>

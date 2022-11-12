@@ -36,14 +36,41 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+
+        $rules = [
+            'nombre' => 'required|max:255',
+            'descripcion' => 'required|max:255',
+            'marca' => 'required|max:255',
+            'tipo' => 'required|max:255',
+            'precio' => 'required|numeric',
+            'cantidad' => 'required|integer',
+        ];
+
+        $messages = [
+            'nombre.required' => 'El nombre del producto es obligatorio.',
+            'nombre.max' => 'El nombre del producto supera los 255 carácteres.',
+            'descripcion.required' => 'La descripción del producto es obligatoria.',
+            'descripcion.max' => 'La descripción del producto supera los 255 carácteres.',
+            'marca.required' => 'La marca del producto es obligatoria.',
+            'marca.max' => 'La marca del producto supera los 255 carácteres.',
+            'tipo.required' => 'El tipo del producto es obligatoria.',
+            'tipo.max' => 'El tipo del producto supera los 255 carácteres.',
+            'precio.required' => 'El precio del producto es obligatorio.',
+            'precio.max' => 'El precio del producto solo acepta carácteres numéricos.',
+            'cantidad.required' => 'La cantidad del producto es obligatoria.',
+            'cantidad.integer' => 'La cantidad del producto solo acepta números enteros.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+       /*  $request->validate([
             'nombre' => 'required|max:255',
             'descripcion' => 'required|max:255',
             'marca' => 'required|max:255',
             'tipo' => 'required|max:255',
             'precio' => 'required',
             'cantidad' => 'required|integer',
-        ]);
+        ]); */
 
         Producto::create($request->all());
 
@@ -85,14 +112,40 @@ class ProductoController extends Controller
     {
         $updateName = $producto->nombre;
 
-        $request->validate([
+        $rules = [
+            'nombre' => 'required|max:255',
+            'descripcion' => 'required|max:255',
+            'marca' => 'required|max:255',
+            'tipo' => 'required|max:255',
+            'precio' => 'required|numeric',
+            'cantidad' => 'required|integer',
+        ];
+
+        $messages = [
+            'nombre.required' => 'El nombre del producto es obligatorio.',
+            'nombre.max' => 'El nombre del producto supera los 255 carácteres.',
+            'descripcion.required' => 'La descripción del producto es obligatoria.',
+            'descripcion.max' => 'La descripción del producto supera los 255 carácteres.',
+            'marca.required' => 'La marca del producto es obligatoria.',
+            'marca.max' => 'La marca del producto supera los 255 carácteres.',
+            'tipo.required' => 'El tipo del producto es obligatoria.',
+            'tipo.max' => 'El tipo del producto supera los 255 carácteres.',
+            'precio.required' => 'El precio del producto es obligatorio.',
+            'precio.max' => 'El precio del producto solo acepta carácteres numéricos.',
+            'cantidad.required' => 'La cantidad del producto es obligatoria.',
+            'cantidad.integer' => 'La cantidad del producto solo acepta números enteros.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        /* $request->validate([
             'nombre' => 'required|max:255',
             'descripcion' => 'required|max:255',
             'marca' => 'required|max:255',
             'tipo' => 'required|max:255',
             'precio' => 'required',
             'cantidad' => 'required|integer',
-        ]);
+        ]); */
         
         Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
 

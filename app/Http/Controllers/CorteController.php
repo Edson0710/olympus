@@ -41,11 +41,25 @@ class CorteController extends Controller
     {
         $notification = '';
 
-        $request->validate([
+        $rules = [
             'nombreCorte' => 'required|string',
             'estiloCorte' => 'required|string',
             'descripcionCorte' => 'required|string',
-        ]);
+        ];
+
+        $messages = [
+            'nombreCorte.required' => 'El nombre del corte es obligatorio.',
+            'estiloCorte.required' => 'El estilo del corte es obligatorio.',
+            'descripcionCorte.required' => 'La descripcion del corte es obligatorio.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        /* $request->validate([
+            'nombreCorte' => 'required|string',
+            'estiloCorte' => 'required|string',
+            'descripcionCorte' => 'required|string',
+        ]); */
 
         $corte = Corte::create($request->all());
 
@@ -88,11 +102,25 @@ class CorteController extends Controller
     {
         $updateName = $corte->nombreCorte;
 
-        $request->validate([
+        $rules = [
+            'nombreCorte' => 'required|string',
+            'estiloCorte' => 'required|string',
+            'descripcionCorte' => 'required|string',
+        ];
+
+        $messages = [
+            'nombreCorte.required' => 'El nombre del corte es obligatorio.',
+            'estiloCorte.required' => 'El estilo del corte es obligatorio.',
+            'descripcionCorte.required' => 'La descripcion del corte es obligatorio.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        /* $request->validate([
             'nombreCorte' => 'required|string|max:100',
             'estiloCorte' => 'required|string|max:100',
             'descripcionCorte' => 'required|string',
-        ]);
+        ]); */
 
         Corte::where('id', $corte->id)->update($request->except('_token', '_method'));
 

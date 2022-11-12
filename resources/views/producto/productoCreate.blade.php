@@ -7,33 +7,33 @@
 @stop
 
 @section('content')
-<div class="container" id="advanced-search-form">
+<div class="card-body">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>¡Por favor!</strong> {{ $error }}
+            </div>
+        @endforeach
+    @endif
+
     <form action="/producto" method="POST">
 
         @csrf
 
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" class="form-control" placeholder="Nombre" id="nombre" value={{ $nombre ?? old('nombre') }}>
-            @error('nombre')
-                <i>{{ $message}}</i>
-            @enderror
+            <input type="text" name="nombre" class="form-control" placeholder="Nombre" id="nombre" value="{{ $nombre ?? old('nombre') }}">
         </div>
         
         <div class="form-group">
             <label for="descripcion">Descripción</label>
-            <input type="text" name="descripcion" class="form-control" placeholder="Descripción" id="descripcion" value={{ $descripcion ?? old('descripcion') }}>
-            @error('descripcion')
-                <i>{{ $message}}</i>
-            @enderror
+            <input type="text" name="descripcion" class="form-control" placeholder="Descripción" id="descripcion" value="{{ $descripcion ?? old('descripcion') }}">
         </div>
 
         <div class="form-group">
             <label for="marca">Marca</label>
-            <input type="text" name="marca" class="form-control" placeholder="Marca" id="marca" value={{ $marca ?? old('marca') }}>
-            @error('marca')
-                <i>{{ $message}}</i>
-            @enderror
+            <input type="text" name="marca" class="form-control" placeholder="Marca" id="marca" value="{{ $marca ?? old('marca') }}">
         </div>
         
         <div class="form-group">
@@ -44,36 +44,30 @@
                 <option value="Caballero">Caballero</option>
                 <option value="Unisex">Unisex</option>
             </select>
-            @error('tipo')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
 
         <div class="form-group">
             <label for="precio">Precio</label>
-            <input type="number" step="0.10" name="precio" class="form-control" placeholder="Precio" id="precio" value={{ $precio ?? old('precio') }}>
-            @error('precio')
-                <i>{{ $message}}</i>
-            @enderror
+            <input type="number" step="0.10" name="precio" class="form-control" placeholder="Precio" id="precio" value="{{ $precio ?? old('precio') }}">
         </div>
 
         <div class="form-group">
             <label for="cantidad">Cantidad</label>
-            <input type="number" step="1" name="cantidad" class="form-control" placeholder="Cantidad" id="cantidad" value={{ $cantidad ?? old('cantidad') }}>
-            @error('cantidad')
-                <i>{{ $message}}</i>
-            @enderror
+            <input type="number" step="1" name="cantidad" class="form-control" placeholder="Cantidad" id="cantidad" value="{{ $cantidad ?? old('cantidad') }}">
         </div>
     
         <div class="clearfix"></div>
 
-        <div class="row">
-            <a class="btn btn-danger btn-lg btn-responsive" href="/producto">Cancelar</a>
-            <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
-        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm">
+                    <a class="btn btn-danger btn-lg btn-responsive px-3" href="/producto">Cancelar</a> 
+                    <button type="submit" class="btn btn-success btn-lg btn-responsive px-3">Guardar</button>
+                </div>
+            </div>
+        </div>  
     </form>
-</div>
-    
+</div>   
 @stop
 
 @section('css')

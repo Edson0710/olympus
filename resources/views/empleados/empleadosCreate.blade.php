@@ -7,24 +7,27 @@
 @stop
 
 @section('content')
-<div class="container" id="advanced-search-form">
+<div class="card-body">
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>¡Por favor!</strong> {{ $error }}
+            </div>
+        @endforeach
+    @endif
+
     <form action="/empleado" method="POST">
         @csrf
-        <div class="row">
             <div class="form-group">
                 <label for="nombreEmpleado">Nombre Completo</label>
                 <input type="text" name="nombreEmpleado" class="form-control" placeholder="Nombre Completo" id="nombreEmpleado" value="{{old('nombreEmpleado')}}">
-                @error('nombreEmpleado')
-                    <i>{{ $message}}</i>
-                @enderror
             </div>
             
             <div class="form-group">
                 <label for="rolEmpleado">Rol</label>
                 <input type="text" name="rolEmpleado" class="form-control" placeholder="Rol del Empleado" id="rolEmpleado" value="{{old('rolEmpleado')}}">
-                @error('rolEmpleado')
-                    <i>{{ $message}}</i>
-                @enderror
             </div>
             
             <div class="form-group">
@@ -35,33 +38,20 @@
                     <option value="Masculino">Masculino</option>
                     <option value="No binario">No binario</option>
                 </select>
-                @error('generoEmpleado')
-                    <i>{{ $message}}</i>
-                @enderror
             </div>
             
             <div class="form-group">
                 <label for="telefonoEmpleado">Teléfono</label>
                 <input type="text" name="telefonoEmpleado" class="form-control" placeholder="Número de teléfono" id="telefonoEmpleado" value="{{old('telefonoEmpleado')}}"  maxlength="10">
-                @error('telefonoEmpleado')
-                    <i>{{ $message}}</i>
-                @enderror
             </div>
             <div class="form-group">
                 <label for="curpEmpleado">CURP</label>
                 <input type="text" name="curpEmpleado" class="form-control" placeholder="" id="curpEmpleado" value="{{old('curpEmpleado')}}" maxlength="18">
-                @error('curpEmpleado')
-                    <i>{{ $message}}</i>
-                @enderror
             </div>
             <div class="form-group">
                 <label for="fecha_NacEmpleado">Fecha de Nacimiento</label>
                 <input type="date" name="fecha_NacEmpleado" class="form-control" placeholder="00/00/0000" id="fecha_NacEmpleado" value="{{old('fecha_NacEmpleado')}}">
-                @error('fecha_NacEmpleado')
-                    <i>{{ $message}}</i>
-                @enderror
             </div>
-        </div>
         <!-- <div class="form-group">
             <label for="imagenEmpleado">Imagen de Empleado</label>
             <input type="text" name="imagenEmpleado"class="form-control" id="imagenEmpleado">
@@ -69,12 +59,16 @@
                 <i>{{ $message}}</i>
             @enderror
         </div> -->
-    
+
         <div class="clearfix"></div>
-        <div class="row">
-            <a class="btn btn-danger btn-lg btn-responsive" href="/empleado">Cancelar</a>
-            <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
-        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm">
+                    <a class="btn btn-danger btn-lg btn-responsive px-3" href="/empleado">Cancelar</a> 
+                    <button type="submit" class="btn btn-success btn-lg btn-responsive px-3">Guardar</button>
+                </div>
+            </div>
+        </div>     
     </form>
 </div>
 @stop

@@ -7,8 +7,15 @@
 @stop
 
 @section('content')
-
-<div class="container" id="advanced-search-form">
+<div class="card-body">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>¡Por favor!</strong> {{ $error }}
+            </div>
+        @endforeach
+    @endif
     <form action="/producto/{{ $producto->id }}" method="POST">
 
         @csrf
@@ -17,25 +24,16 @@
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" class="form-control" placeholder="Nombre" id="nombre" value="{{ old('nombre') ?? $producto->nombre }}">
-            @error('nombre')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         
         <div class="form-group">
             <label for="descripcion">Descripción</label>
             <input type="text" name="descripcion" class="form-control" placeholder="Descripción" id="descripcion" value="{{ old('descripcion') ?? $producto->descripcion }}">
-            @error('descripcion')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
 
         <div class="form-group">
             <label for="marca">Marca</label>
             <input type="text" name="marca" class="form-control" placeholder="Marca" id="marca" value="{{ old('marca') ?? $producto->marca }}">
-            @error('marca')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         
         <div class="form-group">
@@ -46,36 +44,30 @@
                 <option value="Caballero" {{ $producto->tipo == 'Caballero' ? 'selected' : '' }}>Caballero</option>
                 <option value="Unisex" {{ $producto->tipo == 'Unisex' ? 'selected' : '' }}>Unisex</option>
             </select>
-            @error('tipo')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         
         <div class="form-group">
             <label for="precio">Precio</label>
             <input type="number" step="0.10" name="precio" class="form-control" placeholder="Precio" id="precio" value="{{ old('precio') ?? $producto->precio }}">
-            @error('precio')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
 
         <div class="form-group">
             <label for="cantidad">Cantidad</label>
             <input type="number" step="1" name="cantidad" class="form-control" placeholder="Cantidad" id="cantidad" value="{{ old('cantidad') ?? $producto->cantidad }}">
-            @error('cantidad')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         
         <div class="clearfix"></div>
 
-        <div class="row">
-            <a class="btn btn-danger btn-lg btn-responsive" href="/producto">Cancelar</a>
-            <button type="submit" class="btn btn-dark btn-lg btn-responsive">Actualizar</button>
-        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm">
+                    <a class="btn btn-danger btn-lg btn-responsive px-3" href="/producto">Cancelar</a> 
+                    <button type="submit" class="btn btn-success btn-lg btn-responsive px-3">Actualizar</button>
+                </div>
+            </div>
+        </div>  
     </form>
-</div>
-        
+</div>       
 @stop
 
 @section('css')

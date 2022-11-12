@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-<div class="container" id="advanced-search-form">
     <div class="form-group">
         <label for="nombreServicio">Nombre</label><br>
         <input class="form-control" type="text" name="nombreServicio" id="nombreServicio" placeholder="Nombre" autocomplete="off" value="{{ $servicio->nombreServicio }}" disabled><br>
@@ -25,8 +24,13 @@
         <input class="form-control" type="number" step="0.01" min="0" max="999999" name="precioServicio" id="precioServicio" placeholder="Precio" autocomplete="off" value="{{ $servicio->precioServicio }}" disabled><br>
     </div>
     <div class="clearfix"></div>
-    <a class="btn btn-dark btn-lg btn-responsive" href="/servicio">Regresar</a>
-</div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm">
+                <a class="btn btn-dark btn-lg btn-responsive" href="/servicio">Regresar</a> 
+            </div>
+        </div>
+    </div> 
 @stop
 
 @section('css')

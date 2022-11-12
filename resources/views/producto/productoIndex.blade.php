@@ -16,7 +16,7 @@
 </div>
 
 <div class="text-right mb-3">
-    <a class="btn btn-primary" href="/producto/create">Añadir Producto</a>
+    <a class="btn btn-primary" href="/producto/create">Registrar Producto</a>
 </div>
 <table id="Mytable" class="table">
     <thead>

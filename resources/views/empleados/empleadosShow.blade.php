@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-<div class="container" id="advanced-search-form">
     <div class="form-group">
         <label for="nombreEmpleado">Nombre Completo</label>
         <input type="text" name="nombreEmpleado" class="form-control" placeholder="Nombre Completo"
@@ -48,11 +47,17 @@
       <i>{{ $message}}</i>
   @enderror
 </div> -->
+
     <div class="clearfix"></div>
-    <div class="row">
-        <a class="btn btn-dark btn-lg btn-responsive" href="/empleado">Regresar</a>
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm">
+                <a class="btn btn-dark btn-lg btn-responsive" href="/empleado">Regresar</a> 
+            </div>
+        </div>
     </div>
-</div>
+    </br> 
 @stop
 
 @section('css')

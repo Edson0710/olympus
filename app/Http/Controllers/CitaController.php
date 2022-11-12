@@ -47,16 +47,44 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        
+        $rules = [
             'nombreUsuarioCita' => 'required | max:255',
             'emailUsuarioCita' => 'required | max:255 | email',
-            /* 'confirmacionUsuarioCita' => 'required | max:255', */
             'fechaUsuarioCita' => 'required | date',
-            /* 'calificacionUsuarioCita' => 'required | max:10 | min:0', */
             'celularUsuarioCita' => 'required | digits:10 | numeric',
             'horaUsuarioCita' => 'required',
             'empleado_id' => 'required|exists:empleados,id',
-        ]);
+        ];
+
+        $messages = [
+            'nombreUsuarioCita.required' => 'El nombre del usuario es obligatorio',
+            'nombreUsuarioCita.max' => 'El nombre del usuario supera los 255 carácteres',
+            'emailUsuarioCita.required' => 'El email del usuario es obligatorio',
+            'emailUsuarioCita.max' => 'El email del usuario supera los 255 carácteres',
+            'emailUsuarioCita.email' => 'El email del usuario no tiene un formato válido',
+            'fechaUsuarioCita.required' => 'La fecha del usuario es obligatoria',
+            'fechaUsuarioCita.date' => 'La fecha del usuario no tiene un formato válido de fecha',
+            'celularUsuarioCita.required' => 'El celular del usuario es obligatorio',
+            'celularUsuarioCita.digits' => 'El celular del usuario debe ser de 10 digitos',
+            'celularUsuarioCita.numeric' => 'El celular del usuario solo acepta carácteres numéricos',
+            'horaUsuarioCita.required' => 'La hora del usuario es obligatoria',
+            'empleado_id.required' => 'El nombre del barbero es obligatorio',
+            'empleado_id.exists' => 'Selecciona un barbero existente',
+        ];
+
+        $this->validate($request, $rules, $messages);
+        
+        /* $request->validate([
+            'nombreUsuarioCita' => 'required | max:255',
+            'emailUsuarioCita' => 'required | max:255 | email',
+            'confirmacionUsuarioCita' => 'required | max:255',
+            'fechaUsuarioCita' => 'required | date',
+            'calificacionUsuarioCita' => 'required | max:10 | min:0',
+            'celularUsuarioCita' => 'required | digits:10 | numeric',
+            'horaUsuarioCita' => 'required',
+            'empleado_id' => 'required|exists:empleados,id',
+        ]); */
 
         $cita = Cita::create($request->all());
 
@@ -105,16 +133,44 @@ class CitaController extends Controller
      */
     public function update(Request $request, Cita $cita)
     {
-        $request->validate([
+
+        $rules = [
             'nombreUsuarioCita' => 'required | max:255',
             'emailUsuarioCita' => 'required | max:255 | email',
-            /* 'confirmacionUsuarioCita' => 'required | max:255', */
             'fechaUsuarioCita' => 'required | date',
-            /* 'calificacionUsuarioCita' => 'required | max:10 | min:0', */
             'celularUsuarioCita' => 'required | digits:10 | numeric',
             'horaUsuarioCita' => 'required',
             'empleado_id' => 'required|exists:empleados,id',
-        ]);
+        ];
+
+        $messages = [
+            'nombreUsuarioCita.required' => 'El nombre del usuario es obligatorio',
+            'nombreUsuarioCita.max' => 'El nombre del usuario supera los 255 carácteres',
+            'emailUsuarioCita.required' => 'El email del usuario es obligatorio',
+            'emailUsuarioCita.max' => 'El email del usuario supera los 255 carácteres',
+            'emailUsuarioCita.email' => 'El email del usuario no tiene un formato válido',
+            'fechaUsuarioCita.required' => 'La fecha del usuario es obligatoria',
+            'fechaUsuarioCita.date' => 'La fecha del usuario no tiene un formato válido de fecha',
+            'celularUsuarioCita.required' => 'El celular del usuario es obligatorio',
+            'celularUsuarioCita.digits' => 'El celular del usuario debe ser de 10 digitos',
+            'celularUsuarioCita.numeric' => 'El celular del usuario solo acepta carácteres numéricos',
+            'horaUsuarioCita.required' => 'La hora del usuario es obligatoria',
+            'empleado_id.required' => 'El nombre del barbero es obligatorio',
+            'empleado_id.exists' => 'Selecciona un barbero existente',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        /* $request->validate([
+            'nombreUsuarioCita' => 'required | max:255',
+            'emailUsuarioCita' => 'required | max:255 | email',
+            'confirmacionUsuarioCita' => 'required | max:255',
+            'fechaUsuarioCita' => 'required | date',
+            'calificacionUsuarioCita' => 'required | max:10 | min:0',
+            'celularUsuarioCita' => 'required | digits:10 | numeric',
+            'horaUsuarioCita' => 'required',
+            'empleado_id' => 'required|exists:empleados,id',
+        ]); */
 
         /* Actualiza la información de la tabla de la cita, exceptuando las columnas 'token', 'method' y 'servicios_id'
             Trabaja sobre la tabla Empleado */

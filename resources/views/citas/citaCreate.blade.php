@@ -7,43 +7,37 @@
 @stop
 
 @section('content')
-<div class="container" id="advanced-search-form">
+<div class="card-body">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>¡Por favor!</strong> {{ $error }}
+            </div>
+        @endforeach
+    @endif
+
     <form action="/cita" method="POST">
         @csrf
         <div class="form-group">
             <label for="nombreUsuarioCita">Nombre</label>
             <input type="text" class="form-control" id="nombreUsuarioCita" name="nombreUsuarioCita" value="{{ old('nombreUsuarioCita') }}">
-            @error('nombreUsuarioCita')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         <div class="form-group">
             <label for="emailUsuarioCita">Email</label>
             <input type="email" class="form-control" id="emailUsuarioCita" name="emailUsuarioCita" value="{{ old('emailUsuarioCita') }}">
-            @error('emailUsuarioCita')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         <div class="form-group">
             <label for="fechaUsuarioCita">Fecha</label>
             <input type="date" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') }}">
-            @error('fechaUsuarioCita')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         <div class="form-group">
             <label for="celularUsuarioCita">Celular</label>
             <input type="text" class="form-control" id="celularUsuarioCita" name="celularUsuarioCita" value="{{ old('celularUsuarioCita') }}" maxlength="10">
-            @error('celularUsuarioCita')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
         <div class="form-group">
             <label for="horaUsuarioCita">Hora</label>
             <input type="time" class="form-control" id="horaUsuarioCita" name="horaUsuarioCita" value="{{ old('horaUsuarioCita') }}">
-            @error('horaUsuarioCita')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
 
         <div class="form-group">
@@ -54,9 +48,6 @@
                     <option value="{{ $empleado->id }}">{{ $empleado->nombreEmpleado }}</option>
                 @endforeach
             </select>
-            @error('empleado_id')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
 
         <div class="clearfix"></div>
@@ -69,15 +60,16 @@
                     <option value="{{ $servicio->id }}">{{ $servicio->nombreServicio }}</option>
                 @endforeach
             </select>
-            @error('servicio_id')
-                <i>{{ $message}}</i>
-            @enderror
         </div>
 
         <div class="clearfix"></div>
-        <div class="row">
-            <a class="btn btn-danger btn-lg btn-responsive" href="/cita">Cancelar</a>
-            <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm">
+                    <a class="btn btn-danger btn-lg btn-responsive px-3" href="/cita">Cancelar</a> 
+                    <button type="submit" class="btn btn-success btn-lg btn-responsive px-3">Guardar</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>

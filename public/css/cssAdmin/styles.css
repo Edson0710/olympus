@@ -1,19 +1,19 @@
 .content-wrapper{
-    background: url("/img/fondo.png") no-repeat;
+    /* background: url("/img/fondo.png") no-repeat; */
 	background-size: cover;
     min-height: 100%;
 }
 
 .content-header h1{
-    color: #fff;
+    color: black;
 }
 
 table th{
-    color: #fff;
+    color: black;
 }
 
 table td{
-    color: #fff;
+    color: black;
 }
 
 body{
@@ -99,21 +99,21 @@ body{
 }
 
 .dataTables_wrapper label, .dataTables_wrapper select, .dataTables_wrapper .dataTables_filter input{
-    color: #fff;
+    color: black;
 }
 #Mytable_info{
-    color: #fff;
+    color: black;
 }
 
 #Mytable_previous, #Mytable_next{
-    color: #fff !important;
+    color: black !important;
 }
 
 #Mytable_paginate span a{
-    color: #fff !important;
+    color: black !important;
 }
 
 .dt-buttons button{
-    color: #fff !important;
+    color: black !important;
 }
 

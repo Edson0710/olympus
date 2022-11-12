@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="text-right mb-3">
-    <a class="btn btn-primary" href="/cita/create">Crear Nueva Cita</a>
+    <a class="btn btn-primary" href="/cita/create">Registrar Cita</a>
 </div>
 <table id="Mytable" class="table">
     <thead>

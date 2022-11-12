@@ -8,42 +8,45 @@
 
 @section('content')
 
-<div class="container" id="advanced-search-form">
+<div class="card-body">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>¡Por favor!</strong> {{ $error }}
+            </div>
+        @endforeach
+    @endif
 
     <form action="/corte" method="POST">
         @csrf
-        <div class="row">
-            <div class="form-group">
-                <label for="nombreCorte">Nombre del Corte</label>
-                <input type="text" class="form-control"  name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ old('nombreCorte') }}" >
-                @error('nombreCorte')
-                        <i>{{ $message}}</i>
-                @enderror
-            </div>
-
-            <div class="form-group">  
-                <label for="estiloCorte">Estilo del Corte</label>
-                <input type="text" class="form-control"  name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off"  value="{{ old('estiloCorte') }}" > 
-                @error('estiloCorte')
-                        <i>{{ $message}}</i>
-                @enderror
-            </div>
-
-            <div class="form-group">    
-                <label for="descripcionCorte">Descripción</label>
-                <input type="text" class="form-control" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa una descripción sobre el corte" autocomplete="off" value="{{ old('descripcionCorte') }}" > 
-                @error('descripcionCorte')
-                        <i>{{ $message}}</i>
-                @enderror
-            </div>
+        <div class="form-group">
+            <label for="nombreCorte">Nombre del Corte</label>
+            <input type="text" class="form-control"  name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ old('nombreCorte') }}" >
         </div>
-            <div class="clearfix"></div>
+
+        <div class="form-group">  
+            <label for="estiloCorte">Estilo del Corte</label>
+            <input type="text" class="form-control"  name="estiloCorte" id="estiloCorte" placeholder="Ingresa el estilo del corte" autocomplete="off"  value="{{ old('estiloCorte') }}" > 
+        </div>
+
+        <div class="form-group">    
+            <label for="descripcionCorte">Descripción</label>
+            <input type="text" class="form-control" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa una descripción sobre el corte" autocomplete="off" value="{{ old('descripcionCorte') }}" > 
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="container text-center">
             <div class="row">
-                <a class="btn btn-danger btn-lg btn-responsive" href="/corte">Cancelar</a>
-                <button type="submit" class="btn btn-dark btn-lg btn-responsive">Guardar</button>
+                <div class="col-sm">
+                    <a class="btn btn-danger btn-lg btn-responsive px-3" href="/corte">Cancelar</a> 
+                    <button type="submit" class="btn btn-success btn-lg btn-responsive px-3">Guardar</button>
+                </div>
             </div>
+        </div>     
     </form>
-</div> 
+</div>
 @stop
 
 @section('css')
@@ -54,6 +57,3 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
-
-
-</html>

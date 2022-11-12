@@ -37,12 +37,32 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
+            'nombreServicio' => 'required|string|max:255',
+            'descripcionServicio' => 'required|string|max:255',
+            'duracionServicio' => 'required|string|max:50',
+            'precioServicio' => 'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
+        ];
+
+        $messages = [
+            'nombreServicio.required' => 'El nombre del servicio es obligatorio.',
+            'nombreServicio.max' => 'El nombre del servicio supera los 255 carácteres.',
+            'descripcionServicio.required' => 'La descripcion del servicio es obligatoria.',
+            'duracionServicio.required' => 'La duración del servicio es obligatoria.',
+            'duracionServicio.max' => 'La duración del servicio supera los 50 carácteres.',
+            'precioServicio.required' => 'El precio del servicio es obligatorio.',
+            'precioServicio.numeric' => 'El precio del servicio solo acepta carácteres numéricos.',
+            'precioServicio.regex' => 'El precio del servicio no tine un formato válido.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        /* $request->validate([
             'nombreServicio'=>'required|string|max:255',
             'descripcionServicio'=>'required|string|max:255',
             'duracionServicio'=>'required|string|max:200',
             'precioServicio'=>'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
-        ]);
+        ]); */
 
         Servicio::create($request->all());
 
@@ -84,12 +104,32 @@ class ServicioController extends Controller
     {
         $updateName = $servicio->nombreServicio;
 
-        $request->validate([
+        $rules = [
+            'nombreServicio' => 'required|string|max:255',
+            'descripcionServicio' => 'required|string|max:255',
+            'duracionServicio' => 'required|string|max:50',
+            'precioServicio' => 'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
+        ];
+
+        $messages = [
+            'nombreServicio.required' => 'El nombre del servicio es obligatorio.',
+            'nombreServicio.max' => 'El nombre del servicio supera los 255 carácteres.',
+            'descripcionServicio.required' => 'La descripcion del servicio es obligatoria.',
+            'duracionServicio.required' => 'La duración del servicio es obligatoria.',
+            'duracionServicio.max' => 'La duración del servicio supera los 50 carácteres.',
+            'precioServicio.required' => 'El precio del servicio es obligatorio.',
+            'precioServicio.numeric' => 'El precio del servicio solo acepta carácteres numéricos.',
+            'precioServicio.regex' => 'El precio del servicio no tine un formato válido.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        /* $request->validate([
             'nombreServicio'=>'required|string|max:255',
             'descripcionServicio'=>'required|string|max:255',
             'duracionServicio'=>'required|string|max:200',
             'precioServicio'=>'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
-        ]);
+        ]); */
         
         Servicio::where('id', $servicio->id)->update($request->except('_token', '_method'));
 

@@ -7,8 +7,6 @@
 @stop
 
 @section('content')
-<div class="container" id="advanced-search-form">
-
     <div class="form-group">
         <label for="nombreCorte">Nombre del Corte</label>
         <input type="text" class="form-control" name="nombreCorte" id="nombreCorte" placeholder="Ingresa el nombre del corte" autocomplete="off"  value="{{ $corte->nombreCorte }}" disabled>
@@ -23,10 +21,14 @@
     </div>
     
     <div class="clearfix"></div>
-    <div class="row">
-        <a class="btn btn-dark btn-lg btn-responsive" href="/corte">Regresar</a>
-    </div>
-</div>
+    
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm">
+                <a class="btn btn-dark btn-lg btn-responsive" href="/corte">Regresar</a> 
+            </div>
+        </div>
+    </div> 
 @stop
 
 @section('css')

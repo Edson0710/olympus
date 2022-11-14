@@ -45,7 +45,7 @@
                             <span class="text-uppercase">9:00 AM - 8:30 PM</span>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Viernes</h6>
+                            <h6 class="text-uppercase mb-0">Sábado</h6>
                             <span class="text-uppercase">9:00 AM - 8:30 PM</span>
                         </div>
                         <div class="d-flex justify-content-between py-2">

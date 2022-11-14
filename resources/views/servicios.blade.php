@@ -90,7 +90,7 @@
                     </div>
                     <div class="ps-4">
                         <h3 class="text-uppercase mb-3">Servicio completo</h3>
-                        <p>Conciéntete con un servicio completo que contiene: corte de cabello, barba, masaje facial y mascarilla, te aseguramos salir relajado.</p>
+                        <p>Conciéntete con un servicio completo que contiene: corte de cabello, barba, masaje facial y mascarilla, te aseguramos que saldrás 100% relajado.</p>
                         <!--<span class="text-uppercase text-primary">$300</span>-->
                     </div>
                     <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>

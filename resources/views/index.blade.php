@@ -156,7 +156,7 @@
                     </div>
                     <div class="ps-4">
                         <h3 class="text-uppercase mb-3">Servicio completo</h3>
-                        <p>Conciéntete con un servicio completo que contiene: corte de cabello, barba, masaje facial y mascarilla, te aseguramos salir relajado.</p>
+                        <p>Conciéntete con un servicio completo que contiene: corte de cabello, barba, masaje facial y mascarilla, te aseguramos que saldrás 100% relajado.</p>
                         <!--<span class="text-uppercase text-primary">$300</span>-->
                     </div>
                     <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
@@ -186,7 +186,7 @@
                             <span class="text-uppercase text-primary">$50.00</span>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Afeitadp</h6>
+                            <h6 class="text-uppercase mb-0">Afeitado</h6>
                             <span class="text-uppercase text-primary">$50.00</span>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2">
@@ -329,7 +329,7 @@
                             <span class="text-uppercase">9:00 AM - 8:30 PM</span>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Viernes</h6>
+                            <h6 class="text-uppercase mb-0">Sábado</h6>
                             <span class="text-uppercase">9:00 AM - 8:30 PM</span>
                         </div>
                         <div class="d-flex justify-content-between py-2">

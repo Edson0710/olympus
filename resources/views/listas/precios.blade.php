@@ -28,7 +28,7 @@
                             <span class="text-uppercase text-primary">$50.00</span>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Afeitadp</h6>
+                            <h6 class="text-uppercase mb-0">Afeitado</h6>
                             <span class="text-uppercase text-primary">$50.00</span>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-2">

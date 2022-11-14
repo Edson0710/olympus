@@ -29,19 +29,28 @@ Route::middleware('web')->group(function () {
     Route::get('/index', function () {
         return view('index');
     })->name('olympus.index');
-    Route::get('/about', function () {
-        return view('about');
-    })->name('olympus.about');
-    Route::get('/service', function () {
-        return view('service');
-    })->name('olympus.service');
-    Route::get('/contact', function () {
-        return view('contact');
-    })->name('olympus.contact');
-    Route::group(['prefix' => 'pages'], function(){
-        Route::get('/price', function () {
-            return view('pages.price');
-        })->name('olympus.pages.price');
+    Route::get('/conocenos', function () {
+        return view('conocenos');
+    })->name('olympus.conocenos');
+    Route::get('/servicios', function () {
+        return view('servicios');
+    })->name('olympus.servicios');
+    Route::get('/agendar-cita', function () {
+        return view('agendar-cita');
+    })->name('olympus.agendar-cita');
+    Route::group(['prefix' => 'listas'], function(){
+        Route::get('/precios', function () {
+            return view('listas.precios');
+        })->name('olympus.listas.precios');
+        Route::get('/barberos', function () {
+            return view('listas.barberos');
+        })->name('olympus.listas.barberos');
+        Route::get('/horario', function () {
+            return view('listas.horario');
+        })->name('olympus.listas.horario');
+        Route::get('/testimonios', function () {
+            return view('listas.testimonios');
+        })->name('olympus.listas.testimonios');
     });
 });    
 

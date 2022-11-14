@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Admin Olympus',
+    'title' => 'Olympus - Admin',
     'title_prefix' => '',
     'title_postfix' => '',
 

@@ -38,6 +38,10 @@ Route::middleware('web')->group(function () {
     Route::get('/agendar-cita', function () {
         return view('agendar-cita');
     })->name('olympus.agendar-cita');
+    Route::resource('/cita', CitaController::class)->parameters(['cita' => 'cita']);
+    Route::prefix('/cita')->group(function () {      
+        Route::post('confirmarCita', [CitaController::class, 'confirmarCita'])->name('cita.confirmarCita');
+    });
     Route::group(['prefix' => 'listas'], function(){
         Route::get('/precios', function () {
             return view('listas.precios');

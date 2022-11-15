@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\Servicio;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailtrapExample;
 
 class CitaController extends Controller
 {
@@ -93,6 +95,8 @@ class CitaController extends Controller
         ]); */
 
         $cita = Cita::create($request->all());
+        // Funcion enviar correo
+        $this->confirmarCita($request);
 
         /*Entramos a la instancia "cita" en su método "servicios"
         para tener acceso a vincular a la cita con los servicios */
@@ -209,4 +213,20 @@ class CitaController extends Controller
 
         return redirect('/cita');
     }
+
+    public function confirmarCita(Request $request)
+    {          
+        setlocale(LC_TIME,"es_ES");
+        $cita = $request->all(); 
+        $fecha = $cita['fechaUsuarioCita'];
+        // FECHA EN ESPAÑOL
+        $fecha = strftime("%A, %d de %B del %Y", strtotime($fecha));
+        $hora = $cita['horaUsuarioCita'];
+        $hora = date('h:i A', strtotime($hora));
+        $cita['fechaUsuarioCita'] = $fecha;
+        $cita['horaUsuarioCita'] = $hora;
+        // dd($cita);
+        Mail::to($cita['emailUsuarioCita'])->send(new MailtrapExample($cita));
+    }
+
 }

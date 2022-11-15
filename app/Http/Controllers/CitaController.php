@@ -27,6 +27,19 @@ class CitaController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createUsuario()
+    {
+        $empleados = Empleado::all();
+        $servicios = Servicio::all();
+
+        return view('agendar-cita', compact('empleados', 'servicios'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -95,12 +108,13 @@ class CitaController extends Controller
         ]); */
 
         $cita = Cita::create($request->all());
-        // Funcion enviar correo
-        $this->confirmarCita($request);
 
         /*Entramos a la instancia "cita" en su método "servicios"
         para tener acceso a vincular a la cita con los servicios */
         $cita->servicios()->attach($request->servicios_id);
+
+        // Funcion enviar correo
+        $this->confirmarCita($request);
 
         return redirect('/cita');
     }

@@ -100,6 +100,31 @@
                             @error('horaUsuarioCita')
                                 <i>{{ $message}}</i>
                             @enderror
+
+                            <div class="col-12">
+                                <div class="form-floating">    
+                                    <select type="text" class="form-control bg-transparent" id="empleado_id" name="empleado_id" value="{{ old('empleado_id') }}">
+                                        <option selected disabled>Selecciona un barbero</option>
+                                        @foreach ($empleados as $empleado)
+                                            <option value="{{ $empleado->id }}">{{ $empleado->nombreEmpleado }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="empleado_id">Selecciona un barbero</label>
+                                </div>  
+                            </div>
+                        
+                            <div class="col-12">
+                                <div class="form-floating">                                
+                                    <select type="text" class="form-control bg-transparent" id="servicio_id" name="servicios_id[]" value="{{ old('servicio_id') }}" multiple>
+                                        <option selected disabled>Selecciona un servicio</option>
+                                        @foreach ($servicios as $servicio)
+                                            <option value="{{ $servicio->id }}">{{ $servicio->nombreServicio }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="servicio_id">Selecciona un servicio</label>
+                                </div>
+                            </div>
+
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit" id="contactoSubmit">Agendar Cita</button>
                             </div>

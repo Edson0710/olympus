@@ -15,8 +15,8 @@ class CreateCitaServicioTable extends Migration
     {
         Schema::create('cita_servicio', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cita_id')->constrained();
-            $table->foreignId('servicio_id')->constrained();
+            $table->foreignId('cita_id')->constrained('citas')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('servicio_id')->constrained('servicios')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

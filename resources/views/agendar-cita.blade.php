@@ -2,6 +2,7 @@
 @section('title', 'Olympus - Cita')
 @section('content')
 <!-- Page Header Start -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container text-center py-5">
         <h1 class="display-3 text-white text-uppercase mb-3 animated slideInDown">¡HAZ UNA CITA!</h1>
@@ -25,7 +26,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control bg-transparent" id="nombreUsuarioCita" name="nombreUsuarioCita">
-                                    <label for="nombreUsuarioCita">Nombre</label>
+                                    <label for="nombreUsuarioCita">Nombre y apellidos</label>
                                 </div>
                             </div>
                             @error('nombreUsuarioCita')
@@ -116,12 +117,22 @@
                             <div class="col-12">
                                 <div class="form-floating">                                
                                     <select type="text" class="form-control bg-transparent" id="servicio_id" name="servicios_id[]" value="{{ old('servicio_id') }}" multiple>
-                                        <option selected disabled>Selecciona un servicio</option>
                                         @foreach ($servicios as $servicio)
                                             <option value="{{ $servicio->id }}">{{ $servicio->nombreServicio }}</option>
                                         @endforeach
                                     </select>
                                     <label for="servicio_id">Selecciona un servicio</label>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.key') }}"></div>
+                                    @if(Session::has('g-recaptcha-response'))
+                                    <p class="alert {{Session::get('alert-class', 'alert-info') }}">
+                                        {{ Session::get('g-recaptcha-response')}}
+                                    </p>
+                                    @endif
                                 </div>
                             </div>
 

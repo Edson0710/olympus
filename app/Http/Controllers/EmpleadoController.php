@@ -212,6 +212,6 @@ class EmpleadoController extends Controller
     public function empleadoUsuario() 
     {
         $empleados = Empleado::all();
-        return view('barberos', compact('empleados'));
+        return view('listas.barberos', compact('empleados'));
     }
 }

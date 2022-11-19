@@ -18,10 +18,13 @@
             <h1 class="text-uppercase">Conoce a nuestros barberos</h1>
         </div>
         <div class="row g-4">
+            @foreach($empleados as $empleado)
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item">
                     <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-1.jpg')}}" alt="">
+                        @foreach($empleado->empleadoimages as $image)
+                            <img class="img-fluid" src="{{ \Storage::url($image->ubicacionFileEmpleado) }}" alt="">
+                        @endforeach
                         <div class="team-social">
                             <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -29,60 +32,12 @@
                         </div>
                     </div>
                     <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Leonardo Paredes</h5>
-                        <span class="text-primary">Desvanecidos</span>
+                        <h5 class="text-uppercase">{{ $empleado->nombreEmpleado }}</h5>
+                        <span class="text-primary">{{ $$empleado->rolEmpleado }}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item">
-                    <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-2.jpg')}}" alt="">
-                        <div class="team-social">
-                            <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Ricardo Reyes</h5>
-                        <span class="text-primary">Tijeras</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="team-item">
-                    <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-3.jpg')}}" alt="">
-                        <div class="team-social">
-                            <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Ernesto de la Cruz</h5>
-                        <span class="text-primary">Navaja</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="team-item">
-                    <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-4.jpg')}}" alt="">
-                        <div class="team-social">
-                            <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Borja Mendez</h5>
-                        <span class="text-primary">Tintes</span>
-
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

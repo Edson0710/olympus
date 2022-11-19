@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Corte;
+use App\Models\CorteImage;
 use Illuminate\Http\Request;
 
 class CorteController extends Controller
@@ -62,6 +63,24 @@ class CorteController extends Controller
         ]); */
 
         $corte = Corte::create($request->all());
+
+        // Validación de imagenes //
+        if ($request->file('imagen')->isValid()) {
+            /** Se asigna en 'ubicacion' el path de la imagen que se almacena dentro de la carpeta local 'corteImagenes' */
+            $ubicacion = $request->imagen->store('public');
+
+            // Inicializamos un nuevo objeto CorteImage //
+            $imagen = new CorteImage();
+            // Le asignamos al atributo 'ubicacion' del modelo 'corteimage' su ubicacion de almacenamiento //
+            $imagen->ubicacionFileCorte = $ubicacion;
+            // Le asignamos al atributo 'nombreOriginal' del modelo 'corteimage' una función que ayuda a obtener el nombre original del cliente //
+            $imagen->nombreOriginalCorte = $request->imagen->getClientOriginalName();
+            // Le asignamos al atributo 'mime' del modelo 'corteimage' un valor por default //
+            $imagen->mime = '';
+
+            // Guardamos el objeto 'imagen' con la relación a nivel modelo //
+            $corte->corteimages()->save($imagen);
+        }
 
         $notification = 'El Corte ha sido creado correctamente';
 
@@ -145,5 +164,15 @@ class CorteController extends Controller
         $notification = 'El Corte '. $deleteName .' ha sido eliminado correctamente.';
 
         return redirect('corte')->with(compact('notification'));
+    }
+
+    /** Esta es una función que sirve para pasar todas las instancias de Corte
+     * a la vista 'cortes', que es la del usuario
+     */
+
+    public function corteUsuario() 
+    {
+        $cortes = Corte::all();
+        return view('cortes', compact('cortes'));
     }
 }

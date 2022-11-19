@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Corte extends Model
+class CorteImage extends Model
 {
     use HasFactory;
 
@@ -14,17 +14,16 @@ class Corte extends Model
 
     // Filtra los atributos que se van a poder manipular //
     protected $fillable = [
-        'nombreCorte',
-        'estiloCorte',
-        'descripcionCorte'
+        'corte_id',
+        'ubicacionFileCorte',
+        'nombreOriginalCorte',
+        'mime'
     ];
 
-    /* protected $guarded = ['id']; */
-
-    /**Un Corte puede tener una o varias imagenes
-     * Se relaciona 1:N (uno a muchos)
+    /**Una CorteImage puede ser asignada por solo un Corte
+     * Se relaciona 1:1 (uno a uno)
      */
-    public function corteimages() {
-        return $this->hasMany(CorteImage::class);
+    public function corte() {
+        return $this->belongsTo(Corte::class);
     }
 }

@@ -53,6 +53,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{route('olympus.index')}}" class="nav-item nav-link">Inicio</a>
                 <a href="{{route('olympus.conocenos')}}" class="nav-item nav-link">Conócenos</a>
+                <a href="{{route('olympus.cortes')}}" class="nav-item nav-link">Cortes</a>
                 <a href="{{route('olympus.servicios')}}" class="nav-item nav-link">Servicios</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Listas</a>

@@ -19,6 +19,14 @@
         <label for="descripcionCorte">Descripción</label>
         <input type="text" class="form-control" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa la descripción del corte" autocomplete="off" value="{{ $corte->descripcionCorte }}" disabled>  
     </div>
+
+    <div class="form-group">
+        <!-- Mandamos a llamar las instancias del modelo 'corte' con su relación 'corteimages' -->
+        @foreach ($corte->corteimages as $image)
+                <!-- Indicamos en donde se encuentra almacenada la imagen para mostrarla -->
+            <img src="{{ \Storage::url($image->ubicacionFileCorte) }}" width="300px" alt="Imagen Corte">
+        @endforeach
+    </div>
     
     <div class="clearfix"></div>
     

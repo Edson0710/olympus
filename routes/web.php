@@ -35,6 +35,9 @@ Route::middleware('web')->group(function () {
     Route::get('/servicios', function () {
         return view('servicios');
     })->name('olympus.servicios');
+
+    // Ruta 'cortes' que sirve para pasar los atributos de cortes a la vista 'cortes' del usuario //
+    Route::get('/cortes', [CorteController::class, 'corteUsuario'])->name('olympus.cortes');
     Route::get('/agendar-cita', [CitaController::class, 'createUsuario'])->name('olympus.agendar-cita');
     Route::resource('/cita', CitaController::class)->parameters(['cita' => 'cita']);
     Route::prefix('/cita')->group(function () {      

@@ -33,7 +33,7 @@
                     </div>
                     <div class="bg-secondary text-center p-4">
                         <h5 class="text-uppercase">{{ $empleado->nombreEmpleado }}</h5>
-                        <span class="text-primary">{{ $$empleado->rolEmpleado }}</span>
+                        <span class="text-primary">{{ $empleado->rolEmpleado }}</span>
                     </div>
                 </div>
             </div>

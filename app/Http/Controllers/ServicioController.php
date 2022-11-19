@@ -40,7 +40,6 @@ class ServicioController extends Controller
         $rules = [
             'nombreServicio' => 'required|string|max:255',
             'descripcionServicio' => 'required|string|max:255',
-            'duracionServicio' => 'required|string|max:50',
             'precioServicio' => 'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
         ];
 
@@ -48,8 +47,6 @@ class ServicioController extends Controller
             'nombreServicio.required' => 'El nombre del servicio es obligatorio.',
             'nombreServicio.max' => 'El nombre del servicio supera los 255 carácteres.',
             'descripcionServicio.required' => 'La descripcion del servicio es obligatoria.',
-            'duracionServicio.required' => 'La duración del servicio es obligatoria.',
-            'duracionServicio.max' => 'La duración del servicio supera los 50 carácteres.',
             'precioServicio.required' => 'El precio del servicio es obligatorio.',
             'precioServicio.numeric' => 'El precio del servicio solo acepta carácteres numéricos.',
             'precioServicio.regex' => 'El precio del servicio no tine un formato válido.',
@@ -107,7 +104,6 @@ class ServicioController extends Controller
         $rules = [
             'nombreServicio' => 'required|string|max:255',
             'descripcionServicio' => 'required|string|max:255',
-            'duracionServicio' => 'required|string|max:50',
             'precioServicio' => 'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
         ];
 
@@ -115,8 +111,6 @@ class ServicioController extends Controller
             'nombreServicio.required' => 'El nombre del servicio es obligatorio.',
             'nombreServicio.max' => 'El nombre del servicio supera los 255 carácteres.',
             'descripcionServicio.required' => 'La descripcion del servicio es obligatoria.',
-            'duracionServicio.required' => 'La duración del servicio es obligatoria.',
-            'duracionServicio.max' => 'La duración del servicio supera los 50 carácteres.',
             'precioServicio.required' => 'El precio del servicio es obligatorio.',
             'precioServicio.numeric' => 'El precio del servicio solo acepta carácteres numéricos.',
             'precioServicio.regex' => 'El precio del servicio no tine un formato válido.',
@@ -163,5 +157,15 @@ class ServicioController extends Controller
         }
 
         return redirect('/servicio')->with(compact('notification'));
+    }
+
+    /** Esta es una función que sirve para pasar todas las instancias de Corte
+     * a la vista 'cortes', que es la del usuario
+     */
+
+    public function servicioUsuario() 
+    {
+        $servicios = Servicio::all();
+        return view('servicios', compact('servicios'));
     }
 }

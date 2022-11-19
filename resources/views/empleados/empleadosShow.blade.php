@@ -40,6 +40,13 @@
         <input type="date" name="fecha_NacEmpleado" class="form-control" placeholder="00/00/0000"
             id="fecha_NacEmpleado" value="{{ $empleado->fecha_NacEmpleado }}" disabled>
     </div>
+    <div class="form-group">
+        <!-- Mandamos a llamar las instancias del modelo 'corte' con su relación 'corteimages' -->
+        @foreach ($empleado->empleadoimages as $image)
+                <!-- Indicamos en donde se encuentra almacenada la imagen para mostrarla -->
+            <img src="{{ \Storage::url($image->ubicacionFileEmpleado) }}" width="300px" alt="Imagen Empleado">
+        @endforeach
+    </div>
     <!-- <div class="form-group">
   <label for="imagenEmpleado">Imagen de Empleado</label>
   <input type="text" name="imagenEmpleado"class="form-control" id="imagenEmpleado" value="{{ $empleado->imagenEmpleado }}" disabled>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleado;
+use App\Models\EmpleadoImage;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -73,7 +74,25 @@ class EmpleadoController extends Controller
             'imagenEmpleado' => 'required',
         ]); */
 
-        Empleado::create($request->all());
+        $empleado = Empleado::create($request->all());
+
+        // Validación de imagenes //
+        if ($request->file('imagen')->isValid()) {
+            /** Se asigna en 'ubicacion' el path de la imagen que se almacena dentro de la carpeta local 'empleadoImagenes' */
+            $ubicacion = $request->imagen->store('public');
+
+            // Inicializamos un nuevo objeto EmpleadoImage //
+            $imagen = new EmpleadoImage();
+            // Le asignamos al atributo 'ubicacion' del modelo 'empleadoimage' su ubicacion de almacenamiento //
+            $imagen->ubicacionFileEmpleado = $ubicacion;
+            // Le asignamos al atributo 'nombreOriginal' del modelo 'empleadoimage' una función que ayuda a obtener el nombre original del empleado //
+            $imagen->nombreOriginalEmpleado = $request->imagen->getClientOriginalName();
+            // Le asignamos al atributo 'mime' del modelo 'empleadoimage' un valor por default //
+            $imagen->mime = '';
+
+            // Guardamos el objeto 'imagen' con la relación a nivel modelo //
+            $empleado->empleadoimages()->save($imagen);
+        }
 
         $notification = 'El Empleado ha sido creado correctamente.';
 
@@ -184,5 +203,15 @@ class EmpleadoController extends Controller
 
 
         return redirect('/empleado')->with(compact('notification'));
+    }
+
+    /** Esta es una función que sirve para pasar todas las instancias de Empleado
+     * a la vista 'barberos', que es la del usuario
+     */
+
+    public function empleadoUsuario() 
+    {
+        $empleados = Empleado::all();
+        return view('barberos', compact('empleados'));
     }
 }

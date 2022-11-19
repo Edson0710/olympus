@@ -18,7 +18,7 @@
         @endforeach
     @endif
 
-    <form action="/empleado" method="POST">
+    <form action="/empleado" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="form-group">
                 <label for="nombreEmpleado">Nombre Completo</label>
@@ -51,6 +51,13 @@
             <div class="form-group">
                 <label for="fecha_NacEmpleado">Fecha de Nacimiento</label>
                 <input type="date" name="fecha_NacEmpleado" class="form-control" placeholder="00/00/0000" id="fecha_NacEmpleado" value="{{old('fecha_NacEmpleado')}}">
+            </div>
+            <div class="form-group">
+            <fieldset>
+                <label for="imagen" class="form-label">Sube una imagen del Empleado</label><br>
+                    <input type="file" name="imagen" id="imagen">
+                </br>
+            </fieldset> 
             </div>
         <!-- <div class="form-group">
             <label for="imagenEmpleado">Imagen de Empleado</label>

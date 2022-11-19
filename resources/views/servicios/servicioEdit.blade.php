@@ -32,16 +32,9 @@
             <input class="form-control" type="text" name="descripcionServicio" id="descripcionServicio" placeholder="Descripcion" autocomplete="off" value="{{ $servicio->descripcionServicio }}"><br>
         </div>
         <div class="form-group">
-            <label for="duracionServicio">Duracion Estimada</label><br>
-            <input class="form-control" type="text" name="duracionServicio" id="duracionServicio" placeholder="Duracion" autocomplete="off" value="{{ $servicio->duracionServicio }}"><br>
-        </div>
-        <div class="form-group">
             <label for="precioServicio">Precio</label><br>
             <input class="form-control" type="number" step="0.01" min="0" max="999999" name="precioServicio" id="precioServicio" placeholder="Precio" autocomplete="off" value="{{ $servicio->precioServicio }}"><br>
         </div>
-
-        <!-- <label for="imagenServicio">Imagen Representativa</label><br>
-        <input type="file" name="imagenServicio" id="imagenServicio"><br> -->
 
         <div class="clearfix"></div>
 

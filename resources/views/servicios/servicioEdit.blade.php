@@ -36,9 +36,6 @@
             <input class="form-control" type="number" step="0.01" min="0" max="999999" name="precioServicio" id="precioServicio" placeholder="Precio" autocomplete="off" value="{{ $servicio->precioServicio }}"><br>
         </div>
 
-        <!-- <label for="imagenServicio">Imagen Representativa</label><br>
-        <input type="file" name="imagenServicio" id="imagenServicio"><br> -->
-
         <div class="clearfix"></div>
 
         <div class="container text-center">

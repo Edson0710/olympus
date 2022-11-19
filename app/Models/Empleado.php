@@ -19,4 +19,11 @@ class Empleado extends Model
     {
         return $this->hasMany(Cita::class);
     }
+
+    /**Un Empelado puede tener una imagen
+     * Se relaciona 1:1 (uno a uno)
+     */
+    public function empleadoimages() {
+        return $this->hasMany(EmpleadoImage::class);
+    }
 }

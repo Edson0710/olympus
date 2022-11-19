@@ -47,9 +47,9 @@ Route::middleware('web')->group(function () {
         Route::get('/precios', function () {
             return view('listas.precios');
         })->name('olympus.listas.precios');
-        Route::get('/barberos', function () {
-            return view('listas.barberos');
-        })->name('olympus.listas.barberos');
+
+        Route::get('/barberos', [EmpleadoController::class, 'empleadoUsuario'])->name('olympus.listas.barberos');
+        
         Route::get('/horario', function () {
             return view('listas.horario');
         })->name('olympus.listas.horario');

@@ -101,8 +101,10 @@
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-uppercase mb-4">Enlaces Rápidos</h4>
                     <a class="btn btn-link" href="{{route('olympus.index')}}">Inicio</a>
-                    <a class="btn btn-link" href="{{route('olympus.conocenos')}}">Conócenos</a>
                     <a class="btn btn-link" href="{{route('olympus.listas.servicios')}}">Servicios</a>
+                    <a class="btn btn-link" href="{{route('olympus.listas.productos')}}">Productos</a>
+                    <a class="btn btn-link" href="{{route('olympus.listas.cortes')}}">Cortes</a>
+                    <a class="btn btn-link" href="{{route('olympus.listas.barberos')}}">Barberos</a>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-uppercase mb-4">Redes Sociales</h4>

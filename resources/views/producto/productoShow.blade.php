@@ -36,6 +36,14 @@
         <input type="text" name="cantidad" class="form-control" placeholder="Cantidad" id="cantidad" value="{{ $producto->cantidad }}" disabled>
     </div>
 
+    <div class="form-group">
+        <!-- Mandamos a llamar las instancias del modelo 'producto' con su relación 'productoimages' -->
+        @foreach ($producto->productoimages as $image)
+                <!-- Indicamos en donde se encuentra almacenada la imagen para mostrarla -->
+            <img src="{{ \Storage::url($image->ubicacionFileProducto) }}" width="300px" alt="Imagen Producto">
+        @endforeach
+    </div>
+
     <div class="clearfix"></div>
     <div class="container text-center">
         <div class="row">

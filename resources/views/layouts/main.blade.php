@@ -60,6 +60,7 @@
                     <div class="dropdown-menu m-0">
                         <a href="{{route('olympus.listas.precios')}}" class="dropdown-item">Precios</a>
                         <a href="{{route('olympus.listas.barberos')}}" class="dropdown-item">Barberos</a>
+                        <a href="{{route('olympus.listas.productos')}}" class="dropdown-item">Productos</a>
                         <a href="{{route('olympus.listas.horario')}}" class="dropdown-item">Horario</a>
                         <a href="{{route('olympus.listas.testimonios')}}" class="dropdown-item">Testimonios</a>
                     </div>

@@ -32,9 +32,10 @@ Route::middleware('web')->group(function () {
     Route::get('/conocenos', function () {
         return view('conocenos');
     })->name('olympus.conocenos');
-    Route::get('/servicios', [ServicioController::class, 'servicioUsuario'])->name('olympus.servicios');
-    // Ruta 'cortes' que sirve para pasar los atributos de cortes a la vista 'cortes' del usuario //
+    // Rutas que sirven para pasar los atributos de los crud de admin a la vista del usuario //
     Route::get('/cortes', [CorteController::class, 'corteUsuario'])->name('olympus.cortes');
+    Route::get('/servicios', [ServicioController::class, 'servicioUsuario'])->name('olympus.servicios');
+
     Route::get('/agendar-cita', [CitaController::class, 'createUsuario'])->name('olympus.agendar-cita');
     Route::resource('/cita', CitaController::class)->parameters(['cita' => 'cita']);
     Route::prefix('/cita')->group(function () {      
@@ -46,6 +47,7 @@ Route::middleware('web')->group(function () {
         })->name('olympus.listas.precios');
 
         Route::get('/barberos', [EmpleadoController::class, 'empleadoUsuario'])->name('olympus.listas.barberos');
+        Route::get('/productos', [ProductoController::class, 'productoUsuario'])->name('olympus.listas.productos');
         
         Route::get('/horario', function () {
             return view('listas.horario');

@@ -15,4 +15,11 @@ class Producto extends Model
     ];
 
     public $timestamps = false; 
+
+    /**Un Producto puede tener una imagen
+     * Se relaciona 1:1 (uno a uno)
+     */
+    public function productoimages() {
+        return $this->hasMany(ProductoImage::class);
+    }
 }

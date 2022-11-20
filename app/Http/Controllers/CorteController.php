@@ -173,6 +173,6 @@ class CorteController extends Controller
     public function corteUsuario() 
     {
         $cortes = Corte::all();
-        return view('cortes', compact('cortes'));
+        return view('listas.cortes', compact('cortes'));
     }
 }

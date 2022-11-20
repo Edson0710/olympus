@@ -166,6 +166,6 @@ class ServicioController extends Controller
     public function servicioUsuario() 
     {
         $servicios = Servicio::all();
-        return view('servicios', compact('servicios'));
+        return view('listas.servicios', compact('servicios'));
     }
 }

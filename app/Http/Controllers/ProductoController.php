@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\ProductoImage;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -56,14 +57,14 @@ class ProductoController extends Controller
             'tipo.required' => 'El tipo del producto es obligatoria.',
             'tipo.max' => 'El tipo del producto supera los 255 carácteres.',
             'precio.required' => 'El precio del producto es obligatorio.',
-            'precio.max' => 'El precio del producto solo acepta carácteres numéricos.',
+            'precio.numeric' => 'El precio del producto solo acepta carácteres numéricos.',
             'cantidad.required' => 'La cantidad del producto es obligatoria.',
             'cantidad.integer' => 'La cantidad del producto solo acepta números enteros.',
         ];
 
         $this->validate($request, $rules, $messages);
 
-       /*  $request->validate([
+        /*  $request->validate([
             'nombre' => 'required|max:255',
             'descripcion' => 'required|max:255',
             'marca' => 'required|max:255',
@@ -72,7 +73,25 @@ class ProductoController extends Controller
             'cantidad' => 'required|integer',
         ]); */
 
-        Producto::create($request->all());
+        $producto = Producto::create($request->all());
+
+        // Validación de imagenes //
+        if ($request->file('imagen')->isValid()) {
+            /** Se asigna en 'ubicacion' el path de la imagen que se almacena dentro de la carpeta local 'productoImagenes' */
+            $ubicacion = $request->imagen->store('public');
+
+            // Inicializamos un nuevo objeto ProductoImage //
+            $imagen = new ProductoImage();
+            // Le asignamos al atributo 'ubicacion' del modelo 'productoImage' su ubicacion de almacenamiento //
+            $imagen->ubicacionFileProducto = $ubicacion;
+            // Le asignamos al atributo 'nombreOriginal' del modelo 'productoImage' una función que ayuda a obtener el nombre original del producto //
+            $imagen->nombreOriginalProducto = $request->imagen->getClientOriginalName();
+            // Le asignamos al atributo 'mime' del modelo 'productoimage' un valor por default //
+            $imagen->mime = '';
+
+            // Guardamos el objeto 'imagen' con la relación a nivel modelo //
+            $producto->productoimages()->save($imagen);
+        }
 
         $notification = 'El Producto ha sido creado correctamente';
 
@@ -146,12 +165,12 @@ class ProductoController extends Controller
             'precio' => 'required',
             'cantidad' => 'required|integer',
         ]); */
-        
+
         Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
 
-        $notification = 'El Producto '. $updateName .' ha sido actualizado correctamente.';
+        $notification = 'El Producto ' . $updateName . ' ha sido actualizado correctamente.';
 
-        return redirect('/producto')->with(compact('notification'));    
+        return redirect('/producto')->with(compact('notification'));
     }
 
     /**
@@ -164,11 +183,21 @@ class ProductoController extends Controller
     {
         $notification = '';
         $deleteName = $producto->nombre;
-        
+
         $producto->delete();
 
-        $notification = 'El Producto '. $deleteName .' ha sido eliminado correctamente.';
-        
+        $notification = 'El Producto ' . $deleteName . ' ha sido eliminado correctamente.';
+
         return redirect('/producto')->with(compact('notification'));
+    }
+
+    /** Esta es una función que sirve para pasar todas las instancias de Producto
+     * a la vista 'productos', que es la del usuario
+     */
+
+    public function productoUsuario() 
+    {
+        $productos = Producto::all();
+        return view('listas.productos', compact('productos'));
     }
 }

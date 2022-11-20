@@ -32,21 +32,23 @@ Route::middleware('web')->group(function () {
     Route::get('/conocenos', function () {
         return view('conocenos');
     })->name('olympus.conocenos');
-    Route::get('/servicios', [ServicioController::class, 'servicioUsuario'])->name('olympus.servicios');
-    // Ruta 'cortes' que sirve para pasar los atributos de cortes a la vista 'cortes' del usuario //
-    Route::get('/cortes', [CorteController::class, 'corteUsuario'])->name('olympus.cortes');
+
     Route::get('/agendar-cita', [CitaController::class, 'createUsuario'])->name('olympus.agendar-cita');
     Route::resource('/cita', CitaController::class)->parameters(['cita' => 'cita']);
-    Route::prefix('/cita')->group(function () {      
+    Route::prefix('/cita')->group(function () {
         Route::post('confirmarCita', [CitaController::class, 'confirmarCita'])->name('cita.confirmarCita');
     });
-    Route::group(['prefix' => 'listas'], function(){
+    Route::group(['prefix' => 'listas'], function () {
         Route::get('/precios', function () {
             return view('listas.precios');
         })->name('olympus.listas.precios');
 
+        // Rutas que sirven para pasar los atributos de los crud de admin a la vista del usuario //
+        Route::get('/cortes', [CorteController::class, 'corteUsuario'])->name('olympus.listas.cortes');
+        Route::get('/servicios', [ServicioController::class, 'servicioUsuario'])->name('olympus.listas.servicios');
         Route::get('/barberos', [EmpleadoController::class, 'empleadoUsuario'])->name('olympus.listas.barberos');
-        
+        Route::get('/productos', [ProductoController::class, 'productoUsuario'])->name('olympus.listas.productos');
+
         Route::get('/horario', function () {
             return view('listas.horario');
         })->name('olympus.listas.horario');
@@ -54,7 +56,7 @@ Route::middleware('web')->group(function () {
             return view('listas.testimonios');
         })->name('olympus.listas.testimonios');
     });
-});    
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -70,4 +72,3 @@ Route::middleware('auth')->group(function () {
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

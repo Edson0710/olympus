@@ -32,8 +32,6 @@
                         <p><strong>Tipo: </strong>{{ $producto->tipo }}</p>
                         <p><strong>Precio: </strong>${{ $producto->precio }}</p>
                     </div>
-
-                    <a class="btn btn-square" href="{{ route('olympus.listas.productos')}}"><i class="fa fa-plus text-primary"></i></a>
                 </div>
             </div>
             @endforeach

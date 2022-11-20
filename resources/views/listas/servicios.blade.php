@@ -29,7 +29,6 @@
                         <p><strong>Descripción: </strong>{{ $servicio->descripcionServicio }}</p>
                         <span class="text-uppercase text-primary"> A solo ${{ $servicio->precioServicio }}</span>
                     </div>
-                    <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
                 </div>
             </div>
             @endforeach

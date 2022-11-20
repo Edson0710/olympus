@@ -34,8 +34,6 @@
 
                             <p><strong>Estilo Corte: </strong>{{ $corte->estiloCorte }}</p>
                         </div>
-
-                    <a class="btn btn-square" href="{{ route('olympus.cortes')}}"><i class="fa fa-plus text-primary"></i></a>
                 </div>
             </div>
             @endforeach

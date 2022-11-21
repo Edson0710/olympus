@@ -14,7 +14,6 @@ class Servicio extends Model
     protected $fillable = [
         'nombreServicio',
         'descripcionServicio',
-        'duracionServicio',
         'precioServicio'
     ];
 

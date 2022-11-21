@@ -17,7 +17,6 @@ class CreateServiciosTable extends Migration
             $table->id();
             $table->string('nombreServicio');
             $table->string('descripcionServicio');
-            $table->string('duracionServicio');
             $table->float('precioServicio',7,2);
         });
     }

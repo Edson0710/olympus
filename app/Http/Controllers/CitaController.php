@@ -9,6 +9,8 @@ use App\Models\Servicio;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailtrapExample;
+use Session;
+
 
 class CitaController extends Controller
 {
@@ -76,6 +78,19 @@ class CitaController extends Controller
                             ->where('empleado_id', $request->empleado_id);
             })],
             'empleado_id' => 'required|exists:empleados,id',
+            'g-recaptcha-response' => function($attribute, $value, $fail){
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $userIP = $_SERVER['REMOTE_ADDR'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                $response = \file_get_contents($url);
+                $response = json_decode($response);
+                if (!$response->success) {
+                    Session::flash('g-recaptcha-response', 'Por favor, marca el recaptcha');
+                    Session::flash('alert-class', 'alert-danger');
+                    $fail($attribute. 'Recaptcha de Google fallido');
+                }
+            },
         ];
             
         $messages = [

@@ -53,12 +53,14 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{route('olympus.index')}}" class="nav-item nav-link">Inicio</a>
                 <a href="{{route('olympus.conocenos')}}" class="nav-item nav-link">Conócenos</a>
-                <a href="{{route('olympus.servicios')}}" class="nav-item nav-link">Servicios</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Listas</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{{route('olympus.listas.precios')}}" class="dropdown-item">Precios</a>
+                        <a href="{{route('olympus.listas.productos')}}" class="dropdown-item">Productos</a>
+                        <a href="{{route('olympus.listas.servicios')}}" class="dropdown-item">Servicios</a>
+                        <a href="{{route('olympus.listas.cortes')}}" class="dropdown-item">Cortes</a>
                         <a href="{{route('olympus.listas.barberos')}}" class="dropdown-item">Barberos</a>
+                        <a href="{{route('olympus.listas.precios')}}" class="dropdown-item">Precios</a>
                         <a href="{{route('olympus.listas.horario')}}" class="dropdown-item">Horario</a>
                         <a href="{{route('olympus.listas.testimonios')}}" class="dropdown-item">Testimonios</a>
                     </div>
@@ -99,16 +101,18 @@
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-uppercase mb-4">Enlaces Rápidos</h4>
                     <a class="btn btn-link" href="{{route('olympus.index')}}">Inicio</a>
-                    <a class="btn btn-link" href="{{route('olympus.conocenos')}}">Conócenos</a>
-                    <a class="btn btn-link" href="{{route('olympus.servicios')}}">Servicios</a>
+                    <a class="btn btn-link" href="{{route('olympus.listas.servicios')}}">Servicios</a>
+                    <a class="btn btn-link" href="{{route('olympus.listas.productos')}}">Productos</a>
+                    <a class="btn btn-link" href="{{route('olympus.listas.cortes')}}">Cortes</a>
+                    <a class="btn btn-link" href="{{route('olympus.listas.barberos')}}">Barberos</a>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-uppercase mb-4">Redes Sociales</h4>
                     <div class="d-flex pt-1 m-n1">
-                        <a class="btn btn-lg-square btn-dark text-primary m-1" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-lg-square btn-dark text-primary m-1" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-lg-square btn-dark text-primary m-1" href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-lg-square btn-dark text-primary m-1" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-lg-square btn-dark text-primary m-1" target="_blank" href="https://twitter.com/SoftwareOlympus"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-lg-square btn-dark text-primary m-1" target="_blank" href="https://www.facebook.com/profile.php?id=100087911804036"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-lg-square btn-dark text-primary m-1" target="_blank" href="https://www.youtube.com/@olympussoftware"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-lg-square btn-dark text-primary m-1" target="_blank" href="https://www.instagram.com/olympus.webdreamers/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>

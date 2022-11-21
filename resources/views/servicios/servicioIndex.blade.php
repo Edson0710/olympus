@@ -23,7 +23,6 @@
         <tr>
             <th>Nombre</th>
             <th>Descripcion</th>
-            <th>Duracion</th>
             <th>Precio</th>
             <th>Editar</th>
             <th>Eliminar</th>
@@ -38,7 +37,6 @@
                 </a>
             </td>
             <td>{{ $servicio->descripcionServicio }}</td>
-            <td>{{ $servicio->duracionServicio }}</td>
             <td>${{ $servicio->precioServicio }}</td>
             <td>
                 <a class="btn btn-warning" href="/servicio/{{ $servicio->id }}/edit">Editar</a>
@@ -80,13 +78,13 @@
                 {
                     extend: 'excelHtml5',
                     exportOptions: {
-                        columns: [ 0, 1, 2, 3 ]
+                        columns: [ 0, 1, 2 ]
                     }
                 },
                 {
                     extend: 'pdfHtml5',
                     exportOptions: {
-                        columns: [ 0, 1, 2, 3 ]
+                        columns: [ 0, 1, 2 ]
                     }
                 },
             ],

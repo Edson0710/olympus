@@ -18,7 +18,7 @@
         @endforeach
     @endif
 
-    <form action="/corte" method="POST">
+    <form action="/corte" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="nombreCorte">Nombre del Corte</label>
@@ -33,6 +33,14 @@
         <div class="form-group">    
             <label for="descripcionCorte">Descripción</label>
             <input type="text" class="form-control" name="descripcionCorte" id="descripcionCorte" placeholder="Ingresa una descripción sobre el corte" autocomplete="off" value="{{ old('descripcionCorte') }}" > 
+        </div>
+
+        <div class="form-group">
+            <fieldset>
+                <label for="imagen" class="form-label">Sube una imagen del Corte</label><br>
+                    <input type="file" name="imagen" id="imagen">
+                </br>
+            </fieldset> 
         </div>
 
         <div class="clearfix"></div>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\MailtrapExample;
 use Session;
 
+
 class CitaController extends Controller
 {
     /**

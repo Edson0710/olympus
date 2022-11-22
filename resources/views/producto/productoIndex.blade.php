@@ -48,7 +48,7 @@
                 <a class="btn btn-warning" href="/producto/{{ $producto->id }}/edit">Editar</a>
             </td>
             <td>
-                <form method="POST" action="/producto/{{ $producto->id }}">
+                <form class="formulario-eliminar" method="POST" action="/producto/{{ $producto->id }}">
                     @csrf
                     @method('DELETE')
                     <input type=submit class="btn btn-danger" value="Eliminar">
@@ -76,6 +76,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready( function () {
         $('#Mytable').DataTable({
@@ -117,4 +118,35 @@
         } );
     } );
 </script>
+
+@if(session()->has('delete'))
+    <script>
+        Swal.fire(
+            'Eliminado',
+            '{{ session("delete") }}',
+            'success'
+        )
+    </script>
+@endif
+
+    <script>
+        $('.formulario-eliminar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¡No será posible revertir esta acción!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar',
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+            })
+        });
+    </script>
 @stop

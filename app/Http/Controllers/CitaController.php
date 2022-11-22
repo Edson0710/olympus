@@ -238,9 +238,12 @@ class CitaController extends Controller
      */
     public function destroy(Cita $cita)
     {
+        $deleteName = $cita->nombreUsuarioCita;
         $cita->delete();
 
-        return redirect('/cita');
+        return redirect('/cita')->with([
+            'delete' => 'El Producto '. $deleteName .' ha sido eliminado correctamente.'
+        ]);
     }
 
     public function confirmarCita(Request $request)

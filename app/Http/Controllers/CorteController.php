@@ -163,7 +163,9 @@ class CorteController extends Controller
 
         $notification = 'El Corte '. $deleteName .' ha sido eliminado correctamente.';
 
-        return redirect('corte')->with(compact('notification'));
+        return redirect('corte')->with(compact('notification'), [
+            'delete' => 'El Corte '. $deleteName .' ha sido eliminado correctamente.'
+        ]);
     }
 
     /** Esta es una función que sirve para pasar todas las instancias de Corte

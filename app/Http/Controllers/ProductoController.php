@@ -188,7 +188,9 @@ class ProductoController extends Controller
 
         $notification = 'El Producto ' . $deleteName . ' ha sido eliminado correctamente.';
 
-        return redirect('/producto')->with(compact('notification'));
+        return redirect('/producto')->with(compact('notification'), [
+            'delete' => 'El Producto '. $deleteName .' ha sido eliminado correctamente.'
+        ]);
     }
 
     /** Esta es una función que sirve para pasar todas las instancias de Producto

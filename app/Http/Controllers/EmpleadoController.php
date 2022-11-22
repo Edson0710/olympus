@@ -202,7 +202,9 @@ class EmpleadoController extends Controller
         }
 
 
-        return redirect('/empleado')->with(compact('notification'));
+        return redirect('/empleado')->with(compact('notification'), [
+            'delete' => 'El Empleado '. $deleteName .' ha sido eliminado correctamente.'
+        ]);
     }
 
     /** Esta es una función que sirve para pasar todas las instancias de Empleado

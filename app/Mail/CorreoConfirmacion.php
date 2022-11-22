@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailtrapExample extends Mailable
+class CorreoConfirmacion extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,10 +30,10 @@ class MailtrapExample extends Mailable
      */
     public function build()
     {
-        return $this->from('olympus@olympus.com', 'Mailtrap')
-            ->subject('Mailtrap Confirmation')
-            ->view('mails.example', [
-                'cita' => $this->cita
+        return $this->from('olympus@olympus.com', 'Olympus')
+            ->subject('Recordatorio de Cita')
+            ->view('mails.confirmar-cita', [
+                'cita' => $this->cita,
             ]);
     }
 }

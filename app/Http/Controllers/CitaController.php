@@ -8,9 +8,10 @@ use App\Models\Empleado;
 use App\Models\Servicio;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\MailtrapExample;
+use App\Mail\CorreoCrear;
+use App\Mail\CorreoConfirmacion;
+use Illuminate\Support\Carbon;
 use Session;
-
 
 class CitaController extends Controller
 {
@@ -180,7 +181,7 @@ class CitaController extends Controller
             'celularUsuarioCita' => 'required | digits:10 | numeric',
             /** Se valida si la hora de la cita ya está ocupada en la fecha proporcionada y que no sea igual al ID de la cita, 
               * ya que sino es así se tomaría la hora y fecha de la cita a modificar, lo que nos daría que nunca estaría disponible */
-              'horaUsuarioCita' => ['required', Rule::unique('citas')->where(function ($query) use ($request, $cita){
+            'horaUsuarioCita' => ['required', Rule::unique('citas')->where(function ($query) use ($request, $cita){
                 return $query->where('fechaUsuarioCita', $request->fechaUsuarioCita)
                             ->where('horaUsuarioCita', $request->horaUsuarioCita)
                             ->where('empleado_id', $request->empleado_id)
@@ -254,8 +255,58 @@ class CitaController extends Controller
         $hora = date('h:i A', strtotime($hora));
         $cita['fechaUsuarioCita'] = $fecha;
         $cita['horaUsuarioCita'] = $hora;
+        $empleado = Empleado::find($cita['empleado_id'])->nombreEmpleado;
+        $servicios = $cita['servicios_id'];
+        $servicios = Servicio::find($servicios)->pluck('nombreServicio');
+        // dd($cita, $empleado, $servicios);
+        Mail::to($cita['emailUsuarioCita'])->send(new CorreoCrear($cita, $empleado, $servicios));
+    }
+
+    public function citasProximas($fechas)
+    {
+        // dd($fechas);
+        if($fechas == 'hoy'){
+            $citas = Cita::where('fechaUsuarioCita', Carbon::today())->get();
+        }else if($fechas == 'semana'){
+            $citas = Cita::whereBetween('fechaUsuarioCita', [Carbon::today(), Carbon::today()->addDays(7)])->get();
+        }else if($fechas == 'mañana'){
+            $citas = Cita::where('fechaUsuarioCita', Carbon::tomorrow())->get();
+        }
+        $empleados = Empleado::all();
+        $servicios = Servicio::all();
+
+        return view('citas.citaProxima', compact('citas', 'empleados', 'servicios'));
+    }
+
+    public function recordarCita($id, Request $request)
+    {         
+        $cita = Cita::find($id);
+        setlocale(LC_TIME,"es_ES");
+        $fecha_format = $cita['fechaUsuarioCita'];
+        // FECHA EN ESPAÑOL
+        $fecha = strftime("%A, %d de %B del %Y", strtotime($fecha_format));
+        $hora_format = $cita['horaUsuarioCita'];
+        $hora = date('h:i A', strtotime($hora_format));
+        $cita['fechaUsuarioCita'] = $fecha;
+        $cita['horaUsuarioCita'] = $hora;
         // dd($cita);
-        Mail::to($cita['emailUsuarioCita'])->send(new MailtrapExample($cita));
+        Mail::to($cita['emailUsuarioCita'])->send(new CorreoConfirmacion($cita));
+        $cita['fechaUsuarioCita'] = $fecha_format;
+        $cita['horaUsuarioCita'] = $hora_format;
+        //Actualiza el estado de la cita
+
+        Cita::where('id', $cita->id)->update(['confirmacionUsuarioCita' => 1]);
+
+
+        //Redireccionar atras
+        return redirect()->back();
+    }
+
+    public function confirmarCorreo($id, $status){
+        $cita = Cita::find($id);
+        $cita->statusUsuarioCita = $status;
+        $cita->save();
+        return view('citas.respuestaConfirmacion', compact('status'));
     }
 
 }

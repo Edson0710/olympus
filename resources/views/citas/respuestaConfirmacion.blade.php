@@ -1,9 +1,3 @@
-{{-- <h1>Confirmación de cita</h1>
-<p>Estimado(a) {{ $cita['nombreUsuarioCita'] }},</p>
-<p>Gracias por agendar tu cita con nosotros, te recordamos que tu cita es el día {{ $cita['fechaUsuarioCita'] }} a las {{ $cita['horaUsuarioCita'] }}.</p>
-<p>Te esperamos.</p>
-<p>Saludos cordiales.</p>
-<p>Equipo Olympus.</p> --}}
 <style>
     .container {
         width: 100%;
@@ -24,8 +18,9 @@
     .container .content {
         padding: 20px;
     }
-    .container .content p {
+    .container .content h3 {
         margin: 0;
+        text-align: center;
     }
     .container .footer {
         background-color: #0611BC;
@@ -37,6 +32,26 @@
     .container .footer p {
         margin: 0;
     }
+    .btn {
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+        margin-right: 20px;
+    }
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+    #botones {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 </style>
 
 <div class="container">
@@ -44,12 +59,13 @@
         <h1>Confirmación de cita</h1>
     </div>
     <div class="content">
-        <p>Estimado(a) <b>{{ $cita['nombreUsuarioCita'] }}</b>,</p><br>
-        <p>Gracias por agendar tu cita con nosotros, te recordamos que tu cita es el día <b>{{ $cita['fechaUsuarioCita'] }}</b> a las <b>{{ $cita['horaUsuarioCita'] }}</b>.</p><br>
-        <p>Te esperamos.</p><br>
-        <p>Saludos cordiales.</p>
+        @if ($status == 1)
+            <h3>La cita ha sido confirmada</h3>
+        @else
+            <h3>La cita ha sido cancelada</h3>
+        @endif
     </div>
     <div class="footer">
-        <p><b>Equipo Olympus.</b></p>
+        <p><b>Equipo Olympus</b></p>
     </div>
 </div>

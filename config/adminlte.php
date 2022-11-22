@@ -311,19 +311,19 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'Administrador'],
+        // ['header' => 'Administrador'],
         // [
         //     'text' => 'profile',
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-user',
         // ],
-        // [
-        //     'text' => 'change_password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
         [
-            'text'    => 'Database',
+            'text' => 'Estadísticas',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text'    => 'Base de datos',
             'icon'    => 'fas fa-fw fa-database',
             'submenu' => [
                 [
@@ -353,22 +353,22 @@ return [
                 ],
             ],
         ],
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
+        ['header' => 'Administrar citas'],
+        [
+            'text'       => 'Hoy',
+            'icon_color' => 'red',
+            'url'        => 'citas/proximas/hoy',
+        ],
+        [
+            'text'       => 'Mañana',
+            'icon_color' => 'yellow',
+            'url'        => 'citas/proximas/mañana',
+        ],
+        [
+            'text'       => 'Semana',
+            'icon_color' => 'cyan',
+            'url'        => 'citas/proximas/semana',
+        ],
     ],
 
     /*

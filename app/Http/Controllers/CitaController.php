@@ -13,6 +13,7 @@ use App\Mail\CorreoConfirmacion;
 use Illuminate\Support\Carbon;
 use Session;
 
+
 class CitaController extends Controller
 {
     /**

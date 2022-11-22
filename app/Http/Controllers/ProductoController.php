@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\ProductoImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -183,6 +184,13 @@ class ProductoController extends Controller
     {
         $notification = '';
         $deleteName = $producto->nombre;
+
+        //Eliminar Imagenes relacionadas con producto
+        foreach($producto->productoimages as $image){
+            $file = ProductoImage::whereId($image->id)->firstOrFail();
+        }
+
+        unlink(public_path(Storage::url($file->ubicacionFileProducto)));
 
         $producto->delete();
 

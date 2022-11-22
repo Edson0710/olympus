@@ -37,6 +37,8 @@ Route::middleware('web')->group(function () {
     Route::resource('/cita', CitaController::class)->parameters(['cita' => 'cita']);
     Route::prefix('/cita')->group(function () {
         Route::post('confirmarCita', [CitaController::class, 'confirmarCita'])->name('cita.confirmarCita');
+        Route::post('recordarCita/{id}', [CitaController::class, 'recordarCita'])->name('cita.recordarCita');
+        Route::get('confirmarCorreo/{id}/{status}', [CitaController::class, 'confirmarCorreo'])->name('cita.confirmarCorreo');
     });
     Route::group(['prefix' => 'listas'], function () {
         Route::get('/precios', function () {
@@ -67,6 +69,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('servicio', ServicioController::class);
     Route::resource('corte', CorteController::class);
     Route::resource('producto', ProductoController::class);
+    Route::group(['prefix' => 'citas'], function () {
+        Route::get('/proximas/{dias}', [CitaController::class, 'citasProximas'])->name('olympus.citas.citaProxima');
+    });
 });
 
 // Auth::routes();

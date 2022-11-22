@@ -17,7 +17,8 @@ class CreateCitasTable extends Migration
             $table->id();
             $table->string('nombreUsuarioCita');
             $table->string('emailUsuarioCita');
-            /* $table->boolean('confirmacionUsuarioCita'); */
+            $table->boolean('confirmacionUsuarioCita')->default(false);
+            $table->integer('statusUsuarioCita')->default(0);
             $table->date('fechaUsuarioCita');
             /* $table->integer('calificacionUsuarioCita'); */
             $table->string('celularUsuarioCita');

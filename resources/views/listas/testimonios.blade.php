@@ -31,7 +31,7 @@
             <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='{{asset('img/testimonial-3.jpg')}}' alt=''>">
                 <h4 class="text-uppercase">Alexis Vega</h4>
                 <p class="text-primary">Cliente</p>
-                <span class="fs-5">Mi padre venía cuando el negocio comenzó y ahora yo sigo viniendo, es una tradición atendernos en este lugar.</span>
+                <span class="fs-5">Mi padre venía cuando el negocio comenzó y ahora yo sigo yendo, es una tradición atendernos en este lugar.</span>
             </div>
         </div>      
     </div>

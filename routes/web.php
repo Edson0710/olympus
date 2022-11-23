@@ -33,6 +33,11 @@ Route::middleware('web')->group(function () {
         return view('conocenos');
     })->name('olympus.conocenos');
 
+    //rutas para pasar registros de admin a vistas de index
+    Route::get('/', [ServicioController::class, 'vistasIndex']);
+    Route::get('/index', [ServicioController::class, 'vistasIndex'])->name('olympus.index');
+    
+
     Route::get('/agendar-cita', [CitaController::class, 'createUsuario'])->name('olympus.agendar-cita');
     Route::resource('/cita', CitaController::class)->parameters(['cita' => 'cita']);
     Route::prefix('/cita')->group(function () {

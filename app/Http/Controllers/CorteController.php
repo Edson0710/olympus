@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Corte;
 use App\Models\CorteImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CorteController extends Controller
 {
@@ -158,6 +159,16 @@ class CorteController extends Controller
     {
         $notification = '';
         $deleteName = $corte->nombreCorte;
+        $count = 0;
+
+        //Eliminar Imagenes relacionadas con corte
+        foreach($corte->corteimages as $image){
+            $count++;
+            $file = CorteImage::whereId($image->id)->firstOrFail();
+        }
+        if($count > 0){
+            unlink(public_path(Storage::url($file->ubicacionFileCorte)));
+        }
 
         $corte->delete();
 

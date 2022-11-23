@@ -18,44 +18,45 @@
 <div class="text-right mb-3">
     <a class="btn btn-primary" href="/corte/create">Registrar Corte</a>
 </div>
-
-<table id="Mytable" class="table">
-    <thead>
-        <tr>
-            <th>Nombre Corte</th>
-            <th>Estilo</th>
-            <th>Descripción</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($cortes as $corte)
-        <tr>
-            <td>
-                <a href="/corte/{{ $corte->id }}">
-                    {{ $corte->nombreCorte }}
-                </a>
-            </td>
-            <td>{{ $corte->estiloCorte }}</td>
-            <td>{{ $corte->descripcionCorte }}</td>
-
-            <td>
-                <a class="btn btn-warning" href="/corte/{{ $corte->id }}/edit">Editar</a>
-            </td>
-            <td>
-                <form action="/corte/{{ $corte->id }}" method="POST">
-                @csrf
-                @method('DELETE')
-
-                <input type="submit" class="btn btn-danger" value="Eliminar">
-
-                </form>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="Mytable" class="table">
+        <thead>
+            <tr>
+                <th>Nombre Corte</th>
+                <th>Estilo</th>
+                <th>Descripción</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($cortes as $corte)
+            <tr>
+                <td>
+                    <a href="/corte/{{ $corte->id }}">
+                        {{ $corte->nombreCorte }}
+                    </a>
+                </td>
+                <td>{{ $corte->estiloCorte }}</td>
+                <td>{{ $corte->descripcionCorte }}</td>
+    
+                <td>
+                    <a class="btn btn-warning" href="/corte/{{ $corte->id }}/edit">Editar</a>
+                </td>
+                <td>
+                    <form class="formulario-eliminar" action="/corte/{{ $corte->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+    
+                    <input type="submit" class="btn btn-danger" value="Eliminar">
+    
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
 
 @stop
 
@@ -74,6 +75,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready( function () {
         $('#Mytable').DataTable({
@@ -114,5 +116,26 @@
             }
         } );
     } );
+</script>
+
+<script>
+    $('.formulario-eliminar').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡No será posible revertir esta acción!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });
 </script>
 @stop

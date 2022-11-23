@@ -240,6 +240,7 @@ class CitaController extends Controller
      */
     public function destroy(Cita $cita)
     {
+        $deleteName = $cita->nombreUsuarioCita;
         $cita->delete();
 
         return redirect('/cita');

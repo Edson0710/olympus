@@ -241,9 +241,7 @@ class CitaController extends Controller
         $deleteName = $cita->nombreUsuarioCita;
         $cita->delete();
 
-        return redirect('/cita')->with([
-            'delete' => 'El Producto '. $deleteName .' ha sido eliminado correctamente.'
-        ]);
+        return redirect('/cita');
     }
 
     public function confirmarCita(Request $request)

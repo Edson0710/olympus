@@ -18,46 +18,48 @@
 <div class="text-right mb-3">
     <a class="btn btn-primary" href="/producto/create">Registrar Producto</a>
 </div>
-<table id="Mytable" class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Marca</th>
-            <th>Tipo</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($productos as $producto)
-        <tr>
-            <td>
-                <a href="/producto/{{ $producto->id }}">   
-                {{ $producto->nombre }}
-                </a>
-            </td>
-            <td>{{ $producto->descripcion }}</td>
-            <td>{{ $producto->marca }}</td>
-            <td>{{ $producto->tipo }}</td>
-            <td>${{ $producto->precio }}</td>
-            <td>{{ $producto->cantidad }}</td>
-            <td>
-                <a class="btn btn-warning" href="/producto/{{ $producto->id }}/edit">Editar</a>
-            </td>
-            <td>
-                <form class="formulario-eliminar" method="POST" action="/producto/{{ $producto->id }}">
-                    @csrf
-                    @method('DELETE')
-                    <input type=submit class="btn btn-danger" value="Eliminar">
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="Mytable" class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($productos as $producto)
+            <tr>
+                <td>
+                    <a href="/producto/{{ $producto->id }}">   
+                    {{ $producto->nombre }}
+                    </a>
+                </td>
+                <td>{{ $producto->descripcion }}</td>
+                <td>{{ $producto->marca }}</td>
+                <td>{{ $producto->tipo }}</td>
+                <td>${{ $producto->precio }}</td>
+                <td>{{ $producto->cantidad }}</td>
+                <td>
+                    <a class="btn btn-warning" href="/producto/{{ $producto->id }}/edit">Editar</a>
+                </td>
+                <td>
+                    <form class="formulario-eliminar" method="POST" action="/producto/{{ $producto->id }}">
+                        @csrf
+                        @method('DELETE')
+                        <input type=submit class="btn btn-danger" value="Eliminar">
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 @stop
 
@@ -119,34 +121,24 @@
     } );
 </script>
 
-@if(session()->has('delete'))
-    <script>
-        Swal.fire(
-            'Eliminado',
-            '{{ session("delete") }}',
-            'success'
-        )
-    </script>
-@endif
+<script>
+    $('.formulario-eliminar').submit(function(e) {
+        e.preventDefault();
 
-    <script>
-        $('.formulario-eliminar').submit(function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: '¡No será posible revertir esta acción!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Eliminar',
-                confirmButtonColor: '#dc3545',
-                cancelButtonColor: '#6c757d',
-                cancelButtonText: 'Cancelar',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-            })
-        });
-    </script>
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡No será posible revertir esta acción!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });
+</script>
 @stop

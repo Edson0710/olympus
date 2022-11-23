@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use App\Models\EmpleadoImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EmpleadoController extends Controller
 {
@@ -187,6 +188,7 @@ class EmpleadoController extends Controller
     {
         $notification = '';
         $count=0;
+        $count2=0;
         $deleteName = $empleado->nombreEmpleado;
 
         // Contamos los registros en las relaciones
@@ -194,17 +196,24 @@ class EmpleadoController extends Controller
         // Comprobamos si existen registros 
         if($count>0) {
             $notification =  'El Empleado '. $empleado->nombreEmpleado .' no puede ser eliminado, por favor, reasigna las citas a otro empleado.';
-            
+
         } else {
+            //Eliminar Imagenes relacionadas con empleado
+            foreach($empleado->empleadoimages as $image){
+                $count2++;
+                $file = EmpleadoImage::whereId($image->id)->firstOrFail();
+            }
+            if($count2 > 0){
+                unlink(public_path(Storage::url($file->ubicacionFileEmpleado)));
+            }
+            
             // si no hay registros eliminamos
             $empleado->delete();
             $notification = 'El Empleado '. $deleteName .' ha sido eliminado correctamente.';
         }
 
 
-        return redirect('/empleado')->with(compact('notification'), [
-            'delete' => 'El Empleado '. $deleteName .' ha sido eliminado correctamente.'
-        ]);
+        return redirect('/empleado')->with(compact('notification'));
     }
 
     /** Esta es una función que sirve para pasar todas las instancias de Empleado

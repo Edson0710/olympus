@@ -10,54 +10,56 @@
 <div class="text-right mb-3">
     <a class="btn btn-primary" href="/cita/create">Registrar Cita</a>
 </div>
-<table id="Mytable" class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Fecha</th>
-            <th>Celular</th>
-            <th>Hora</th>
-            <th>Barbero</th>
-            <th>Servicio</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($citas as $cita)
-        <tr>
-            <td>{{ $cita->id }}</td>
-            <td>
-                <a href="/cita/{{ $cita->id }}">
-                    {{ $cita->nombreUsuarioCita }}
-                </a>
-            </td>
-            <td>{{ $cita->emailUsuarioCita }}</td>
-            <td>{{ $cita->fechaUsuarioCita }}</td>
-            <td>{{ $cita->celularUsuarioCita }}</td>
-            <td>{{ $cita->horaUsuarioCita }}</td>
-            <td>{{ $cita->empleado->nombreEmpleado }}</td>
-            <td>
-                @foreach($cita->servicios as $servicio)
-                    {{ $servicio->nombreServicio }}</br>
-                @endforeach
-            </td>
-            <td>
-                <a class="btn btn-warning" href="/cita/{{ $cita->id }}/edit">Editar</a>
-            </td>
-            <td>
-                <form class="formulario-eliminar" action="/cita/{{ $cita->id }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <input class="btn btn-danger" type="submit" value="Eliminar">
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="Mytable" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Fecha</th>
+                <th>Celular</th>
+                <th>Hora</th>
+                <th>Barbero</th>
+                <th>Servicio</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($citas as $cita)
+            <tr>
+                <td>{{ $cita->id }}</td>
+                <td>
+                    <a href="/cita/{{ $cita->id }}">
+                        {{ $cita->nombreUsuarioCita }}
+                    </a>
+                </td>
+                <td>{{ $cita->emailUsuarioCita }}</td>
+                <td>{{ $cita->fechaUsuarioCita }}</td>
+                <td>{{ $cita->celularUsuarioCita }}</td>
+                <td>{{ $cita->horaUsuarioCita }}</td>
+                <td>{{ $cita->empleado->nombreEmpleado }}</td>
+                <td>
+                    @foreach($cita->servicios as $servicio)
+                        {{ $servicio->nombreServicio }}</br>
+                    @endforeach
+                </td>
+                <td>
+                    <a class="btn btn-warning" href="/cita/{{ $cita->id }}/edit">Editar</a>
+                </td>
+                <td>
+                    <form class="formulario-eliminar" action="/cita/{{ $cita->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input class="btn btn-danger" type="submit" value="Eliminar">
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @stop
 
 @section('css')
@@ -118,34 +120,24 @@
     } );
 </script>
 
-@if(session()->has('delete'))
-    <script>
-        Swal.fire(
-            'Eliminado',
-            '{{ session("delete") }}',
-            'success'
-        )
-    </script>
-@endif
+<script>
+    $('.formulario-eliminar').submit(function(e) {
+        e.preventDefault();
 
-    <script>
-        $('.formulario-eliminar').submit(function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: '¡No será posible revertir esta acción!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Eliminar',
-                confirmButtonColor: '#dc3545',
-                cancelButtonColor: '#6c757d',
-                cancelButtonText: 'Cancelar',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-            })
-        });
-    </script>
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡No será posible revertir esta acción!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });
+</script>
 @stop

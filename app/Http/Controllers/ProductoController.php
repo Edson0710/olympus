@@ -184,21 +184,22 @@ class ProductoController extends Controller
     {
         $notification = '';
         $deleteName = $producto->nombre;
+        $count = 0;
 
         //Eliminar Imagenes relacionadas con producto
         foreach($producto->productoimages as $image){
+            $count++;
             $file = ProductoImage::whereId($image->id)->firstOrFail();
         }
-
-        unlink(public_path(Storage::url($file->ubicacionFileProducto)));
+        if($count > 0){
+            unlink(public_path(Storage::url($file->ubicacionFileProducto)));
+        }
 
         $producto->delete();
 
         $notification = 'El Producto ' . $deleteName . ' ha sido eliminado correctamente.';
 
-        return redirect('/producto')->with(compact('notification'), [
-            'delete' => 'El Producto '. $deleteName .' ha sido eliminado correctamente.'
-        ]);
+        return redirect('/producto')->with(compact('notification'));
     }
 
     /** Esta es una función que sirve para pasar todas las instancias de Producto

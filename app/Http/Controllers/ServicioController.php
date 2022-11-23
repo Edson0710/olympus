@@ -156,9 +156,7 @@ class ServicioController extends Controller
             $notification = 'El Servicio '. $deleteName .' ha sido eliminado correctamente.';
         }
 
-        return redirect('/servicio')->with(compact('notification'), [
-            'delete' => 'El Servicio '. $deleteName .' ha sido eliminado correctamente.'
-        ]);
+        return redirect('/servicio')->with(compact('notification'));
     }
 
     /** Esta es una función que sirve para pasar todas las instancias de Corte

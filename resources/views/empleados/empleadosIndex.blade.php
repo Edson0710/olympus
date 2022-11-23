@@ -19,63 +19,63 @@
     <a class="btn btn-primary" href="/empleado/create">Registrar Empleado</a>
 </div>
 
-
-
-<table id="Mytable" class="table">
-    <thead>
-        <tr>
-            <th>Nombre Completo</th>
-            <th>Rol</th>
-            <th>Género</th>
-            <th>Teléfono</th>
-            <th>CURP</th>
-            <th>Fecha de Nacimiento</th>
-            <!-- <th>Imagen</th> -->
-            <th>Editar</th>
-            <th>Eliminar</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($empleados as $empleado)
-        <tr>
-            <td>
-                <!--Nos dirigira al metodo show del controlador -->
-                <a href="/empleado/{{ $empleado->id }}">
-                    {{ $empleado->nombreEmpleado }}
-                </a>
-
-            </td>
-            <td>{{ $empleado->rolEmpleado }}</td>
-            <td>{{ $empleado->generoEmpleado }}</td>
-            <td>{{ $empleado->telefonoEmpleado }}</td>
-            <td>{{ $empleado->curpEmpleado }}</td>
-            <td>{{ $empleado->fecha_NacEmpleado }}</td>
-            <!-- <td>{{ $empleado->imagenEmpleado }}</td> -->
-
-            <td>
-                <!--Nos dirigira al metodo edit del controlador -->
-                <a class="btn btn-warning" href="/empleado/{{ $empleado->id }}/edit">
-                    Editar
-                </a>
-            </td>
-
-            <td>
-                <!--action lo manda al método DELETE-->
-                <form class="formulario-eliminar" method="POST" action="/empleado/{{ $empleado->id }}">
-
-                    <!-- Nos permite realizar la operación desde html-->
-                    @csrf
-                    @method('DELETE')
-
-                    <input type=submit class="btn btn-danger" value="Eliminar">
-                </form>
-
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="Mytable" class="table">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Rol</th>
+                <th>Género</th>
+                <th>Teléfono</th>
+                <th>CURP</th>
+                <th>Fecha de Nacimiento</th>
+                <!-- <th>Imagen</th> -->
+                <th>Editar</th>
+                <th>Eliminar</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($empleados as $empleado)
+            <tr>
+                <td>
+                    <!--Nos dirigira al metodo show del controlador -->
+                    <a href="/empleado/{{ $empleado->id }}">
+                        {{ $empleado->nombreEmpleado }}
+                    </a>
+    
+                </td>
+                <td>{{ $empleado->rolEmpleado }}</td>
+                <td>{{ $empleado->generoEmpleado }}</td>
+                <td>{{ $empleado->telefonoEmpleado }}</td>
+                <td>{{ $empleado->curpEmpleado }}</td>
+                <td>{{ $empleado->fecha_NacEmpleado }}</td>
+                <!-- <td>{{ $empleado->imagenEmpleado }}</td> -->
+    
+                <td>
+                    <!--Nos dirigira al metodo edit del controlador -->
+                    <a class="btn btn-warning" href="/empleado/{{ $empleado->id }}/edit">
+                        Editar
+                    </a>
+                </td>
+    
+                <td>
+                    <!--action lo manda al método DELETE-->
+                    <form class="formulario-eliminar" method="POST" action="/empleado/{{ $empleado->id }}">
+    
+                        <!-- Nos permite realizar la operación desde html-->
+                        @csrf
+                        @method('DELETE')
+    
+                        <input type=submit class="btn btn-danger" value="Eliminar">
+                    </form>
+    
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
 @stop
 
 @section('css')
@@ -136,36 +136,26 @@
     } );
 </script>
 
-@if(session()->has('delete'))
-    <script>
-        Swal.fire(
-            'Eliminado',
-            '{{ session("delete") }}',
-            'success'
-        )
-    </script>
-@endif
+<script>
+    $('.formulario-eliminar').submit(function(e) {
+        e.preventDefault();
 
-    <script>
-        $('.formulario-eliminar').submit(function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: '¡No será posible revertir esta acción!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Eliminar',
-                confirmButtonColor: '#dc3545',
-                cancelButtonColor: '#6c757d',
-                cancelButtonText: 'Cancelar',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-            })
-        });
-    </script>
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡No será posible revertir esta acción!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+        })
+    });
+</script>
 @stop
 
 

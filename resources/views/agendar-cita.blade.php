@@ -20,7 +20,7 @@
                     <p class="d-inline-block bg-dark text-primary py-1 px-4">CREA TU CITA</p>
                     <h1 class="text-uppercase mb-4">VEN Y CONOCE NUESTRAS INSTALACIONES Y DISFRUTA DE UN AGRADABLE SERVICIO</h1>
                     <p class="mb-4">OLYMPUS</p>
-                    <form action="/cita" method="POST" id="contacto">
+                    <form action="/cita-store" method="POST" id="contacto">
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-6">

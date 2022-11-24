@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Registrar Corte')
+<link href="{{asset('img/olympus-icon.png')}}" rel="icon">
 
 @section('content_header')
     <h1>Registrar Corte</h1>

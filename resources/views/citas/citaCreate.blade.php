@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Agendar Cita')
+<link href="{{asset('img/olympus-icon.png')}}" rel="icon">
 
 @section('content_header')
     <h1>Agendar Cita</h1>

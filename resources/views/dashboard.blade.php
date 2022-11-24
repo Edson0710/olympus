@@ -8,8 +8,7 @@
 
 @section('content')
     <p>Bienvenido a la vista de Administrador.</p>
-    <img style="text-align: center" src="{{asset('img/olympus.jpeg')}}" alt="Logo de Olympus" width="40%">
-
+        <img style="text-align: center" src="{{asset('img/barber-shop.jpg')}}" alt="Logo de Olympus" width="100%" >    
 @stop
 
 @section('css')

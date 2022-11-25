@@ -1,9 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Citas Hoy')
+@section('title', 'Citas')
+<link href="{{asset('img/olympus-icon.png')}}" rel="icon">
 
 @section('content_header')
-<h1>Citas de hoy</h1>
+<h1>Citas</h1>
+
 @stop
 
 @section('content')

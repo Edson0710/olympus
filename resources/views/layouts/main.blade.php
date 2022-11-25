@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="{{asset('img/favicon.ico')}}" rel="icon">
+    <link href="{{asset('img/olympus-icon.png')}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +60,7 @@
                         <a href="{{route('olympus.listas.servicios')}}" class="dropdown-item">Servicios</a>
                         <a href="{{route('olympus.listas.cortes')}}" class="dropdown-item">Cortes</a>
                         <a href="{{route('olympus.listas.barberos')}}" class="dropdown-item">Barberos</a>
-                        <a href="{{route('olympus.listas.precios')}}" class="dropdown-item">Precios</a>
+                        {{-- <a href="{{route('olympus.listas.precios')}}" class="dropdown-item">Precios</a> --}}
                         <a href="{{route('olympus.listas.horario')}}" class="dropdown-item">Horario</a>
                         <a href="{{route('olympus.listas.testimonios')}}" class="dropdown-item">Testimonios</a>
                     </div>

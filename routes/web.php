@@ -33,6 +33,15 @@ Route::middleware('web')->group(function () {
         return view('conocenos');
     })->name('olympus.conocenos');
 
+    //rutas para pasar registros de admin a vistas de index
+    Route::get('/', [ServicioController::class, 'vistasIndex']);
+    Route::get('/index', [ServicioController::class, 'vistasIndex'])->name('olympus.index');
+    
+    //Se envia la información del formulario por método post del agendar-cita
+    //hacia la ruta /cita-store, la recibe la funcion 'storeUsuario' y una vez 
+    //almacenado, lo reedireciona a la vista /agendar-cita
+    Route::post('/cita-store', [CitaController::class, 'storeUsuario'])->name('olympus.cita-store');
+
     Route::get('/agendar-cita', [CitaController::class, 'createUsuario'])->name('olympus.agendar-cita');
     Route::resource('/cita', CitaController::class)->parameters(['cita' => 'cita']);
     Route::prefix('/cita')->group(function () {

@@ -84,136 +84,54 @@
             <h1 class="text-uppercase">¿Qué es lo que ofrecemos?</h1>
         </div>
         <div class="row g-4">
+            @foreach($servicios as $servicio)
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
                     <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
                         <img class="img-fluid" src="{{asset('img/haircut.png')}}" alt="">
                     </div>
                     <div class="ps-4">
-                        <h3 class="text-uppercase mb-3">Corte de cabello</h3>
-                        <p>Elige entre nuestros diseños o coméntanos tu idea y la cumpliremos.</p>
-                        <!--<span class="text-uppercase text-primary">Desde $80</span>-->
+                        <h3 class="text-uppercase mb-3">{{ $servicio->nombreServicio }}</h3>
+                        <p><strong>Descripción: </strong>{{ $servicio->descripcionServicio }}</p>
+                        <span class="text-uppercase text-primary"> ${{ $servicio->precioServicio }}</span>
                     </div>
-                    <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
-                    <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <img class="img-fluid" src="{{asset('img/beard-trim.png')}}" alt="">
-                    </div>
-                    <div class="ps-4">
-                        <h3 class="text-uppercase mb-3">Recorte de barba</h3>
-                        <p>Haz lucir mejor tu barba con unos recortes al gusto.</p>
-                        <!--<span class="text-uppercase text-primary">Desde $50</span>-->
-                    </div>
-                    <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
-                    <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <img class="img-fluid" src="{{asset('img/mans-shave.png')}}" alt="">
-                    </div>
-                    <div class="ps-4">
-                        <h3 class="text-uppercase mb-3">Afeitado</h3>
-                        <p>Luce una piel espectacular con nuestros afeitados hechos con las mejores navajas del mercado.</p>
-                        <!--<span class="text-uppercase text-primary">Desde $50</span>-->
-                    </div>
-                    <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
-                    <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <img class="img-fluid" src="{{asset('img/hair-dyeing.png')}}" alt="">
-                    </div>
-                    <div class="ps-4">
-                        <h3 class="text-uppercase mb-3">Tinte para el cabello</h3>
-                        <p>Luce un look diferente y freco con un color nuevo de cabello.</p>
-                        <!--<span class="text-uppercase text-primary">Desde $150</span>-->
-                    </div>
-                    <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
-                    <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <img class="img-fluid" src="{{asset('img/mustache.png')}}" alt="">
-                    </div>
-                    <div class="ps-4">
-                        <h3 class="text-uppercase mb-3">Diseño de bigote</h3>
-                        <p>Luce un bigote diferente con nuestro catálogo o muéstranos tu idea y la replicaremos.</p>
-                        <!--<span class="text-uppercase text-primary">Desde $50</span>-->
-                    </div>
-                    <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
-                    <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <img class="img-fluid" src="{{asset('img/stacking.png')}}" alt="">
-                    </div>
-                    <div class="ps-4">
-                        <h3 class="text-uppercase mb-3">Servicio completo</h3>
-                        <p>Conciéntete con un servicio completo que contiene: corte de cabello, barba, masaje facial y mascarilla, te aseguramos que saldrás 100% relajado.</p>
-                        <!--<span class="text-uppercase text-primary">$300</span>-->
-                    </div>
-                    <a class="btn btn-square" href=""><i class="fa fa-plus text-primary"></i></a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 <!-- Service End -->
 
-
-<!-- Price Start -->
+<!-- Producto Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="row g-0">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="bg-secondary h-100 d-flex flex-column justify-content-center p-5">
-                    <p class="d-inline-flex bg-dark text-primary py-1 px-4 me-auto">Precios</p>
-                    <h1 class="text-uppercase mb-4">Lista de precios de nuestros servicios</h1>
-                    <div>
-                        <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Corte de cabello</h6>
-                            <span class="text-uppercase text-primary">$150.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Recorte de barba</h6>
-                            <span class="text-uppercase text-primary">$50.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Afeitado</h6>
-                            <span class="text-uppercase text-primary">$50.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Tinte para cabello</h6>
-                            <span class="text-uppercase text-primary">$150.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between border-bottom py-2">
-                            <h6 class="text-uppercase mb-0">Diseño de bigote</h6>
-                            <span class="text-uppercase text-primary">$50.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between py-2">
-                            <h6 class="text-uppercase mb-0">Servicio completo</h6>
-                            <span class="text-uppercase text-primary">$300.00</span>
-                        </div>
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block bg-secondary text-primary py-1 px-4">Productos</p>
+            <h1 class="text-uppercase">Ponemos estos Productos a tu disposición</h1>
+        </div>
+        <div class="row g-4">
+            @foreach($productos as $producto)
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
+                    <div class="ps-4">
+                        <h3 class="text-uppercase mb-3">{{ $producto->nombre }}</h3>
+                        <!--<span class="text-uppercase text-primary">Desde $80</span>-->
+                        @foreach ($producto->productoimages as $image)
+                            <img class="img-fluid img-thumbnail mb-3" src="{{ \Storage::url($image->ubicacionFileProducto) }}" alt="Imagen Producto">
+                        @endforeach
+                        <p><strong>Descripción: </strong>{{ $producto->descripcion }}</p>
+                        <p><strong>Marca: </strong>{{ $producto->marca }}</p>
+                        <p><strong>Tipo: </strong>{{ $producto->tipo }}</p>
+                        <p><strong>Precio: </strong>${{ $producto->precio }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <div class="h-100">
-                    <img class="img-fluid h-100" src="{{asset('img/price.jpg')}}" alt="">
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
-<!-- Price End -->
-
+<!-- Producto End -->
 
 <!-- Team Start -->
 <div class="container-xxl py-5">
@@ -223,10 +141,13 @@
             <h1 class="text-uppercase">Conoce a nuestros barberos</h1>
         </div>
         <div class="row g-4">
+            @foreach($empleados as $empleado)
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item">
                     <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-1.jpg')}}" alt="">
+                        @foreach($empleado->empleadoimages as $image)
+                            <img class="img-fluid" src="{{ \Storage::url($image->ubicacionFileEmpleado) }}" alt="">
+                        @endforeach
                         <div class="team-social">
                             <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -234,65 +155,48 @@
                         </div>
                     </div>
                     <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Leonardo Paredes</h5>
-                        <span class="text-primary">Desvanecidos</span>
+                        <h5 class="text-uppercase">{{ $empleado->nombreEmpleado }}</h5>
+                        <span class="text-primary">{{ $empleado->rolEmpleado }}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item">
-                    <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-2.jpg')}}" alt="">
-                        <div class="team-social">
-                            <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Ricardo Reyes</h5>
-                        <span class="text-primary">Tijeras</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="team-item">
-                    <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-3.jpg')}}" alt="">
-                        <div class="team-social">
-                            <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Ernesto de la Cruz</h5>
-                        <span class="text-primary">Navaja</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="team-item">
-                    <div class="team-img position-relative overflow-hidden">
-                        <img class="img-fluid" src="{{asset('img/team-4.jpg')}}" alt="">
-                        <div class="team-social">
-                            <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square" href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-secondary text-center p-4">
-                        <h5 class="text-uppercase">Borja Mendez</h5>
-                        <span class="text-primary">Tintes</span>
-
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 <!-- Team End -->
 
+<!-- Corte Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block bg-secondary text-primary py-1 px-4">Cortes</p>
+            <h1 class="text-uppercase">¡Mira nuestro catálogo de cortes!</h1>
+        </div>
+        <div class="row g-4">
+            @foreach($cortes as $corte)
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
+                    <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                        <img class="img-fluid" src="{{asset('img/haircut.png')}}" alt="">
+                    </div>
+                        <div class="ps-4">
+                            <h3 class="text-uppercase mb-3">{{ $corte->nombreCorte }}</h3>
+                            <p><strong>Descripción: </strong>{{ $corte->descripcionCorte }}</p>
+                            <!--<span class="text-uppercase text-primary">Desde $80</span>-->
+                            @foreach ($corte->corteimages as $image)
+                                <img class="img-fluid img-thumbnail mb-3" src="{{ \Storage::url($image->ubicacionFileCorte) }}" alt="Imagen Corte">
+                            @endforeach
+
+                            <p><strong>Estilo Corte: </strong>{{ $corte->estiloCorte }}</p>
+                        </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+<!-- Corte End -->
 
 <!-- Working Hours Start -->
 <div class="container-xxl py-5">
@@ -366,7 +270,7 @@
             <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='{{asset('img/testimonial-3.jpg')}}' alt=''>">
                 <h4 class="text-uppercase">Alexis Vega</h4>
                 <p class="text-primary">Cliente</p>
-                <span class="fs-5">Mi padre venía cuando el negocio comenzó y ahora yo sigo viniendo, es una tradición atendernos en este lugar.</span>
+                <span class="fs-5">Mi padre venía cuando el negocio comenzó y ahora yo sigo yendo, es una tradición atendernos en este lugar.</span>
             </div>
         </div>      
     </div>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servicio;
+use App\Models\Corte;
+use App\Models\Empleado;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class ServicioController extends Controller
@@ -167,5 +170,14 @@ class ServicioController extends Controller
     {
         $servicios = Servicio::all();
         return view('listas.servicios', compact('servicios'));
+    }
+
+    public function vistasIndex() 
+    {
+        $servicios = Servicio::all();
+        $cortes = Corte::all();
+        $empleados = Empleado::all();
+        $productos = Producto::all();
+        return view('index', compact('servicios', 'cortes', 'empleados', 'productos'));
     }
 }

@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Registrar Empleado')
+<link href="{{asset('img/olympus-icon.png')}}" rel="icon">
 
 @section('content_header')
     <h1>Registrar Empleado</h1>

@@ -22,12 +22,12 @@
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="service-item position-relative overflow-hidden bg-secondary d-flex h-100 p-5 ps-0">
                     <div class="bg-dark d-flex flex-shrink-0 align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <img class="img-fluid" src="{{asset('img/stacking.png')}}" alt="">
+                        <img class="img-fluid" src="{{asset('img/haircut.png')}}" alt="">
                     </div>
                     <div class="ps-4">
                         <h3 class="text-uppercase mb-3">{{ $servicio->nombreServicio }}</h3>
                         <p><strong>Descripción: </strong>{{ $servicio->descripcionServicio }}</p>
-                        <span class="text-uppercase text-primary"> A solo ${{ $servicio->precioServicio }}</span>
+                        <span class="text-uppercase text-primary"> ${{ $servicio->precioServicio }}</span>
                     </div>
                 </div>
             </div>

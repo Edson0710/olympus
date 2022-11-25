@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Detalles de la Cita')
+<link href="{{asset('img/olympus-icon.png')}}" rel="icon">
 
 @section('content_header')
     <h1>Detalles de la Cita</h1>

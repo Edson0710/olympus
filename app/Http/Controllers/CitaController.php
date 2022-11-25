@@ -240,6 +240,7 @@ class CitaController extends Controller
      */
     public function destroy(Cita $cita)
     {
+        $deleteName = $cita->nombreUsuarioCita;
         $cita->delete();
 
         return redirect('/cita');
@@ -308,6 +309,66 @@ class CitaController extends Controller
         $cita->statusUsuarioCita = $status;
         $cita->save();
         return view('citas.respuestaConfirmacion', compact('status'));
+    }
+
+    public function storeUsuario(Request $request)
+    {
+        
+        $rules = [
+            'nombreUsuarioCita' => 'required | max:255',
+            'emailUsuarioCita' => 'required | max:255 | email',
+            'fechaUsuarioCita' => 'required | date',
+            'celularUsuarioCita' => 'required | digits:10 | numeric',
+            /** Se valida si la hora de la cita ya está ocupada en la fecha preporcionada*/
+            'horaUsuarioCita' => ['required', Rule::unique('citas')->where(function ($query) use ($request){
+                return $query->where('fechaUsuarioCita', $request->fechaUsuarioCita)
+                            ->where('horaUsuarioCita', $request->horaUsuarioCita)
+                            ->where('empleado_id', $request->empleado_id);
+            })],
+            'empleado_id' => 'required|exists:empleados,id',
+            'g-recaptcha-response' => function($attribute, $value, $fail){
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $userIP = $_SERVER['REMOTE_ADDR'];
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
+                $response = \file_get_contents($url);
+                $response = json_decode($response);
+                if (!$response->success) {
+                    Session::flash('g-recaptcha-response', 'Por favor, marca el recaptcha');
+                    Session::flash('alert-class', 'alert-danger');
+                    $fail($attribute. 'Recaptcha de Google fallido');
+                }
+            },
+        ];
+            
+        $messages = [
+            'nombreUsuarioCita.required' => 'El nombre del usuario es obligatorio',
+            'nombreUsuarioCita.max' => 'El nombre del usuario supera los 255 carácteres',
+            'emailUsuarioCita.required' => 'El email del usuario es obligatorio',
+            'emailUsuarioCita.max' => 'El email del usuario supera los 255 carácteres',
+            'emailUsuarioCita.email' => 'El email del usuario no tiene un formato válido',
+            'fechaUsuarioCita.required' => 'La fecha del usuario es obligatoria',
+            'fechaUsuarioCita.date' => 'La fecha del usuario no tiene un formato válido de fecha',
+            'celularUsuarioCita.required' => 'El celular del usuario es obligatorio',
+            'celularUsuarioCita.digits' => 'El celular del usuario debe ser de 10 digitos',
+            'celularUsuarioCita.numeric' => 'El celular del usuario solo acepta carácteres numéricos',
+            'horaUsuarioCita.required' => 'La hora del usuario es obligatoria',
+            'empleado_id.required' => 'El nombre del barbero es obligatorio',
+            'empleado_id.exists' => 'Selecciona un barbero existente',
+        ];
+
+        $this->validate($request, $rules, $messages);
+        
+        $cita = Cita::create($request->all());
+
+        /*Entramos a la instancia "cita" en su método "servicios"
+        para tener acceso a vincular a la cita con los servicios */
+        $cita->servicios()->attach($request->servicios_id);
+
+        // Funcion enviar correo
+        $this->confirmarCita($request);
+
+        return redirect('/agendar-cita');
     }
 
 }

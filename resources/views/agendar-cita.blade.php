@@ -19,6 +19,13 @@
                 <div class="bg-secondary p-5">
                     <p class="d-inline-block bg-dark text-primary py-1 px-4">CREA TU CITA</p>
                     <h1 class="text-uppercase mb-4">VEN Y CONOCE NUESTRAS INSTALACIONES Y DISFRUTA DE UN AGRADABLE SERVICIO</h1>
+                    <div class="card-body">
+                        @if(session('notification'))
+                            <div class="alert alert-info" role="alert">
+                                {{ session('notification') }}
+                            </div>
+                        @endif
+                    </div>
                     <p class="mb-4">OLYMPUS</p>
                     <form action="/cita-store" method="POST" id="contacto">
                         @csrf

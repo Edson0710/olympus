@@ -45,6 +45,7 @@ class EmpleadoController extends Controller
             'telefonoEmpleado' => 'required|digits:10|numeric',
             'curpEmpleado' => 'required|string|size:18',
             'fecha_NacEmpleado' => 'required|date',
+            'imagen' => 'required|size:5000',
         ];
 
         $messages = [
@@ -61,6 +62,8 @@ class EmpleadoController extends Controller
             'curpEmpleado.size' => 'El tamaño de la CURP debe ser de 18 carácteres.',
             'fecha_NacEmpleado.required' => 'La fecha del empleado es obligatoria.',
             'fecha_NacEmpleado.date' => 'La fecha del empleado debe ser un formato válido de fecha.',
+            'imagen.required' => 'El empleado requiere de una imagen',
+            'imagen.size' => 'El tamaño de la imagen es demasiado grande',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -140,6 +143,7 @@ class EmpleadoController extends Controller
             'telefonoEmpleado' => 'required|digits:10|numeric',
             'curpEmpleado' => 'required|string|size:18',
             'fecha_NacEmpleado' => 'required|date',
+            'imagen' => 'required|size:5000',
         ];
 
         $messages = [
@@ -156,6 +160,8 @@ class EmpleadoController extends Controller
             'curpEmpleado.size' => 'El tamaño de la CURP debe ser de 18 carácteres.',
             'fecha_NacEmpleado.required' => 'La fecha del empleado es obligatoria.',
             'fecha_NacEmpleado.date' => 'La fecha del empleado debe ser un formato válido de fecha.',
+            'imagen.required' => 'El empleado requiere de una imagen',
+            'imagen.size' => 'El tamaño de la imagen es demasiado grande',
         ];
 
         $this->validate($request, $rules, $messages);

@@ -107,6 +107,7 @@ class CitaController extends Controller
             'celularUsuarioCita.digits' => 'El celular del usuario debe ser de 10 digitos',
             'celularUsuarioCita.numeric' => 'El celular del usuario solo acepta carácteres numéricos',
             'horaUsuarioCita.required' => 'La hora del usuario es obligatoria',
+            'horaUsuarioCita.unique' => 'Este horario y Barbero no están disponibles, elija otra fecha, hora o barbero disponibles',
             'empleado_id.required' => 'El nombre del barbero es obligatorio',
             'empleado_id.exists' => 'Selecciona un barbero existente',
         ];
@@ -133,7 +134,9 @@ class CitaController extends Controller
         // Funcion enviar correo
         $this->confirmarCita($request);
 
-        return redirect('/cita');
+        $notification = 'La cita se agendó correctamente.';
+
+        return redirect('/cita')->with(compact('notification'));
     }
 
     /**
@@ -368,7 +371,9 @@ class CitaController extends Controller
         // Funcion enviar correo
         $this->confirmarCita($request);
 
-        return redirect('/agendar-cita');
+        $notification = 'La cita se agendó correctamente.';
+
+        return redirect('/agendar-cita')->with(compact('notification'));
     }
 
 }

@@ -30,6 +30,7 @@
                 <th>Hora</th>
                 <th>Barbero</th>
                 <th>Servicio</th>
+                <th>Total</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -53,6 +54,7 @@
                         {{ $servicio->nombreServicio }}</br>
                     @endforeach
                 </td>
+                <td>${{ $cita->total }}</td>
                 <td>
                     <a class="btn btn-warning" href="/cita/{{ $cita->id }}/edit">Editar</a>
                 </td>

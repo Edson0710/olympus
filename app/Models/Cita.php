@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cita extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombreUsuarioCita', 'emailUsuarioCita', 
-                           /* 'confirmacionUsuarioCita', */ 'fechaUsuarioCita',
-                           /* 'calificacionUsuarioCita', */ 'celularUsuarioCita', 'horaUsuarioCita', 'empleado_id'];
+    protected $fillable = ['nombreUsuarioCita', 'emailUsuarioCita', 'fechaUsuarioCita',
+                           /* 'calificacionUsuarioCita', */ 'celularUsuarioCita', 'horaUsuarioCita', 'empleado_id', 'total'];
 
     public $timestamps = false;
 

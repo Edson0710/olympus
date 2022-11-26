@@ -38,6 +38,10 @@
                 <input type="text" class="form-control" id="servicio_id" name="servicio_id" value="{{ $servicio->nombreServicio }}" disabled>
             @endforeach
     </div>
+    <div class="form-group">
+        <label for="empleado_id">Total</label>
+        <input type="text" class="form-control" id="total" name="total" value="{{ $cita->total }}" disabled>
+    </div>
     <div class="clearfix"></div>
     <div class="container text-center">
     <div class="row">

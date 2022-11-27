@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CorreoCrear;
 use App\Mail\CorreoConfirmacion;
+use App\Mail\CorreoEncuesta;
 use Illuminate\Support\Carbon;
 use Session;
 
@@ -274,10 +275,19 @@ class CitaController extends Controller
         }else if($fechas == 'mañana'){
             $citas = Cita::where('fechaUsuarioCita', Carbon::tomorrow())->get();
         }
+        else if($fechas == 'anteriores'){
+            $citas = Cita::where('fechaUsuarioCita', '<', Carbon::today())->get();
+            foreach($citas as $cita){
+                if($cita->statusUsuarioCita == 0){
+                    $cita->statusUsuarioCita = 2;
+                    $cita->save();
+                }
+            }
+        }
         $empleados = Empleado::all();
         $servicios = Servicio::all();
 
-        return view('citas.citaProxima', compact('citas', 'empleados', 'servicios'));
+        return view('citas.citaProxima', compact('citas', 'empleados', 'servicios', 'fechas'));
     }
 
     public function recordarCita($id, Request $request)
@@ -302,6 +312,53 @@ class CitaController extends Controller
 
         //Redireccionar atras
         return redirect()->back();
+    }
+
+    public function correoEncuesta($id, Request $request)
+    {         
+        $cita = Cita::find($id);
+        setlocale(LC_TIME,"es_ES");
+        $fecha_format = $cita['fechaUsuarioCita'];
+        // FECHA EN ESPAÑOL
+        $fecha = strftime("%A, %d de %B del %Y", strtotime($fecha_format));
+        $hora_format = $cita['horaUsuarioCita'];
+        $hora = date('h:i A', strtotime($hora_format));
+        $cita['fechaUsuarioCita'] = $fecha;
+        $cita['horaUsuarioCita'] = $hora;
+        // dd($cita);
+        Mail::to($cita['emailUsuarioCita'])->send(new CorreoEncuesta($cita));
+        $cita['fechaUsuarioCita'] = $fecha_format;
+        $cita['horaUsuarioCita'] = $hora_format;
+        //Actualiza el estado de la cita
+
+        Cita::where('id', $cita->id)->update(['encuestaUsuarioCita' => 1]);
+
+
+        //Redireccionar atras
+        return redirect()->back();
+    }
+
+    public function encuesta($id){
+        $cita = Cita::find($id);
+        setlocale(LC_TIME,"es_ES");
+        $fecha_format = $cita['fechaUsuarioCita'];
+        // FECHA EN ESPAÑOL
+        $fecha = strftime("%A, %d de %B del %Y", strtotime($fecha_format));
+        $hora_format = $cita['horaUsuarioCita'];
+        $hora = date('h:i A', strtotime($hora_format));
+        $empleado = Empleado::find($cita->empleado_id);
+        $servicios = $cita->servicios;
+
+        return view('encuesta.index', compact('cita', 'empleado', 'servicios', 'fecha', 'hora'));
+    }
+
+    public function enviarEncuesta(Request $request){
+        $valor = $request->valor;
+        $cita_id = $request->idCita;
+        $cita = Cita::find($cita_id);
+        $cita->calificacionUsuarioCita = $valor;
+        $cita->save();
+        return true;
     }
 
     public function confirmarCorreo($id, $status){

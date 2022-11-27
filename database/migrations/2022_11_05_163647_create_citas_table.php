@@ -20,7 +20,8 @@ class CreateCitasTable extends Migration
             $table->boolean('confirmacionUsuarioCita')->default(false);
             $table->integer('statusUsuarioCita')->default(0);
             $table->date('fechaUsuarioCita');
-            /* $table->integer('calificacionUsuarioCita'); */
+            $table->boolean('encuestaUsuarioCita')->default(false);
+            $table->integer('calificacionUsuarioCita')->nullable();
             $table->string('celularUsuarioCita');
             $table->time('horaUsuarioCita');
 

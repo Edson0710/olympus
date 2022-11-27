@@ -48,6 +48,7 @@ Route::middleware('web')->group(function () {
         Route::post('confirmarCita', [CitaController::class, 'confirmarCita'])->name('cita.confirmarCita');
         Route::post('recordarCita/{id}', [CitaController::class, 'recordarCita'])->name('cita.recordarCita');
         Route::get('confirmarCorreo/{id}/{status}', [CitaController::class, 'confirmarCorreo'])->name('cita.confirmarCorreo');
+        Route::post('encuesta/{id}', [CitaController::class, 'correoEncuesta'])->name('cita.correoEncuesta');
     });
     Route::group(['prefix' => 'listas'], function () {
         Route::get('/precios', function () {
@@ -67,6 +68,8 @@ Route::middleware('web')->group(function () {
             return view('listas.testimonios');
         })->name('olympus.listas.testimonios');
     });
+    Route::get('/encuesta/{id}', [CitaController::class, 'encuesta'])->name('olympus.encuesta');
+    Route::post('enviarEncuesta', [CitaController::class, 'enviarEncuesta'])->name('enviarEncuesta');
 });
 
 Route::middleware('auth')->group(function () {
@@ -81,6 +84,9 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'citas'], function () {
         Route::get('/proximas/{dias}', [CitaController::class, 'citasProximas'])->name('olympus.citas.citaProxima');
     });
+    Route::get('/estadisticas', function () {
+        return view('estadisticas.index');
+    })->name('olympus.estadisticas');
 });
 
 // Auth::routes();

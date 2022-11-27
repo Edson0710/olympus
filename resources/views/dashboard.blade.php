@@ -14,6 +14,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/cssAdmin/styles.css')}}">
 @stop
 
 @section('js')

@@ -50,7 +50,7 @@
                             @enderror
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="date" class="form-control bg-transparent" id="fechaUsuarioCita" name="fechaUsuarioCita" min="<?php $hoy=date("Y-m-d",strtotime("-1 days")); echo $hoy?>" onChange="sinDomingos();" onblur="obtenerfechafinf1();" required="required">
+                                    <input type="date" class="form-control bg-transparent" id="fechaUsuarioCita" name="fechaUsuarioCita" min="<?php $hoy=date("Y-m-d"); echo $hoy?>" onChange="sinDomingos();" onblur="obtenerfechafinf1();" required="required">
                                     <label for="fechaUsuarioCita">Fecha</label>
                                 </div>
                             </div>

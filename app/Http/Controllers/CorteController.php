@@ -132,7 +132,6 @@ class CorteController extends Controller
             'nombreCorte' => 'required|string|max:100',
             'estiloCorte' => 'required|string|max:100',
             'descripcionCorte' => 'required|string|max:100',
-            'imagen' => 'required|size:5000',
         ];
 
         $messages = [

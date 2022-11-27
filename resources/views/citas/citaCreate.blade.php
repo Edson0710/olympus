@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="fechaUsuarioCita">Fecha</label>
-            <input type="date" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') }}" min="<?php $hoy=date("Y-m-d",strtotime("-1 days")); echo $hoy?>" onChange="sinDomingos();" onblur="obtenerfechafinf1();" required="required">
+            <input type="date" class="form-control" id="fechaUsuarioCita" name="fechaUsuarioCita" value="{{ old('fechaUsuarioCita') }}" min="<?php $hoy=date("Y-m-d"); echo $hoy?>" onChange="sinDomingos();" onblur="obtenerfechafinf1();" required="required">
         </div>
         <div class="form-group">
             <label for="celularUsuarioCita">Celular</label>

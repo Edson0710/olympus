@@ -64,6 +64,13 @@
                 <i>{{ $message}}</i>
             @enderror
         </div> -->
+        <div class="form-group">
+            <fieldset>
+                <label for="imagen" class="form-label">Sube una imagen del Empleado</label><br>
+                    <input type="file" name="imagen" id="imagen">
+                </br>
+            </fieldset> 
+        </div>
         
         <div class="clearfix"></div>
 

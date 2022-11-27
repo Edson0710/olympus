@@ -92,3 +92,7 @@ Route::middleware('auth')->group(function () {
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Se modificó la ruta a una vista creada por nosotros 
+Route::get('/forgotpassword', function(){
+    return view('forgotpassword');
+});

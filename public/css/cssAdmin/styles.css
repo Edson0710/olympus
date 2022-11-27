@@ -117,3 +117,7 @@ body{
     color: black !important;
 }
 
+.content-wrapper{
+    overflow-y: scroll;
+}
+

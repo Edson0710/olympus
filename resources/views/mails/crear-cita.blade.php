@@ -54,6 +54,7 @@
         </ul>
         <br>
         <p><b>Barbero: </b>{{$empleado}}</p><br>
+        <p><b>Total: </b>${{$cita['total']}}</p><br>
         <p>Te esperamos.</p><br>
         <p>Saludos cordiales.</p>
     </div>

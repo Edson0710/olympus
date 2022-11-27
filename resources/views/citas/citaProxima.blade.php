@@ -19,8 +19,13 @@
             <th>Hora</th>
             <th>Barbero</th>
             <th>Servicios</th>
-            <th>Estado</th>
-            <th>Recordatorio</th>
+            <th>Estado</th> 
+            @if($fechas != 'anteriores')
+                <th>Recordatorio</th>
+            @else
+                <th>Cal.</th>
+                <th>Encuesta</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -52,16 +57,30 @@
                     <span class="badge badge-danger">Cancelada</span>
                 @endif
             </td>
-            <td>
-                @if ($cita->confirmacionUsuarioCita == 1)
-                    <button class="btn btn-success"  disabled>Recordatorio Enviado</button>
-                @else
-                    <form action="/cita/recordarCita/{{ $cita->id }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">Enviar recordatorio</button>
-                    </form>
-                @endif
-            </td>
+            @if($fechas != 'anteriores')
+                <td>
+                    @if ($cita->confirmacionUsuarioCita == 1)
+                        <button class="btn btn-success"  disabled>Recordatorio Enviado</button>
+                    @else
+                        <form action="/cita/recordarCita/{{ $cita->id }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Enviar recordatorio</button>
+                        </form>
+                    @endif
+                </td>
+            @else
+                <td>@if($cita->calificacionUsuarioCita != null) {{$cita->calificacionUsuarioCita}} @else NA @endif</td>
+                <td>
+                    @if ($cita->encuestaUsuarioCita == 1)
+                        <button class="btn btn-success"  disabled>Encuesta Enviada</button>
+                    @else
+                        <form action="/cita/encuesta/{{ $cita->id }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary" @if($cita->statusUsuarioCita == 2) disabled @endif>Enviar encuesta</button>
+                        </form>
+                    @endif
+                </td>
+            @endif
         </tr>
         @endforeach
     </tbody>

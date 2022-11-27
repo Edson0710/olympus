@@ -319,8 +319,8 @@ return [
         // ],
         [
             'text' => 'Estadísticas',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'url'  => 'estadisticas',
+            'icon' => 'fas fa-fw fa-chart-bar',
         ],
         [
             'text'    => 'Base de datos',
@@ -368,6 +368,11 @@ return [
             'text'       => 'Semana',
             'icon_color' => 'cyan',
             'url'        => 'citas/proximas/semana',
+        ],
+        [
+            'text'       => 'Anteriores',
+            'icon_color' => 'green',
+            'url'        => 'citas/proximas/anteriores',
         ],
     ],
 

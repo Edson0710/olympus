@@ -38,5 +38,17 @@ class ServiciosSeeder extends Seeder
             'descripcionServicio' => 'Corte de temporada a lo que se está usando en el momento.',
             'precioServicio' => '150.00',
         ]);
+        //Delineado de barba
+        Servicio::create([
+            'nombreServicio' => 'Delineado de barba',
+            'descripcionServicio' => 'Delineado de barba con navaja y limpieza con esencias frutales.',
+            'precioServicio' => '250.00',
+        ]);
+        //Corte especial
+        Servicio::create([
+            'nombreServicio' => 'Pepinos relajantes',
+            'descripcionServicio' => 'Exfoliación de cara con aromaterapia y pepinos.',
+            'precioServicio' => '100.00',
+        ]);
     }
 }

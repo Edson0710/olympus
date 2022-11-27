@@ -68,7 +68,6 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        
         $rules = [
             'nombreUsuarioCita' => 'required | max:255',
             'emailUsuarioCita' => 'required | max:255 | email',
@@ -108,22 +107,20 @@ class CitaController extends Controller
             'celularUsuarioCita.digits' => 'El celular del usuario debe ser de 10 digitos',
             'celularUsuarioCita.numeric' => 'El celular del usuario solo acepta carácteres numéricos',
             'horaUsuarioCita.required' => 'La hora del usuario es obligatoria',
+            'horaUsuarioCita.unique' => 'Este horario y Barbero no están disponibles, elija otra fecha, hora o barbero disponibles',
             'empleado_id.required' => 'El nombre del barbero es obligatorio',
             'empleado_id.exists' => 'Selecciona un barbero existente',
         ];
 
         $this->validate($request, $rules, $messages);
         
-        /* $request->validate([
-            'nombreUsuarioCita' => 'required | max:255',
-            'emailUsuarioCita' => 'required | max:255 | email',
-            'confirmacionUsuarioCita' => 'required | max:255',
-            'fechaUsuarioCita' => 'required | date',
-            'calificacionUsuarioCita' => 'required | max:10 | min:0',
-            'celularUsuarioCita' => 'required | digits:10 | numeric',
-            'horaUsuarioCita' => 'required',
-            'empleado_id' => 'required|exists:empleados,id',
-        ]); */
+        $total=0.0;
+
+        foreach ($request->servicios_id as $servicio){
+            $data =  Servicio::find($servicio);
+            $total = $total + $data->precioServicio;
+        }
+        $request->merge(['total' => $total]);
 
         $cita = Cita::create($request->all());
 
@@ -134,7 +131,9 @@ class CitaController extends Controller
         // Funcion enviar correo
         $this->confirmarCita($request);
 
-        return redirect('/cita');
+        $notification = 'La cita se agendó correctamente.';
+
+        return redirect('/cita')->with(compact('notification'));
     }
 
     /**
@@ -220,6 +219,18 @@ class CitaController extends Controller
             'horaUsuarioCita' => 'required',
             'empleado_id' => 'required|exists:empleados,id',
         ]); */
+
+        $total=0.0;
+
+        //Obtenemos los id de los servicios seleccionados y los recorrremos
+        //Con el método find, encontrará todos los atributos del servicios 
+        //Y extraemos el precio para sumarlo
+        foreach ($request->servicios_id as $servicio){
+            $data =  Servicio::find($servicio);
+            $total = $total + $data->precioServicio;
+        }
+        //Finalmente lo mergeamos con el request
+        $request->merge(['total' => $total]);
 
         /* Actualiza la información de la tabla de la cita, exceptuando las columnas 'token', 'method' y 'servicios_id'
             Trabaja sobre la tabla Empleado */
@@ -415,7 +426,19 @@ class CitaController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-        
+        //Obtenemos los id de los servicios seleccionados y los recorrremos
+        //Con el método find, encontrará todos los atributos del servicios 
+        //Y extraemos el precio para sumarlo
+        $total=0.0;
+
+        foreach ($request->servicios_id as $servicio){
+            $data =  Servicio::find($servicio);
+            $total = $total + $data->precioServicio;
+        }
+
+        //Finalemnte lo mergeamos al request total
+        $request->merge(['total' => $total]);
+
         $cita = Cita::create($request->all());
 
         /*Entramos a la instancia "cita" en su método "servicios"
@@ -425,7 +448,10 @@ class CitaController extends Controller
         // Funcion enviar correo
         $this->confirmarCita($request);
 
-        return redirect('/agendar-cita');
+        $notification = 'La cita se agendó correctamente.';
+
+        return redirect('/agendar-cita')->with(compact('notification'));
+
     }
 
 }

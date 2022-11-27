@@ -46,6 +46,7 @@ class ProductoController extends Controller
             'tipo' => 'required|max:255',
             'precio' => 'required|numeric',
             'cantidad' => 'required|integer',
+            'imagen' => 'required|size:5000',
         ];
 
         $messages = [
@@ -61,6 +62,8 @@ class ProductoController extends Controller
             'precio.numeric' => 'El precio del producto solo acepta carácteres numéricos.',
             'cantidad.required' => 'La cantidad del producto es obligatoria.',
             'cantidad.integer' => 'La cantidad del producto solo acepta números enteros.',
+            'imagen.required' => 'El producto requiere de una imagen',
+            'imagen.size' => 'El tamaño de la imagen es demasiado grande',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -139,6 +142,7 @@ class ProductoController extends Controller
             'tipo' => 'required|max:255',
             'precio' => 'required|numeric',
             'cantidad' => 'required|integer',
+            'imagen' => 'required|size:5000',
         ];
 
         $messages = [
@@ -154,6 +158,8 @@ class ProductoController extends Controller
             'precio.max' => 'El precio del producto solo acepta carácteres numéricos.',
             'cantidad.required' => 'La cantidad del producto es obligatoria.',
             'cantidad.integer' => 'La cantidad del producto solo acepta números enteros.',
+            'imagen.required' => 'El producto requiere de una imagen',
+            'imagen.size' => 'El tamaño de la imagen es demasiado grande',
         ];
 
         $this->validate($request, $rules, $messages);

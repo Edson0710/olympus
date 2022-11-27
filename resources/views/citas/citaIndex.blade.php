@@ -8,6 +8,13 @@
 @stop
 
 @section('content')
+<div class="card-body">
+    @if(session('notification'))
+        <div class="alert alert-info" role="alert">
+            {{ session('notification') }}
+        </div>
+    @endif
+</div>
 <div class="text-right mb-3">
     <a class="btn btn-primary" href="/cita/create">Registrar Cita</a>
 </div>
@@ -23,6 +30,7 @@
                 <th>Hora</th>
                 <th>Barbero</th>
                 <th>Servicio</th>
+                <th>Total</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -46,6 +54,7 @@
                         {{ $servicio->nombreServicio }}</br>
                     @endforeach
                 </td>
+                <td>${{ $cita->total }}</td>
                 <td>
                     <a class="btn btn-warning" href="/cita/{{ $cita->id }}/edit">Editar</a>
                 </td>

@@ -44,15 +44,21 @@ class CorteController extends Controller
         $notification = '';
 
         $rules = [
-            'nombreCorte' => 'required|string',
-            'estiloCorte' => 'required|string',
-            'descripcionCorte' => 'required|string',
+            'nombreCorte' => 'required|string|max:100',
+            'estiloCorte' => 'required|string|max:100',
+            'descripcionCorte' => 'required|string|max:255',
+            'imagen' => 'required',
         ];
 
         $messages = [
             'nombreCorte.required' => 'El nombre del corte es obligatorio.',
+            'nombreCorte.max' => 'El nombre del corte supera el límite carácteres permitido (100).',
             'estiloCorte.required' => 'El estilo del corte es obligatorio.',
+            'estiloCorte.max' => 'El estilo del corte supera el límite carácteres permitido (100).',
             'descripcionCorte.required' => 'La descripcion del corte es obligatorio.',
+            'descripcionCorte.max' => 'La descripcion del corte supera el límite de carácteres permitido (100).',
+            'imagen.required' => 'El Corte requiere de una imagen',
+            'imagen.size' => 'El tamaño de la imagen es demasiado grande',
         ];
 
         $this->validate($request, $rules, $messages);
@@ -123,15 +129,21 @@ class CorteController extends Controller
         $updateName = $corte->nombreCorte;
 
         $rules = [
-            'nombreCorte' => 'required|string',
-            'estiloCorte' => 'required|string',
-            'descripcionCorte' => 'required|string',
+            'nombreCorte' => 'required|string|max:100',
+            'estiloCorte' => 'required|string|max:100',
+            'descripcionCorte' => 'required|string|max:100',
+            'imagen' => 'required|size:5000',
         ];
 
         $messages = [
             'nombreCorte.required' => 'El nombre del corte es obligatorio.',
+            'nombreCorte.max' => 'El nombre del corte supera el límite carácteres permitido (100).',
             'estiloCorte.required' => 'El estilo del corte es obligatorio.',
+            'estiloCorte.max' => 'El estilo del corte supera el límite carácteres permitido (100).',
             'descripcionCorte.required' => 'La descripcion del corte es obligatorio.',
+            'descripcionCorte.max' => 'La descripcion del corte supera el límite de carácteres permitido (100).',
+            'imagen.required' => 'El Corte requiere de una imagen.',
+            'imagen.size' => 'El tamaño de la imagen es demasiado grande.',
         ];
 
         $this->validate($request, $rules, $messages);

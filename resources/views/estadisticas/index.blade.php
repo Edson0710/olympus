@@ -27,6 +27,8 @@
 
     $citasServicios = CitaServicio::all();
     $citas = Cita::all();
+    $empleados = Empleado::all();
+    $servicios = Servicio::all();
 @endphp
 <div class="row mb-5">
     <div class="col-md-6 mt-5">
@@ -116,14 +118,25 @@
 
         function grafica1(){
             // Las etiquetas son las porciones de la gráfica
-            const etiquetas = ["Mascarilla Exfoliante", "Ritual de Toalla Caliente", "Vapor con Aromaterapia", "Corte Especial"]
+            const etiquetas = [
+                @foreach ($servicios as $servicio)
+                    "{{$servicio->nombreServicio}}", 
+                @endforeach
+            ]
             // Podemos tener varios conjuntos de datos. Comencemos con uno
             const datosIngresos = {
                 data: [
-                    {{ $citasServicios->where('servicio_id', 1)->count() }},
-                    {{ $citasServicios->where('servicio_id', 2)->count() }},
-                    {{ $citasServicios->where('servicio_id', 3)->count() }},
-                    {{ $citasServicios->where('servicio_id', 4)->count() }}
+                    @foreach ($servicios as $servicio)
+                        @php
+                            $cantidad = 0;
+                            foreach ($citasServicios as $citaServicio) {
+                                if ($citaServicio->servicio_id == $servicio->id) {
+                                    $cantidad++;
+                                }
+                            }
+                        @endphp
+                        {{$cantidad}},
+                    @endforeach
                 ], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
                 // Ahora debería haber tantos background colors como datos, es decir, para este ejemplo, 4
                 backgroundColor: [
@@ -131,8 +144,16 @@
                     '#2D4263',
                     '#C84B31',
                     '#ECDBBA',
+                    '#191919',
+                    '#2D4263',
+                    '#C84B31',
+                    '#ECDBBA',
                 ],// Color de fondo
                 borderColor: [
+                    '#191919',
+                    '#2D4263',
+                    '#C84B31',
+                    '#ECDBBA',
                     '#191919',
                     '#2D4263',
                     '#C84B31',
@@ -154,15 +175,26 @@
 
         function grafica2(){
             // Las etiquetas son las que van en el eje X. 
-            const etiquetas = ["Mascarilla Exfoliante", "Ritual de Toalla Caliente", "Vapor con Aromaterapia", "Corte Especial"]
+            const etiquetas = [
+                @foreach ($servicios as $servicio)
+                    "{{$servicio->nombreServicio}}", 
+                @endforeach
+            ]
             // Podemos tener varios conjuntos de datos. Comencemos con uno
             const datosVentas2020 = {
                 label: "Ventas por Servicio",
                 data: [
-                    {{ $citasServicios->where('servicio_id', 1)->count() * 120 }},
-                    {{ $citasServicios->where('servicio_id', 2)->count() * 150 }},
-                    {{ $citasServicios->where('servicio_id', 3)->count() * 250 }},
-                    {{ $citasServicios->where('servicio_id', 4)->count() * 150 }}
+                    @foreach ($servicios as $servicio)
+                        @php
+                            $cantidad = 0;
+                            foreach ($citasServicios as $citaServicio) {
+                                if ($citaServicio->servicio_id == $servicio->id) {
+                                    $cantidad++;
+                                }
+                            }
+                        @endphp
+                        {{$cantidad * $servicio->precioServicio}},
+                    @endforeach
                 ], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
                 backgroundColor: '#C84B31', // Color de fondo
                 borderColor: '#C84B31', // Color del borde
@@ -191,16 +223,25 @@
 
         function grafica3(){
             // Las etiquetas son las porciones de la gráfica
-            const etiquetas = ["Axl", "Fernando", "Eduardo", "Angel", "Miguel", "Edson"]
+            const etiquetas = [
+                @foreach ($empleados as $empleado)
+                    "{{$empleado->nombreEmpleado}}", 
+                @endforeach
+            ]
             // Podemos tener varios conjuntos de datos. Comencemos con uno
             const datosIngresos = {
                 data: [
-                    {{ $citas->where('empleado_id', 1)->count() }},
-                    {{ $citas->where('empleado_id', 2)->count() }},
-                    {{ $citas->where('empleado_id', 3)->count() }},
-                    {{ $citas->where('empleado_id', 4)->count() }},
-                    {{ $citas->where('empleado_id', 5)->count() }},
-                    {{ $citas->where('empleado_id', 6)->count() }}
+                    @foreach ($empleados as $empleado)
+                        @php
+                            $cantidad = 0;
+                            foreach ($citas as $cita) {
+                                if ($cita->empleado_id == $empleado->id) {
+                                    $cantidad++;
+                                }
+                            }
+                        @endphp
+                        {{$cantidad}},
+                    @endforeach
                 ], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
                 // Ahora debería haber tantos background colors como datos, es decir, para este ejemplo, 4
                 backgroundColor: [
@@ -210,8 +251,20 @@
                     '#ECDBBA',
                     '#066163',
                     '#CDBE78',
+                    '#191919',
+                    '#2D4263',
+                    '#C84B31',
+                    '#ECDBBA',
+                    '#066163',
+                    '#CDBE78',
                 ],// Color de fondo
                 borderColor: [
+                    '#191919',
+                    '#2D4263',
+                    '#C84B31',
+                    '#ECDBBA',
+                    '#066163',
+                    '#CDBE78',
                     '#191919',
                     '#2D4263',
                     '#C84B31',
@@ -280,17 +333,18 @@
 
         function grafica5(){
             // Las etiquetas son las que van en el eje X. 
-            const etiquetas = ["Axl", "Fernando", "Eduardo", "Angel", "Miguel", "Edson"]
+            const etiquetas = [
+                @foreach ($empleados as $empleado)
+                    "{{$empleado->nombreEmpleado}}", 
+                @endforeach
+            ];
             // Podemos tener varios conjuntos de datos. Comencemos con uno
             const datosVentas2020 = {
                 label: "Calificación Empleado",
                 data: [
-                    {{ $citas->where('empleado_id', 1)->avg('calificacionUsuarioCita') }},
-                    {{ $citas->where('empleado_id', 2)->avg('calificacionUsuarioCita') }},
-                    {{ $citas->where('empleado_id', 3)->avg('calificacionUsuarioCita') }},
-                    {{ $citas->where('empleado_id', 4)->avg('calificacionUsuarioCita') }},
-                    {{ $citas->where('empleado_id', 5)->avg('calificacionUsuarioCita') }},
-                    {{ $citas->where('empleado_id', 6)->avg('calificacionUsuarioCita') }}
+                    @foreach($empleados as $empleado)
+                    {{ $citas->where('empleado_id', $empleado->id)->avg('calificacionUsuarioCita') }},
+                    @endforeach
                 ], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
                 backgroundColor: '#066163', // Color de fondo
                 borderColor: '#066163', // Color del borde

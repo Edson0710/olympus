@@ -143,7 +143,6 @@ class EmpleadoController extends Controller
             'telefonoEmpleado' => 'required|digits:10|numeric',
             'curpEmpleado' => 'required|string|size:18',
             'fecha_NacEmpleado' => 'required|date',
-            'imagen' => 'required|size:5000',
         ];
 
         $messages = [

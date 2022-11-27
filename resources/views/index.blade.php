@@ -146,7 +146,7 @@
                 <div class="team-item">
                     <div class="team-img position-relative overflow-hidden">
                         @foreach($empleado->empleadoimages as $image)
-                            <img class="img-fluid" src="{{ \Storage::url($image->ubicacionFileEmpleado) }}" alt="">
+                            <img class="img-fluid" src="{{ \Storage::url($image->ubicacionFileEmpleado) }}" alt="Empleado">
                         @endforeach
                         <div class="team-social">
                             <a class="btn btn-square" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>

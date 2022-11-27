@@ -142,7 +142,6 @@ class ProductoController extends Controller
             'tipo' => 'required|max:255',
             'precio' => 'required|numeric',
             'cantidad' => 'required|integer',
-            'imagen' => 'required',
         ];
 
         $messages = [

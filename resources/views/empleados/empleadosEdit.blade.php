@@ -38,7 +38,6 @@
             <label for="generoEmpleado">Género</label>
             <select name="generoEmpleado" class="form-control" required>
                 <option selected disabled>Seleccione una opción</option>
-                <option selected disabled>Seleccione una opción</option>
                 <option value="Femenino" {{ $empleado->generoEmpleado == 'Femenino' ? 'selected' : '' }}>Femenino</option>
                 <option value="Masculino" {{ $empleado->generoEmpleado == 'Masculino' ? 'selected' : '' }}>Masculino</option>
                 <option value="No binario" {{ $empleado->generoEmpleado == 'No binario' ? 'selected' : '' }}>No binario</option>
@@ -64,13 +63,6 @@
                 <i>{{ $message}}</i>
             @enderror
         </div> -->
-        <div class="form-group">
-            <fieldset>
-                <label for="imagen" class="form-label">Sube una imagen del Empleado</label><br>
-                    <input type="file" name="imagen" id="imagen">
-                </br>
-            </fieldset> 
-        </div>
         
         <div class="clearfix"></div>
 

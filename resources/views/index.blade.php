@@ -182,13 +182,12 @@
                     </div>
                         <div class="ps-4">
                             <h3 class="text-uppercase mb-3">{{ $corte->nombreCorte }}</h3>
-                            <p><strong>Descripción: </strong>{{ $corte->descripcionCorte }}</p>
                             <!--<span class="text-uppercase text-primary">Desde $80</span>-->
                             @foreach ($corte->corteimages as $image)
                                 <img class="img-fluid img-thumbnail mb-3" src="{{ \Storage::url($image->ubicacionFileCorte) }}" alt="Imagen Corte">
                             @endforeach
-
                             <p><strong>Estilo Corte: </strong>{{ $corte->estiloCorte }}</p>
+                            <p><strong>Descripción: </strong>{{ $corte->descripcionCorte }}</p>
                         </div>
                 </div>
             </div>

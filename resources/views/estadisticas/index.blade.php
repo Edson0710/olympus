@@ -111,9 +111,9 @@
         grafica2();
         // Empleados más solicitados
         grafica3();
-        // Calificación empleados
-        grafica4();
         // Ventas por mes
+        grafica4();
+        // Calificación empleados
         grafica5();
 
         function grafica1(){
@@ -189,6 +189,7 @@
                             $cantidad = 0;
                             foreach ($citasServicios as $citaServicio) {
                                 if ($citaServicio->servicio_id == $servicio->id) {
+                                    //Esta variable cuenta la cantidad de servicios que hay por cita
                                     $cantidad++;
                                 }
                             }
@@ -213,7 +214,8 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                max: 10000,
                             }
                         }],
                     },
@@ -323,7 +325,8 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                max: 10000,
                             }
                         }],
                     },
@@ -363,7 +366,8 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                max: 5,
                             }
                         }],
                     },
